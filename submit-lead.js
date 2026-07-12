@@ -5,7 +5,7 @@
 // Нужные переменные окружения (Vercel → Settings → Environment Variables):
 //   BOT_TOKEN  — токен бота от @BotFather
 //   CHAT_ID    — куда слать (личный чат/группа/канал), см. инструкцию в чате
-//   (UPSTASH_REDIS_REST_URL и UPSTASH_REDIS_REST_TOKEN добавятся сами,
+//   (KV_REST_API_URL и KV_REST_API_TOKEN добавятся сами,
 //    когда подключишь Upstash через Vercel Marketplace → Storage)
 //
 // Нужная зависимость в package.json: "@upstash/redis"
@@ -16,10 +16,24 @@ import { Redis } from '@upstash/redis';
 // Интеграция "Upstash for Redis" через Vercel Marketplace создаёт переменные
 // с префиксом KV_ (для обратной совместимости с бывшим Vercel KV), а не UPSTASH_,
 // поэтому подключаемся по этим именам напрямую, а не через Redis.fromEnv().
-const redis = new Redis({
-    url: process.env.KV_REST_API_URL,
-    token: process.env.KV_REST_API_TOKEN,
-});
+//
+// Оборачиваем создание клиента в try/catch: если переменные окружения не настроены
+// или указаны неверно, функция не должна падать целиком — отправка в Telegram
+// (главное, ради чего всё это) обязана работать даже без Redis.
+let redis = null;
+try {
+    if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
+        redis = new Redis({
+            url: process.env.KV_REST_API_URL,
+            token: process.env.KV_REST_API_TOKEN,
+        });
+    } else {
+        console.error('KV_REST_API_URL / KV_REST_API_TOKEN не заданы — Redis отключён, работаем без него');
+    }
+} catch (err) {
+    console.error('Не удалось создать клиент Redis:', err);
+    redis = null;
+}
 
 const MESSENGER_LABELS = {
     telegram: 'Telegram',
@@ -77,18 +91,20 @@ export default async function handler(req, res) {
         return res.status(500).json({ ok: false, error: 'server_misconfigured' });
     }
 
-    // Rate-limit по номеру телефона через Upstash Redis
-    try {
-        const rateLimitKey = `ratelimit:${cleanPhone}`;
-        const recent = await redis.get(rateLimitKey);
-        if (recent) {
-            return res.status(429).json({ ok: false, error: 'too_many_requests' });
+    // Rate-limit по номеру телефона через Upstash Redis (если он вообще доступен)
+    if (redis) {
+        try {
+            const rateLimitKey = `ratelimit:${cleanPhone}`;
+            const recent = await redis.get(rateLimitKey);
+            if (recent) {
+                return res.status(429).json({ ok: false, error: 'too_many_requests' });
+            }
+            await redis.set(rateLimitKey, Date.now(), { ex: RATE_LIMIT_SECONDS });
+        } catch (err) {
+            // Если Redis недоступен — не блокируем заявку из-за инфраструктурной проблемы,
+            // просто логируем и едем дальше без rate-limit на этот раз.
+            console.error('Redis rate-limit check failed:', err);
         }
-        await redis.set(rateLimitKey, Date.now(), { ex: RATE_LIMIT_SECONDS });
-    } catch (err) {
-        // Если Redis недоступен — не блокируем заявку из-за инфраструктурной проблемы,
-        // просто логируем и едем дальше без rate-limit на этот раз.
-        console.error('Redis rate-limit check failed:', err);
     }
 
     const messengerLabel = MESSENGER_LABELS[messenger] || messenger;
@@ -124,22 +140,25 @@ export default async function handler(req, res) {
         return res.status(502).json({ ok: false, error: 'telegram_unreachable' });
     }
 
-    // Сохраняем копию заявки в Upstash Redis — история для вас, не зависит от переписки в Telegram
-    try {
-        const leadKey = `lead:${Date.now()}:${cleanPhone}`;
-        await redis.set(leadKey, JSON.stringify({
-            name: cleanName,
-            phone: cleanPhone,
-            messenger,
-            source,
-            sourceDetail,
-            comment,
-            createdAt: new Date().toISOString(),
-        }));
-    } catch (err) {
-        // Заявка уже улетела флористу в Telegram — это главное. Проблема с записью в Redis не должна
-        // приводить к ошибке для пользователя, просто логируем.
-        console.error('Redis lead save failed:', err);
+    // Сохраняем копию заявки в Upstash Redis (если он доступен) — история для вас,
+    // не зависит от переписки в Telegram
+    if (redis) {
+        try {
+            const leadKey = `lead:${Date.now()}:${cleanPhone}`;
+            await redis.set(leadKey, JSON.stringify({
+                name: cleanName,
+                phone: cleanPhone,
+                messenger,
+                source,
+                sourceDetail,
+                comment,
+                createdAt: new Date().toISOString(),
+            }));
+        } catch (err) {
+            // Заявка уже улетела флористу в Telegram — это главное. Проблема с записью в Redis не должна
+            // приводить к ошибке для пользователя, просто логируем.
+            console.error('Redis lead save failed:', err);
+        }
     }
 
     return res.status(200).json({ ok: true });
