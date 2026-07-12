@@ -10,6 +10,10 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://vetka20.vercel.app/">
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="favicon.svg">
+
     <!-- OG-теги: красивая карточка при шаринге в Telegram, VK, WhatsApp -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://vetka20.vercel.app/">
@@ -36,6 +40,37 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+
+    <!-- Structured data: помогает Google показывать часы работы, адрес и телефон прямо в выдаче -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Florist",
+        "name": "ВЕТКА",
+        "image": "https://vetka20.vercel.app/images/og-cover.jpg",
+        "url": "https://vetka20.vercel.app/",
+        "telephone": "+79501333361",
+        "priceRange": "₽₽₽",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "ул. Советская, 96",
+            "addressLocality": "Иркутск",
+            "addressCountry": "RU"
+        },
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+                "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+            ],
+            "opens": "10:00",
+            "closes": "20:00"
+        },
+        "sameAs": [
+            "https://www.instagram.com/vetka.irk/",
+            "https://t.me/vetka_2024"
+        ]
+    }
+    </script>
 </head>
 <body>
 

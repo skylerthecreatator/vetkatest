@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vetka20.vercel.app/sitemap.xml

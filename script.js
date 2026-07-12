@@ -183,7 +183,12 @@ function submitForm(e) {
             if (!ok || !data.ok) {
                 // Заявка не долетела — показываем ошибку прямо в форме, экран "спасибо" НЕ открываем,
                 // чтобы человек не думал, что всё прошло, пока флорист ничего не получил
-                if (generalError) generalError.classList.add('form-error--visible');
+                if (generalError) {
+                    generalError.textContent = data.error === 'too_many_requests'
+                        ? 'Вы уже отправляли заявку недавно — флорист её увидел, дождитесь ответа 🙂'
+                        : 'Не получилось отправить заявку. Проверьте связь и попробуйте ещё раз, или напишите нам в Telegram напрямую.';
+                    generalError.classList.add('form-error--visible');
+                }
                 return;
             }
 
