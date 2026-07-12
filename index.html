@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ВЕТКА | Дикая флористика без шаблонов и школа в Иркутске</title>
+
+    <!-- SEO: описание страницы для поисковиков -->
+    <meta name="description" content="Авангардная флористика в Иркутске. Собираем букеты с характером природы, доставляем бережно. Школа флористики — обучение без шаблонов. Ул. Советская, 96.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://vetka20.vercel.app/">
+
+    <!-- OG-теги: красивая карточка при шаринге в Telegram, VK, WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vetka20.vercel.app/">
+    <meta property="og:title" content="ВЕТКА — Дикая флористика без шаблонов">
+    <meta property="og:description" content="Авангардные букеты с характером природы. Доставка по Иркутску. Школа флористики.">
+    <meta property="og:image" content="https://vetka20.vercel.app/images/og-cover.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="ВЕТКА">
+
+    <!-- Twitter/X карточка -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ВЕТКА — Дикая флористика без шаблонов">
+    <meta name="twitter:description" content="Авангардные букеты с характером природы. Доставка по Иркутску.">
+    <meta name="twitter:image" content="https://vetka20.vercel.app/images/og-cover.jpg">
+
+    <!-- Preconnect: браузер заранее открывает соединение с Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Preload критичного шрифта заголовков — убирает FOUT (мигание шрифта при загрузке) -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+       <!-- ОБНОВЛЕННАЯ ШАПКА В САМОМ ВЕРХУ -->
+    <header class="header">
+       <a href="#hero" class="logo">ВЕТКА</a>
+        
+        <!-- Центр шапки: Расширенное меню навигации -->
+        <nav class="nav">
+            <a href="#catalog">Каталог</a>
+            <a href="#reviews">Отзывы</a>
+            <a href="#constructor-teaser">Свой концепт</a>
+            <a href="#delivery-service">Доставка</a>
+            <a href="#flower-subscription">Подписка</a>
+            <a href="#school-section">Школа</a>
+        </nav>
+
+        <div class="header-contacts">
+            <div class="header-geo">
+                <!-- Сделали Иркутск обычным текстом, увеличим в CSS -->
+                <span class="geo-city">Иркутск</span>
+                <a href="https://2gis.ru/irkutsk/firm/70000001084131858?m=104.315705%2C52.279294%2F18.82&utm_source=ig&utm_medium=social&utm_content=link_in_bio" target="_blank" rel="noopener noreferrer" class="geo-street">ул. Советская, 96 📍</a>
+            </div>
+            <div class="header-hours">10:00–20:00 ежедневно</div>
+            <!-- ЗАМЕНИЛИ: Теперь это кнопка, которая открывает наше стильное окно -->
+            <button class="header-phone-btn" onclick="openContactModal('header')">Связаться</button>
+        </div>
+    </header>
+
+    <aside class="bonus-badge" id="bonusBadge" aria-label="Промокод на первый заказ">
+        <button class="bonus-close" type="button" onclick="closeBonusBadge()" aria-label="Скрыть бонус">×</button>
+        <span class="bonus-kicker">Промокод</span>
+        <strong>VETKA500</strong>
+        <span>500 бонусов на первый заказ</span>
+        <div class="bonus-actions">
+            <button type="button" onclick="copyPromoCode()">Скопировать</button>
+            <a href="https://t.me/vetka_2024" target="_blank" rel="noopener noreferrer">Заказать</a>
+        </div>
+    </aside>
+
+     
+    <!-- Главный экран (Hero) -->
+    <section id="hero" class="hero"> 
+        <!-- Тот самый легкий неоновый туман на фоне -->
+        <div class="hero-fog"></div>
+
+        <!-- Основная ветка первого экрана -->
+        <img src="images/branch-decor.png" alt="декор" class="hero-branch-decor" loading="lazy">
+
+        <!-- Папоротник слева и папоротник справа -->
+        <img src="images/side-fern.png" alt="декор" class="fern-left" loading="lazy">
+        <img src="images/side-fern.png" alt="декор" class="fern-right" loading="lazy">
+
+        <!-- Плавающие частицы — заполняют пустое пространство по краям экрана живым, лёгким движением -->
+        <div class="floating-particles" aria-hidden="true">
+            <svg class="particle particle-1" viewBox="0 0 40 40"><circle cx="20" cy="20" r="3" fill="#A3E635" opacity="0.5"/></svg>
+            <svg class="particle particle-2" viewBox="0 0 40 40"><circle cx="20" cy="20" r="2" fill="#E5E1DC" opacity="0.35"/></svg>
+            <svg class="particle particle-3" viewBox="0 0 40 40"><circle cx="20" cy="20" r="2.5" fill="#A3E635" opacity="0.4"/></svg>
+            <svg class="particle particle-4" viewBox="0 0 40 40"><circle cx="20" cy="20" r="1.8" fill="#E5E1DC" opacity="0.3"/></svg>
+            <svg class="particle particle-5" viewBox="0 0 40 40"><circle cx="20" cy="20" r="3.2" fill="#A3E635" opacity="0.45"/></svg>
+            <svg class="particle particle-6" viewBox="0 0 40 40"><circle cx="20" cy="20" r="2" fill="#E5E1DC" opacity="0.3"/></svg>
+        </div>
+
+        <div class="hero-container">
+            <!-- Левая часть: Смыслы, Текст и Триггеры -->
+            <div class="hero-content">
+                <h1 class="hero-title hero-anim hero-anim-1">Флористика<br><span class="accent-text">без шаблонов</span></h1>
+                <p class="hero-subtitle hero-anim hero-anim-2">Собираем авторские букеты и композиции для дома, событий и особенных подарков. Лёгкая форма, сезонные цветы и внимательный сервис — от первого сообщения до фото готового букета.</p>
+
+                
+                <div class="hero-actions hero-anim hero-anim-3">
+                    <a href="#catalog" class="btn btn-primary">Смотреть букеты</a>
+                    <a href="#school-section" class="hero-school-link">Есть школа флористики →</a>
+                </div>
+
+
+
+                <div class="hero-features hero-anim hero-anim-4">
+                    <div class="feature-item">
+                        <span class="feature-num">7000+</span>
+                        <span class="feature-txt">авторских букетов</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-num">90 мин</span>
+                        <span class="feature-txt">бережная доставка по Иркутску</span>
+                    </div>
+                </div>
+            </div>
+
+                        <!-- Правая часть: Горизонтальная карусель карточек -->
+                        <!-- Правая часть: Настоящая 3D-карусель Netflix/Apple -->
+            <div class="hero-visual">
+                <div class="slider-window">
+                    
+                    <!-- Стрелки управления, вынесенные поверх слоев -->
+                    <button class="slide-nav prev-btn" onclick="changeSlide(-1)">←</button>
+                    <button class="slide-nav next-btn" onclick="changeSlide(1)">→</button>
+
+                    <!-- Контейнер с 3D-перспективой -->
+                    <div class="slides-container" id="hero-slider">
+                        
+                        <!-- КАРТОЧКА 1: Букет дня -->
+                        <div class="hero-slide active-slide">
+                            <img src="images/hero-light-1.jpg" alt="Авторская композиция ВЕТКА">
+                            <a href="https://t.me/vetka_2024" target="_blank" rel="noopener noreferrer" class="promo-badge-btn">
+                                <span class="badge-tag">ВЕТКА / композиция дня</span>
+                                <span class="badge-line">Свежий сезонный состав</span>
+                                <span class="badge-action">Обсудить в Telegram →</span>
+                            </a>
+                        </div>
+
+                        <!-- КАРТОЧКА 2: Нежный букет -->
+                        <div class="hero-slide next-slide">
+                            <img src="images/hero-light-2.jpg" alt="Нежный букет ВЕТКА" loading="lazy">
+                            <a href="#catalog" class="promo-badge-btn">
+                                <span class="badge-tag">Нежная коллекция</span>
+                                <span class="badge-line">Для свадеб и подарков</span>
+                                <span class="badge-action">Смотреть каталог →</span>
+                            </a>
+                        </div>
+
+                        <!-- КАРТОЧКА 3: Мастерская -->
+                        <div class="hero-slide prev-slide">
+                            <img src="images/salon-space.jpg" alt="Салон ВЕТКА в Иркутске" loading="lazy">
+                            <a href="#school-section" class="promo-badge-btn">
+                                <span class="badge-tag">Мастерская на Советской</span>
+                                <span class="badge-line">10:00–20:00 ежедневно</span>
+                                <span class="badge-action">Прийти в гости →</span>
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div> <!-- .hero-container -->
+    </section>
+
+        <!-- Блок Флагманов -->
+    <section id="catalog" class="catalog">
+        <div class="catalog-header">
+            <span class="section-eyebrow">Каталог</span>
+            <h2 class="section-title">Выберите настроение букета</h2>
+            <p class="section-subtitle">Готовые направления для заказа: свадебные букеты, интерьерные композиции, вазы и подарки.</p>
+        </div>
+
+        <div class="category-grid" aria-label="Категории каталога">
+            <a class="category-card" href="https://t.me/vetka_2024" target="_blank" rel="noopener noreferrer">
+                <img src="images/hero-light-2.jpg" alt="Свадебное направление ВЕТКА" loading="lazy">
+                <span>Свадебное</span>
+            </a>
+            <a class="category-card" href="https://t.me/vetka_2024" target="_blank" rel="noopener noreferrer">
+                <img src="images/catalog-compositions.jpg" alt="Композиции ВЕТКА" loading="lazy">
+                <span>Композиции</span>
+            </a>
+            <a class="category-card" href="https://t.me/vetka_2024" target="_blank" rel="noopener noreferrer">
+                <img src="images/catalog-gifts.jpg" alt="Вазы и подарки ВЕТКА" loading="lazy">
+                <span>Вазы и подарки</span>
+            </a>
+        </div>
+        
+                <div class="catalog-grid">
+            
+            <!-- Флагман 1 -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="images/flagship1.jpg" alt="Асимметрия №1. Гортензия и Каллы" loading="lazy">
+                </div>
+                <div class="product-info">
+                    <h3>🤍 Асимметрия. Гортензия и Каллы</h3>
+                    <p class="product-desc">Композиция с ломаной геометрией. Плотное ядро гортензии уравновешено строгой графикой калл.<br>Для тех, кто ценит форму.</p>
+                    <div class="product-footer">
+                        <span class="price">8 500 ₽</span>
+                        <!-- ЗАМЕНИЛИ СТРОЧКУ НА ОТКРЫТИЕ ОКНА СВЯЗИ -->
+                        <button class="btn-buy" onclick="openContactModal('catalog', 'Асимметрия. Гортензия и Каллы')">Хочу этот букет</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Флагман 2 -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="images/flagship2.jpg" alt="Нуар и Антуриум" loading="lazy">
+                </div>
+                <div class="product-info">
+                    <h3>🦩 Акцентный нуар</h3>
+                    <p class="product-desc">Выразительный сет для особых пространств. Тяжёлая текстура фиолетовых бутонов встречается<br>с глянцевой графикой зелёных антуриумов.</p>
+                    <div class="product-footer">
+                        <span class="price">9 800 ₽</span>
+                        <!-- ЗАМЕНИЛИ СТРОЧКУ НА ОТКРЫТИЕ ОКНА СВЯЗИ -->
+                        <button class="btn-buy" onclick="openContactModal('catalog', 'Акцентный нуар')">Хочу этот букет</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Флагман 3 -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="images/flagship3.jpg" alt="Интерьерный концепт №3" loading="lazy">
+                </div>
+                <div class="product-info">
+                    <h3>🍁 Интерьерный концепт. Нутан</h3>
+                    <p class="product-desc">Интерьерная арт-композиция в стеклянной вазе. Огненная структура африканского нутана<br>балансирует бархатный нуар темных диантусов.</p>
+                    <div class="product-footer">
+                        <span class="price">11 200 ₽</span>
+                        <!-- ЗАМЕНИЛИ СТРОЧКУ НА ОТКРЫТИЕ ОКНА СВЯЗИ -->
+                        <button class="btn-buy" onclick="openContactModal('catalog', 'Интерьерный концепт. Нутан')">Хочу этот букет</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+       <!-- 2. НАХОДИМ КНОПКУ ПОД ТРЕМЯ ФЛАГМАНАМИ И ЗАМЕНЯЕМ НА ВАРИАНТ С ИКОНКОЙ -->
+    <div class="catalog-action-row">
+        <a href="https://t.me/vetka_2024" target="_blank" rel="noopener noreferrer" class="btn-catalog-more">
+            <!-- Вставили легкий SVG-значок Телеграма, который встроен прямо в код -->
+            <svg class="tg-icon" viewBox="0 0 24 24" fill="none" xmlns="http://w3.org">
+                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="currentColor" fill-opacity="0.1"/>
+                <path d="M21.433 8.3514C21.6508 7.37346 20.6738 6.54133 19.7126 6.84534L4.03264 11.8043C3.12569 12.0912 3.1491 13.3768 4.06575 13.6303L8.35624 14.8166L18.0673 8.78913C18.2145 8.69767 18.3616 8.92211 18.211 9.05739L10.0463 16.3861L9.93294 16.4883L9.75389 17.7554C9.64571 18.5209 10.6393 18.919 11.1611 18.3444L13.2505 16.0435L17.5262 19.1672C18.4208 19.8208 19.7027 19.317 19.9195 18.2541L21.433 8.3514Z" fill="currentColor"/>
+            </svg>
+            Смотреть всё наличие в Telegram
+        </a>
+    </div>
+
+    </section> <!-- Только тут закрыли всю секцию каталога флагманов -->
+
+            <!-- 3-колоночная Карусель Отзывов (Финальный технический фикс) -->
+    <section id="reviews" class="reviews-section">
+        <div class="reviews-container">
+            
+            <div class="reviews-header">
+                <h2 class="section-title">Глазами клиентов</h2>
+                <p class="section-subtitle">Живые кадры из Telegram-канала студии и честные отзывы</p>
+            </div>
+
+            <!-- Широкое окно слайдера -->
+            <div class="reviews-slider-window-wide">
+                
+                <!-- Стрелки управления -->
+                <button class="review-nav prev-review-btn" onclick="changeReviewSlide(-1)">←</button>
+                <button class="review-nav next-review-btn" onclick="changeReviewSlide(1)">→</button>
+
+                <!-- Маска, которая показывает ровно 3 карточки в ряд -->
+                <div class="reviews-viewport-wide">
+                    <div class="reviews-track-wide" id="reviews-track">
+                        
+                        <!-- ОТЗЫВ 1 -->
+                        <div class="review-slide-item-wide">
+                            <div class="review-photo-card">
+                                <img src="images/review1.jpg" alt="Отзыв ВЕТКА" loading="lazy">
+                                <div class="review-photo-overlay">
+                                    <div class="photo-card-meta">
+                                        <span class="photo-user">@mari_irk 🤍</span>
+                                        <span class="photo-platform">2ГИС ★ 5.0</span>
+                                    </div>
+                                    <p class="photo-review-text">«Самый необычный салон в Иркутске! Интересные букеты, приятный сервис, угощают кофе и регулярно проводят мастер-классы. Учат настоящей цветочной магии! 🌷»</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ОТЗЫВ 2 -->
+                        <div class="review-slide-item-wide">
+                            <div class="review-photo-card">
+                                <img src="images/review2.jpg" alt="Отзыв ВЕТКА" loading="lazy">
+                                <div class="review-photo-overlay">
+                                    <div class="photo-card-meta">
+                                        <span class="photo-user">@dmitry_v ✨</span>
+                                        <span class="photo-platform">Яндекс ★ 5.0</span>
+                                    </div>
+                                    <p class="photo-review-text">«аказала букет на важное мероприятие — результат превзошел ожидания. Цветы свежайшие, доставлены точно в срок. Буду рекомендовать друзьям! 🌸»</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ОТЗЫВ 3 -->
+                        <div class="review-slide-item-wide">
+                            <div class="review-photo-card">
+                                <img src="images/review3.jpg" alt="Отзыв ВЕТКА" loading="lazy">
+                                <div class="review-photo-overlay">
+                                    <div class="photo-card-meta">
+                                        <span class="photo-user">@anna_k 🌿</span>
+                                        <span class="photo-platform">Telegram</span>
+                                    </div>
+                                    <p class="photo-review-text">«Как всегда шикарный букет, сервис на высоте. Флористы очень вежливые и понимают с полуслова. Если цветы в Иркутске — то теперь только Ветка!»</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ОТЗЫВ 4 (Привязали к реальному букету) -->
+                       <!-- ИСПРАВЛЕННЫЙ ВАРИАНТ (Следи за закрытием тегов) -->
+<div class="review-slide-item-wide">
+    <div class="review-photo-card">
+        <img src="images/review4.jpg" alt="Отзыв" loading="lazy">
+        <div class="review-photo-overlay">
+            
+            <!-- Коробочка мета-данных открывается -->
+            <div class="photo-card-meta">
+                <span class="photo-user">@client_4 🌿</span>
+                <span class="photo-platform">2ГИС ★ 5.0</span> <!-- ПЕРЕНЕСЛИ СТРОЧКУ СЮДА -->
+            </div> <!-- Коробочка мета-данных закрывается -->
+            
+            <p class="photo-review-text">«В Ветке собирают самые красивые и стильные букеты в городе! А еще они проводят интереснейшие творческие мастер-классы для детей.»</p>
+        </div>
+    </div>
+</div>
+
+
+                        <!-- ОТЗЫВ 5 (Яндекс — Золотая плашка) -->
+                        <div class="review-slide-item-wide">
+                            <div class="review-photo-card">
+                                <img src="images/review5.jpg" alt="Отзыв" loading="lazy">
+                                <div class="review-photo-overlay">
+                                    <div class="photo-card-meta">
+                                        <span class="photo-user">Екатерина М. ✨</span>
+                                        <span class="photo-platform">Яндекс ★ 5.0</span>
+                                    </div>
+                                    <p class="photo-review-text">«Сервис на высоте, сотрудники вежливы и очень приятны в общении. Букеты стильные, доставка быстрая. Рекомендую эту мастерскую всем!»</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ОТЗЫВ 6 (Telegram) -->
+                        <div class="review-slide-item-wide">
+                            <div class="review-photo-card">
+                                <img src="images/review6.jpg" alt="Отзыв ВЕТКА" loading="lazy">
+                                <div class="review-photo-overlay">
+                                    <div class="photo-card-meta">
+                                        <span class="photo-user">@артем_irk38 🤍</span>
+                                        <span class="photo-platform">Telegram</span>
+                                    </div>
+                                    <p class="photo-review-text">«Даю администратору вводные, а дальше всё делают под ключ. Заказываем букеты для коллег и для себя — всегда идеальная авангардная форма!»</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ОТЗЫВ 7 (2ГИС — Зеленая плашка) -->
+                        <div class="review-slide-item-wide">
+                            <div class="review-photo-card">
+                                <img src="images/review7.jpg" alt="Отзыв ВЕТКА" loading="lazy">
+                                <div class="review-photo-overlay">
+                                    <div class="photo-card-meta">
+                                        <span class="photo-user">Алёна Попова 🌿</span>
+                                        <span class="photo-platform">2ГИС ★ 5.0</span>
+                                    </div>
+                                    <p class="photo-review-text">«Сходила на однодневный воркшоп по интерьерным композициям на коре. Это полный восторг! Атмосфера в студии на Советской невероятная.»</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ОТЗЫВ 8 (Яндекс) -->
+                        <div class="review-slide-item-wide">
+                            <div class="review-photo-card">
+                                <img src="images/review8.jpg" alt="Отзыв ВЕТКА" loading="lazy">
+                                <div class="review-photo-overlay">
+                                    <div class="photo-card-meta">
+                                        <span class="photo-user">Максим Володин ⚡</span>
+                                        <span class="photo-platform">Яндекс ★ 5.0</span>
+                                    </div>
+                                    <p class="photo-review-text">«Каждый раз заказываю здесь композиции для дома. Поражает, как тонко флористы чувствуют пространство и форму. Букеты выглядят очень стильно и дорого!»</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ОТЗЫВ 9 (Telegram) -->
+                        <div class="review-slide-item-wide">
+                            <div class="review-photo-card">
+                                <img src="images/review9.jpg" alt="Отзыв ВЕТКА" loading="lazy">
+                                <div class="review-photo-overlay">
+                                    <div class="photo-card-meta">
+                                        <span class="photo-user">@kristina_baikal 🤍</span>
+                                        <span class="photo-platform">Telegram</span>
+                                    </div>
+                                    <p class="photo-review-text">«Удивительная эстетика. Никаких скучных круглых букетов, только свободная природная графика. Настоящее интерьерное искусство в Иркутске.»</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ОТЗЫВ 10 (2ГИС) -->
+                        <div class="review-slide-item-wide">
+                            <div class="review-photo-card">
+                                <img src="images/review10.jpg" alt="Отзыв ВЕТКА" loading="lazy">
+                                <div class="review-photo-overlay">
+                                    <div class="photo-card-meta">
+                                        <span class="photo-user">Ирина Шестакова ⭐</span>
+                                        <span class="photo-platform">2ГИС ★ 5.0</span>
+                                    </div>
+                                    <p class="photo-review-text">«Цветы невероятного качества, стоят дома больше двух недель и каждый день раскрываются по-новому. Отдельное спасибо за вежливый сервис!»</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ОТЗЫВ 11 (Яндекс) -->
+                        <div class="review-slide-item-wide">
+                            <div class="review-photo-card">
+                                <img src="images/review11.jpg" alt="Отзыв ВЕТКА" loading="lazy">
+                                <div class="review-photo-overlay">
+                                    <div class="photo-card-meta">
+                                        <span class="photo-user">Ольга Кравцова 🍁</span>
+                                        <span class="photo-platform">Яндекс ★ 5.0</span>
+                                    </div>
+                                    <p class="photo-review-text">«Никакой банальной пленки — только настоящее искусство с характером дикой природы. Особенно авангардные букеты мастерицы Софы — это любовь с первого взгляда!»</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ОТЗЫВ 12 (Telegram) -->
+                        <div class="review-slide-item-wide">
+                            <div class="review-photo-card">
+                                <img src="images/review12.jpg" alt="Отзыв ВЕТКА" loading="lazy">
+                                <div class="review-photo-overlay">
+                                    <div class="photo-card-meta">
+                                        <span class="photo-user">@jonSnow ❄️</span>
+                                        <span class="photo-platform">Telegram</span>
+                                    </div>
+                                    <p class="photo-review-text">«Идеальный салон. Свежие цветы, которые стоят у меня дома по две недели, стильная студия в Иркутске и команда фанатов своего дела. Спасибо за красоту!»</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div> <!-- .reviews-track-wide -->
+                </div> <!-- .reviews-viewport-wide -->
+            </div> <!-- .reviews-slider-window-wide -->
+        </div> <!-- .reviews-container -->
+    </section>
+
+    <!-- Настоящий интерактивный свой концепт Букетов -->
+    <section id="constructor-teaser" class="constructor-teaser">
+        <div class="constructor-header-block">
+            <span class="constructor-status">В разработке</span>
+            <span class="constructor-soon">Онлайн-концепт — скоро</span>
+            <h2>Соберите идею <span class="accent-text">букета</span></h2>
+            <p class="subtitle">Выберите формат, главный цветок и настроение. Это не финальная корзина, а понятная заявка для флориста: мы увидим направление, уточним детали и соберём живой авторский состав.</p>
+        </div>
+
+        <div class="constructor-block">
+            <div class="constructor-ui">
+                <div class="constructor-panel-title">
+                    <span>01</span>
+                    <strong>Настройка</strong>
+                </div>
+
+                <div class="constructor-step">
+                    <h3>Что собираем</h3>
+                    <div class="options-row">
+                        <button class="opt-btn active-opt" data-cat="base" data-val="composition">Композиция</button>
+                        <button class="opt-btn" data-cat="base" data-val="loose">Раскидистый букет</button>
+                        <button class="opt-btn" data-cat="base" data-val="kenzan">На кензане</button>
+                    </div>
+                </div>
+
+                <div class="constructor-step">
+                    <h3>Любимый акцент</h3>
+                    <div class="options-row">
+                        <button class="opt-btn active-opt" data-cat="flower" data-val="lily">Лилия</button>
+                        <button class="opt-btn" data-cat="flower" data-val="gerbera">Гербера</button>
+                        <button class="opt-btn" data-cat="flower" data-val="french-rose">Французская роза</button>
+                        <button class="opt-btn" data-cat="flower" data-val="sunflower">Подсолнух</button>
+                        <button class="opt-btn" data-cat="flower" data-val="greenball">Гринбол</button>
+                    </div>
+                </div>
+
+                <div class="constructor-step">
+                    <h3>Какой характер</h3>
+                    <div class="options-row">
+                        <button class="opt-btn active-opt" data-cat="character" data-val="soft">Нежно и воздушно</button>
+                        <button class="opt-btn" data-cat="character" data-val="graphic">Строго и графично</button>
+                        <button class="opt-btn" data-cat="character" data-val="dog">Смело и с характером</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="constructor-preview">
+                <div class="constructor-panel-title">
+                    <span>02</span>
+                    <strong>Витрина</strong>
+                </div>
+                <div class="preview-frame demo-preview" id="bouquet-preview" data-base="composition" data-flower="lily" data-character="soft">
+                    <span class="demo-label">Предпросмотр</span>
+                    <img id="constructorPreviewImage" loading="lazy" src="images/hero-light-1.jpg" alt="Пример концепта ВЕТКА">
+                    <div class="demo-preview-copy">
+                        <h3>Так может звучать ваш букет</h3>
+                        <p>Картинка показывает настроение, а не точную копию. Финальный состав флорист соберёт из свежих сезонных цветов.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="constructor-total">
+                <div class="constructor-panel-title">
+                    <span>03</span>
+                    <strong>Заявка</strong>
+                </div>
+                <div class="total-box">
+                    <div class="summary-row">
+                        <span>Формат</span>
+                        <strong id="summary-base">Композиция</strong>
+                    </div>
+                    <div class="summary-row">
+                        <span>Акцент</span>
+                        <strong id="summary-flower">Лилия</strong>
+                    </div>
+                    <div class="summary-row">
+                        <span>Настроение</span>
+                        <strong id="summary-character">Нежно и воздушно</strong>
+                    </div>
+                    <div class="payment-note">
+                        <span>Оплата</span>
+                        <p>Онлайн-оплату через СБП и итоговый бюджет согласуем после переписки. Перед отправкой флорист пришлёт фото готового букета.</p>
+                    </div>
+                    <button class="btn btn-primary constructor-submit" onclick="openContactModal('constructor')">Отправить идею флористу</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Блок Сервиса: Доставка и Оплата -->
+    <section id="delivery-service" class="delivery-service">
+        <div class="service-container">
+            
+            <div class="service-header">
+                <h2 class="section-title">Сервис и бережная доставка</h2>
+                <p class="section-subtitle">Аккуратно собираем, согласуем детали и отправляем букет только после финального фото.</p>
+            </div>
+
+            <div class="service-grid">
+                <!-- Шаг 1: Аквабоксы -->
+                <div class="service-card">
+                    <span class="service-step-num">01</span>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2C12 2 5 11 5 15.5C5 19.09 8.13 22 12 22C15.87 22 19 19.09 19 15.5C19 11 12 2 12 2Z"/>
+                        </svg>
+                    </div>
+                    <h3>Аккуратная упаковка</h3>
+                    <p>Букеты едут в воде или аквапаке, а композиции надёжно фиксируются для дороги. Мы подбираем упаковку под формат заказа и погоду.</p>
+                </div>
+
+                <!-- Шаг 2: Сибирский мороз -->
+                <div class="service-card">
+                    <span class="service-step-num">02</span>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2V22M5 5.5L19 18.5M19 5.5L5 18.5M3 12H21"/>
+                        </svg>
+                    </div>
+                    <h3>Бережный маршрут</h3>
+                    <p>Перед отправкой флорист проверяет форму, свежесть и упаковку. В холодное время года добавляем тёплую защиту, чтобы цветы доехали спокойно.</p>
+                </div>
+
+                <!-- Шаг 3: Прозрачная оплата -->
+                <div class="service-card">
+                    <span class="service-step-num">03</span>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="5" width="20" height="14" rx="2.5"/>
+                            <path d="M2 9.5H22"/>
+                            <path d="M6 14H10" stroke-width="1.6"/>
+                        </svg>
+                    </div>
+                    <h3>Понятная оплата</h3>
+                    <p>Оплата онлайн возможна через СБП. Флорист присылает фото готового букета перед отправкой.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="flower-subscription" class="flower-subscription">
+        <div class="subscription-content">
+            <span class="section-eyebrow">Для дома и бизнеса</span>
+            <h2 class="section-title">Цветочная подписка</h2>
+            <p>Цветочная подписка — это регулярные букеты и композиции для дома, офиса, студии, шоурума, кафе или другого пространства. Мы подбираем сезонные цветы, согласуем стиль и доставляем их с удобной периодичностью.</p>
+            <div class="subscription-points">
+                <span>Гибкая частота</span>
+                <span>Свежие сезонные составы</span>
+                <span>Быстрая корректировка по чату</span>
+            </div>
+            <div class="subscription-mini-gallery" aria-label="Примеры цветочной подписки">
+                <img src="images/hero-light-2.jpg" alt="Светлый букет для подписки" loading="lazy">
+                <img src="images/salon-space.jpg" alt="Цветы в пространстве салона" loading="lazy">
+                <img src="images/catalog-gifts.jpg" alt="Подарочные цветочные детали" loading="lazy">
+            </div>
+            <button class="btn btn-primary" onclick="openContactModal('subscription')">Обсудить подписку</button>
+        </div>
+        <div class="subscription-media">
+            <img src="images/catalog-compositions.jpg" alt="Цветочная подписка ВЕТКА" loading="lazy">
+            <div class="subscription-note">
+                <span>Куда доставляем</span>
+                <strong>Дом, офис, студия</strong>
+                <small>Раз в неделю, к событию или по вашему графику.</small>
+            </div>
+        </div>
+    </section>
+
+    <section id="care" class="care-section">
+        <div class="care-header">
+            <span class="section-eyebrow">После доставки</span>
+            <h2 class="section-title">Как ухаживать</h2>
+            <p class="section-subtitle">Две короткие инструкции, чтобы букет или композиция дольше радовали свежестью и формой.</p>
+        </div>
+
+        <div class="care-grid">
+            <details class="care-card">
+                <summary>Инструкция по уходу за композицией</summary>
+                <div class="care-copy">
+                    <p>Ваша композиция создана, чтобы радовать Вас! Мы позаботились о её свежести, теперь несколько простых правил помогут её сохранить.</p>
+                    <p><strong>Где хранить:</strong> вдали от прямых солнечных лучей, отопительных приборов и фруктов.</p>
+                    <p><strong>Как поливать:</strong> каждый день по 50–100 мл воды, в зависимости от размера композиции, в разные участки. Подливайте под цветы, равномерно распределяя влагу.</p>
+                    <p>Пусть эта композиция радует Вас свежестью и красотой!</p>
+                </div>
+            </details>
+
+            <details class="care-card">
+                <summary>Инструкция по уходу за букетом</summary>
+                <div class="care-copy">
+                    <p>Ваш букет путешествовал в бережной среде. Он приехал в аквабоксе — картонной вазочке — или аквапаке — прозрачной плёнке с водой.</p>
+                    <p>Если букет в аквапаке, аккуратно развяжите его над раковиной, слейте воду и сразу поставьте букет в вазу так, чтобы все стебли были в воде.</p>
+                    <p>Если букет в аквабоксе, развяжите и переставьте букет в вазу с водой. Аквабокс не предназначен для долгого хранения.</p>
+                    <p><strong>Как ухаживать:</strong> храните вдали от батарей, прямых солнечных лучей и фруктов. Ежедневно меняйте воду, мойте вазу со средством и подрезайте стебли острым ножом или секатором перед тем, как поставить их в свежую воду.</p>
+                    <p>Пусть букет радует Вас как можно дольше!</p>
+                </div>
+            </details>
+        </div>
+    </section>
+
+        <!-- Блок Школы Флористики ВЕТКА с кнопкой инстаграма и правильным якорем -->
+    <section id="school-section" class="school">
+        <div class="school-container">
+            <div class="school-media school-feature">
+                <div class="video-wrapper">
+                    <video autoplay loop muted playsinline poster="images/school-cover.jpg">
+                        <source src="images/school-video.mp4" type="video/mp4">
+                    </video>
+                    <div class="media-overlay">
+                        <span class="academy-tag">Школа ВЕТКА</span>
+                        <h2>Учим собирать живые авторские формы</h2>
+                    </div>
+                </div>
+                <a href="https://www.instagram.com/vetka.irk/" target="_blank" rel="noopener noreferrer" class="btn-academy-instagram">Закулисье школы в Instagram →</a>
+            </div>
+
+            <div class="school-info">
+                <span class="section-eyebrow">Обучение ВЕТКА</span>
+                <h2 class="section-title">Школа флористики</h2>
+                <p class="school-lead">Практика в живой мастерской: форма, сезонный материал, коммерческая задача и уверенная подача букета. Можно прийти на воркшоп, пройти базу или собрать личную программу.</p>
+                <div class="school-tags">
+                    <span>мини-группы</span>
+                    <span>живые сборки</span>
+                    <span>портфолио</span>
+                </div>
+                <div class="courses-list">
+                    <div class="course-item">
+                        <div class="course-meta">
+                            <h4>Базовый интенсив</h4>
+                            <span>Ближайший поток в Иркутске</span>
+                        </div>
+                        <p class="course-detail">Погружение в профессию с нуля: постановка руки, композиция, работа с акцентными цветами, коммерческие задачи и уверенная подача результата.</p>
+                        <div class="course-action">
+                            <span class="course-price">30 000 ₽</span>
+                            <button class="btn-course" onclick="openContactModal('academy-intensive')">Занять место</button>
+                        </div>
+                    </div>
+
+                    <div class="course-item">
+                        <div class="course-meta">
+                            <h4>Тематические воркшопы</h4>
+                            <span>Каждые выходные</span>
+                        </div>
+                        <p class="course-detail">Однодневные мастер-классы для практики, вдохновения и знакомства с авторской флористикой. Темы меняются по сезону.</p>
+                        <div class="course-action">
+                            <span class="course-price">от 2 000 ₽</span>
+                            <button class="btn-course" onclick="openContactModal('academy-workshop')">Записаться</button>
+                        </div>
+                    </div>
+
+                    <div class="course-item">
+                        <div class="course-meta">
+                            <h4>Индивидуальное обучение</h4>
+                            <span>Личная программа</span>
+                        </div>
+                        <p class="course-detail">Формат под ваш уровень, цель и темп: от первых сборок до отработки конкретных техник и портфолио.</p>
+                        <div class="course-action">
+                            <span class="course-price course-price--note">Стоимость рассчитывается отдельно</span>
+                            <button class="btn-course" onclick="openContactModal('academy-individual')">Обсудить формат</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Подвал сайта с официальной юридической расшифровкой звезд -->
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- 4 колонки футера остаются прежними... -->
+            <div class="footer-block footer-brand">
+                <div class="logo">ВЕТКА</div>
+                <p>Цветочный салон ВЕТКА — это необычная флористика, лёгкость и шарм раскидистых букетов. Мы соединяем полевые и акцентные цветы, чтобы создавать тёплые авторские композиции.</p>
+            </div>
+            <div class="footer-block footer-contacts">
+                <h4>Мастерская</h4>
+                <p class="address">г. Иркутск, ул. Советская, 96</p>
+                <p class="schedule">10:00–20:00 ежедневно</p>
+                <p class="cooperation-note">Мы всегда на связи и открыты к сотрудничеству.</p>
+                <a href="tel:+79501333361" class="footer-phone">+7 (950) 133-33-61</a>
+            </div>
+            <div class="footer-block footer-links">
+                <h4>Навигация</h4>
+                <div class="links-grid">
+                    <a href="#catalog">Каталог</a>
+                    <a href="#reviews">Отзывы</a>
+                    <a href="#constructor-teaser">Свой концепт</a>
+                    <a href="#delivery-service">Доставка</a>
+                    <a href="#flower-subscription">Подписка</a>
+                    <a href="#care">Уход</a>
+                </div>
+            </div>
+            <div class="footer-block footer-socials">
+                <h4>Связь и Карты</h4>
+                <div class="links-grid">
+                    <a href="https://t.me/vetka_2024" target="_blank" rel="noopener noreferrer" class="social-tg">Telegram-канал ⚡</a>
+                    <a href="https://www.instagram.com/vetka.irk/" target="_blank" rel="noopener noreferrer" class="social-ig">Instagram Магазина *</a>
+                    <a href="https://www.instagram.com/vetka_school/" target="_blank" rel="noopener noreferrer" class="social-ig">Instagram школы *</a>
+                    <a href="https://wa.me/79501333361" target="_blank" rel="noopener noreferrer" class="social-wa">WhatsApp</a>
+                    <a href="https://2gis.ru/irkutsk/firm/70000001084131858?m=104.315705%2C52.279294%2F18.82&utm_source=ig&utm_medium=social&utm_content=link_in_bio" target="_blank" rel="noopener noreferrer" class="social-2gis">2ГИС</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Нижняя строчка с копирайтом и официальным пояснением -->
+        <div class="footer-bottom">
+            <div class="footer-copyright-row">
+                <p>&copy; 2026 ВЕТКА. Все права защищены.</p>
+            </div>
+            <!-- ДОБАВИЛИ: Железобетонная юридическая защита от штрафов РКН -->
+            <div class="footer-legal-notice">
+                <p>* Деятельность организации Meta Platforms Inc. по реализации социальной сети Instagram признана экстремистской и запрещена на территории Российской Федерации.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ВСТАВИЛИ ОКНО СЮДА (ОНО ИЗОЛИРОВАНО ОТ ШАПКИ) -->
+    <div class="modal-overlay" id="contactModal" onclick="handleModalOverlayClick(event)">
+        <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button class="modal-close" onclick="closeContactModal()" aria-label="Закрыть">&times;</button>
+
+            <!-- Шаг 1: Форма (показывается первой) -->
+            <div class="modal-step" id="modalStepForm">
+                <h3 class="modal-title" id="modalTitle">Оставьте контакт</h3>
+                <p class="modal-subtitle" id="modalSubtitleText">Флорист перезвонит или напишет вам сам — вы ничего не потеряете</p>
+
+                <form class="contact-form" id="contactForm" novalidate>
+                    <input type="hidden" id="formSource" name="source" value="">
+                    <input type="hidden" id="formSourceDetail" name="sourceDetail" value="">
+                    <input type="text" id="hpWebsite" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+                    <div class="form-field">
+                        <label class="form-label" for="clientName">Ваше имя</label>
+                        <input
+                            class="form-input"
+                            type="text"
+                            id="clientName"
+                            name="name"
+                            placeholder="Например, Анна"
+                            autocomplete="given-name"
+                            required
+                        >
+                        <span class="form-error" id="nameError">Введите ваше имя</span>
+                    </div>
+
+                    <div class="form-field">
+                        <label class="form-label" for="clientPhone">Номер телефона</label>
+                        <input
+                            class="form-input"
+                            type="tel"
+                            id="clientPhone"
+                            name="phone"
+                            placeholder="+7 (___) ___-__-__"
+                            autocomplete="tel"
+                            required
+                        >
+                        <span class="form-error" id="phoneError">Введите корректный номер</span>
+                    </div>
+
+                    <div class="form-field">
+                        <label class="form-label">Как вам удобнее получить ответ?</label>
+                        <div class="messenger-choice">
+                            <label class="messenger-radio">
+                                <input type="radio" name="messenger" value="telegram" checked>
+                                <span class="messenger-radio-label">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M21.6 3.4 2.9 10.6c-1.2.5-1.2 1.2-.2 1.5l4.8 1.5 1.8 5.5c.2.7.4.9.8.9.4 0 .6-.2.9-.5l2.6-2.5 5.3 3.9c1 .5 1.6.3 1.9-.9l3.1-14.8c.3-1.2-.5-1.8-1.3-1.4ZM8.2 13.2l10.6-6.7c.5-.3.9-.1.5.2l-8.6 7.8-.3 3.3-2.2-4.6Z"/></svg>
+                                    Telegram
+                                </span>
+                            </label>
+                            <label class="messenger-radio">
+                                <input type="radio" name="messenger" value="whatsapp">
+                                <span class="messenger-radio-label">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.6a9.1 9.1 0 0 0-7.8 13.8L3 21.5l5.2-1.2A9.1 9.1 0 1 0 12 2.6Zm0 1.9a7.2 7.2 0 0 1 6.1 11 7.1 7.1 0 0 1-8.6 2.9l-.4-.2-3 .7.7-2.9-.2-.4A7.2 7.2 0 0 1 12 4.5Zm-2.5 3.6c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.2 5 4.3 2.5.9 3 .7 3.6.6.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.1-1.4l-1.9-.9c-.2-.1-.5-.1-.7.2l-.8 1c-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.7-1.5-1.9-.2-.3 0-.4.1-.6l.4-.4c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.1c-.2-.5-.4-.5-.6-.5h-.7Z"/></svg>
+                                    WhatsApp
+                                </span>
+                            </label>
+                            <label class="messenger-radio">
+                                <input type="radio" name="messenger" value="call">
+                                <span class="messenger-radio-label">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.18 6.18l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+                                    Позвонить
+                                </span>
+                            </label>
+                            <!-- MAX — российский мессенджер, занимает всю ширину (grid-column: 1/-1 в CSS) -->
+                            <label class="messenger-radio">
+                                <input type="radio" name="messenger" value="max">
+                                <span class="messenger-radio-label">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.5 3.2c-5.2 0-9.3 3.9-9.3 8.7 0 2.5 1.1 4.8 2.9 6.4l-1 2.9 3.3-1.3c1.2.5 2.6.8 4.1.8 5.2 0 9.3-3.9 9.3-8.7s-4.1-8.8-9.3-8.8Zm0 4.7c2.5 0 4.5 1.8 4.5 4.1s-2 4.1-4.5 4.1S8 14.3 8 12s2-4.1 4.5-4.1Z"/></svg>
+                                    MAX
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label class="form-label" for="clientComment">Комментарий <span class="form-label-optional">(необязательно)</span></label>
+                        <textarea
+                            class="form-input form-textarea"
+                            id="clientComment"
+                            name="comment"
+                            placeholder="Например: хочу в розовых тонах, к субботе"
+                            rows="2"
+                        ></textarea>
+                    </div>
+
+                    <button type="submit" class="form-submit-btn">
+                        <span class="form-submit-text">Отправить флористу</span>
+                        <span class="form-submit-loader" aria-hidden="true"></span>
+                    </button>
+
+                    <span class="form-error form-error--general" id="formGeneralError">Не получилось отправить заявку. Проверьте связь и попробуйте ещё раз, или напишите нам в Telegram напрямую.</span>
+
+                    <p class="form-privacy">Нажимая кнопку, вы соглашаетесь на обработку персональных данных. Мы не передаём их третьим лицам.</p>
+                </form>
+            </div>
+
+            <!-- Шаг 2: Экран "Спасибо" (показывается после отправки) -->
+            <div class="modal-step modal-step--hidden" id="modalStepThanks">
+                <div class="thanks-icon">
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="32" cy="32" r="31" stroke="#A3E635" stroke-width="2"/>
+                        <path d="M18 32L27 41L46 22" stroke="#A3E635" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h3 class="modal-title">Отлично, <span class="thanks-name" id="thanksName"></span>!</h3>
+                <p class="modal-subtitle">Флорист получил вашу заявку и свяжется с вами в ближайшее время. Пока можете посмотреть наш Telegram-канал.</p>
+                <a href="https://t.me/vetka_2024" target="_blank" rel="noopener noreferrer" class="thanks-tg-btn">
+                    Открыть Telegram-канал ВЕТКИ →
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
