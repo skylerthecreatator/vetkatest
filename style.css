@@ -873,6 +873,25 @@
     line-height: 1.5;
 }
 
+.bonus-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: rgba(163, 230, 53, 0.14);
+    border: 1px solid rgba(111, 127, 72, 0.25);
+    font-family: sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--vetka-ink);
+}
+
+.bonus-chip-icon {
+    font-size: 16px;
+    line-height: 1;
+}
+
 .form-error--general.form-error--visible {
     height: auto;
     margin-top: -6px;
@@ -2117,7 +2136,7 @@ body::after {
     margin-top: 14px;
 }
 
-.bonus-actions button, .bonus-actions a {
+.bonus-actions button {
     flex: 1;
     min-height: 38px;
     border: 1px solid rgba(48, 42, 36, 0.14);
@@ -2125,22 +2144,27 @@ body::after {
     background: var(--vetka-green);
     color: var(--vetka-cream);
     font-family: "Inter", sans-serif;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 800;
     text-decoration: none;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    transition: background 0.25s ease, transform 0.15s ease;
 }
 
-.bonus-actions a, .bonus-actions .bonus-order-btn {
-    background: var(--vetka-cream);
-    color: var(--vetka-ink);
+.bonus-actions button:hover {
+    background: var(--vetka-accent);
+    color: var(--vetka-dark-2);
 }
 
-.bonus-copied::after {
-    content: "Промокод скопирован";
+.bonus-actions button:active {
+    transform: scale(0.97);
+}
+
+.bonus-claimed::after {
+    content: "Бонус применён ✓";
     position: absolute;
     left: 18px;
     right: 18px;

@@ -64,10 +64,16 @@ let _modalFocusTimer = null;
 
 // Человек кликнул "Смотреть каталог" в промо-плашке, но ещё не выбрал букет —
 // запоминаем, что промокод в игре, и подставим его в комментарий, когда он всё же откроет форму
-let pendingPromoCode = false;
+let pendingWelcomeBonus = false;
 
-function rememberPromoCode() {
-    pendingPromoCode = true;
+function claimWelcomeBonus() {
+    pendingWelcomeBonus = true;
+
+    const badge = document.getElementById('bonusBadge');
+    if (badge) {
+        badge.classList.add('bonus-claimed');
+        window.setTimeout(() => badge.classList.remove('bonus-claimed'), 1800);
+    }
 }
 
 function openContactModal(source = 'unknown', detail = '') {
@@ -86,12 +92,18 @@ function openContactModal(source = 'unknown', detail = '') {
     const detailField = document.getElementById('formSourceDetail');
     if (detailField) detailField.value = detail;
 
-    // Промокод — если человек ранее кликал "Смотреть каталог" в промо-плашке, подставляем
-    // напоминание в комментарий вне зависимости от того, откуда именно он в итоге открыл форму
-    if (pendingPromoCode) {
-        const commentField = document.getElementById('clientComment');
-        if (commentField && !commentField.value.trim()) {
-            commentField.value = 'Промокод: VETKA500';
+    // Приветственный бонус — если человек ранее нажал "Получить" в бонусной плашке, показываем
+    // несъёмную метку в форме (не текст в комментарии, который можно случайно стереть) вне
+    // зависимости от того, откуда именно он в итоге открыл форму
+    const bonusChip = document.getElementById('bonusChip');
+    const bonusField = document.getElementById('formBonusApplied');
+    if (bonusChip && bonusField) {
+        if (pendingWelcomeBonus) {
+            bonusChip.hidden = false;
+            bonusField.value = 'yes';
+        } else {
+            bonusChip.hidden = true;
+            bonusField.value = '';
         }
     }
 
@@ -197,6 +209,7 @@ function submitForm(e) {
     const source = document.getElementById('formSource').value;
     const sourceDetail = document.getElementById('formSourceDetail')?.value.trim() || '';
     const comment = document.getElementById('clientComment')?.value.trim() || '';
+    const bonusApplied = document.getElementById('formBonusApplied')?.value === 'yes';
     const messenger = document.querySelector('input[name="messenger"]:checked')?.value || 'telegram';
     const sourceLabel = SOURCE_LABELS[source] || source;
     const website = document.getElementById('hpWebsite')?.value || ''; // honeypot — у людей всегда пусто
@@ -211,7 +224,7 @@ function submitForm(e) {
     fetch('/api/submit-lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, phone, messenger, source, sourceLabel, sourceDetail, comment, website }),
+        body: JSON.stringify({ name, phone, messenger, source, sourceLabel, sourceDetail, comment, bonusApplied, website }),
     })
         .then(response => response.json().then(data => ({ ok: response.ok, data })))
         .then(({ ok, data }) => {
@@ -237,7 +250,7 @@ function submitForm(e) {
             if (stepForm) stepForm.classList.add('modal-step--hidden');
             if (stepThanks) stepThanks.classList.remove('modal-step--hidden');
             if (thanksName) thanksName.textContent = name;
-            pendingPromoCode = false;
+            pendingWelcomeBonus = false;
             trackGoal('lead_submitted');
 
             // При выборе звонка — дополнительно показываем номер прямо на экране благодарности
@@ -290,19 +303,6 @@ function closeBonusBadge() {
     badge.classList.add('bonus-closing');
     badge.addEventListener('animationend', finishClosing, { once: true });
     window.setTimeout(finishClosing, 1500);
-}
-
-function copyPromoCode() {
-    const code = 'VETKA500';
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(code).catch(() => {});
-    }
-
-    const badge = document.getElementById('bonusBadge');
-    if (badge) {
-        badge.classList.add('bonus-copied');
-        window.setTimeout(() => badge.classList.remove('bonus-copied'), 1800);
-    }
 }
 
 function parsePixelValue(value, fallback) {

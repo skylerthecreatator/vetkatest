@@ -100,14 +100,13 @@
         </div>
     </header>
 
-    <aside class="bonus-badge" id="bonusBadge" aria-label="Промокод на первый заказ">
+    <aside class="bonus-badge" id="bonusBadge" aria-label="Бонусная программа на первый заказ">
         <button class="bonus-close" type="button" onclick="closeBonusBadge()" aria-label="Скрыть бонус">×</button>
-        <span class="bonus-kicker">Промокод</span>
-        <strong>VETKA500</strong>
-        <span>500 бонусов на первый заказ</span>
+        <span class="bonus-kicker">Бонусная программа</span>
+        <strong>500 баллов</strong>
+        <span>Приветственных бонусов на первый заказ</span>
         <div class="bonus-actions">
-            <button type="button" onclick="copyPromoCode()">Скопировать</button>
-            <a href="#catalog" class="bonus-order-btn" onclick="rememberPromoCode()">Смотреть каталог →</a>
+            <button type="button" class="bonus-claim-btn" onclick="claimWelcomeBonus()">Получить</button>
         </div>
     </aside>
 
@@ -219,21 +218,21 @@
         </div>
 
         <div class="category-grid" aria-label="Категории каталога">
-            <a class="category-card" href="https://t.me/vetka_2024" target="_blank" rel="noopener noreferrer">
+            <a class="category-card" href="#flagship-products">
                 <img src="images/hero-light-2.jpg" alt="Свадебное направление ВЕТКА" loading="lazy">
                 <span>Свадебное</span>
             </a>
-            <a class="category-card" href="https://t.me/vetka_2024" target="_blank" rel="noopener noreferrer">
+            <a class="category-card" href="#flagship-products">
                 <img src="images/catalog-compositions.jpg" alt="Композиции ВЕТКА" loading="lazy">
                 <span>Композиции</span>
             </a>
-            <a class="category-card" href="https://t.me/vetka_2024" target="_blank" rel="noopener noreferrer">
+            <a class="category-card" href="#flagship-products">
                 <img src="images/catalog-gifts.jpg" alt="Вазы и подарки ВЕТКА" loading="lazy">
                 <span>Вазы и подарки</span>
             </a>
         </div>
         
-                <div class="catalog-grid">
+                <div class="catalog-grid" id="flagship-products">
             
             <!-- Флагман 1 -->
             <div class="product-card">
@@ -722,6 +721,7 @@
                     <span>мини-группы</span>
                     <span>живые сборки</span>
                     <span>портфолио</span>
+                    <span>50+ выпускников</span>
                 </div>
                 <div class="courses-list">
                     <div class="course-item">
@@ -810,7 +810,7 @@
             <!-- ДОБАВИЛИ: Железобетонная юридическая защита от штрафов РКН -->
             <div class="footer-legal-notice">
                 <p>* Деятельность организации Meta Platforms Inc. по реализации социальной сети Instagram признана экстремистской и запрещена на территории Российской Федерации.</p>
-                <p><a href="/privacy.html" style="color: inherit; text-decoration: underline;">Политика обработки персональных данных</a></p>
+                <p><a href="privacy.html" style="color: inherit; text-decoration: underline;">Политика обработки персональных данных</a></p>
             </div>
         </div>
     </footer>
@@ -904,6 +904,12 @@
                         ></textarea>
                     </div>
 
+                    <div class="bonus-chip" id="bonusChip" hidden>
+                        <span class="bonus-chip-icon">🎁</span>
+                        <span>Приветственный бонус — 500 баллов будет учтено</span>
+                        <input type="hidden" id="formBonusApplied" name="bonusApplied" value="">
+                    </div>
+
                     <button type="submit" class="form-submit-btn">
                         <span class="form-submit-text">Отправить флористу</span>
                         <span class="form-submit-loader" aria-hidden="true"></span>
@@ -911,7 +917,7 @@
 
                     <span class="form-error form-error--general" id="formGeneralError">Не получилось отправить заявку. Проверьте связь и попробуйте ещё раз, или напишите нам в Telegram напрямую.</span>
 
-                    <p class="form-privacy">Нажимая кнопку, вы соглашаетесь на <a href="/privacy.html" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">обработку персональных данных</a>. Мы не передаём их третьим лицам.</p>
+                    <p class="form-privacy">Нажимая кнопку, вы соглашаетесь на <a href="privacy.html" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">обработку персональных данных</a>. Мы не передаём их третьим лицам.</p>
                 </form>
             </div>
 
