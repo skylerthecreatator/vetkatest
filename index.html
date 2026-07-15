@@ -107,7 +107,7 @@
         <span>500 бонусов на первый заказ</span>
         <div class="bonus-actions">
             <button type="button" onclick="copyPromoCode()">Скопировать</button>
-            <a href="https://t.me/vetka_2024" target="_blank" rel="noopener noreferrer">Заказать</a>
+            <a href="#catalog" class="bonus-order-btn" onclick="rememberPromoCode()">Смотреть каталог →</a>
         </div>
     </aside>
 
@@ -501,8 +501,6 @@
     <!-- Настоящий интерактивный свой концепт Букетов -->
     <section id="constructor-teaser" class="constructor-teaser">
         <div class="constructor-header-block">
-            <span class="constructor-status">В разработке</span>
-            <span class="constructor-soon">Онлайн-концепт — скоро</span>
             <h2>Соберите идею <span class="accent-text">букета</span></h2>
             <p class="subtitle">Выберите формат, главный цветок и настроение. Это не финальная корзина, а понятная заявка для флориста: мы увидим направление, уточним детали и соберём живой авторский состав.</p>
         </div>
@@ -551,6 +549,10 @@
                 </div>
                 <div class="preview-frame demo-preview" id="bouquet-preview" data-base="composition" data-flower="lily" data-character="soft">
                     <span class="demo-label">Предпросмотр</span>
+                    <span class="flower-accent-badge" id="flowerAccentBadge">
+                        <span class="flower-accent-dot" id="flowerAccentDot"></span>
+                        <span id="flowerAccentName">Лилия</span>
+                    </span>
                     <img id="constructorPreviewImage" loading="lazy" src="images/hero-light-1.jpg" alt="Пример концепта ВЕТКА">
                     <div class="demo-preview-copy">
                         <h3>Так может звучать ваш букет</h3>
@@ -808,6 +810,7 @@
             <!-- ДОБАВИЛИ: Железобетонная юридическая защита от штрафов РКН -->
             <div class="footer-legal-notice">
                 <p>* Деятельность организации Meta Platforms Inc. по реализации социальной сети Instagram признана экстремистской и запрещена на территории Российской Федерации.</p>
+                <p><a href="/privacy.html" style="color: inherit; text-decoration: underline;">Политика обработки персональных данных</a></p>
             </div>
         </div>
     </footer>
@@ -908,7 +911,7 @@
 
                     <span class="form-error form-error--general" id="formGeneralError">Не получилось отправить заявку. Проверьте связь и попробуйте ещё раз, или напишите нам в Telegram напрямую.</span>
 
-                    <p class="form-privacy">Нажимая кнопку, вы соглашаетесь на обработку персональных данных. Мы не передаём их третьим лицам.</p>
+                    <p class="form-privacy">Нажимая кнопку, вы соглашаетесь на <a href="/privacy.html" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">обработку персональных данных</a>. Мы не передаём их третьим лицам.</p>
                 </form>
             </div>
 
@@ -930,6 +933,38 @@
     </div>
 
     <script src="script.js"></script>
+
+    <!-- Яндекс.Метрика.
+         ВАЖНО: замени 00000000 на реальный номер счётчика — получаешь на metrika.yandex.ru
+         после регистрации сайта (Добавить счётчик → указать vetka20.vercel.app). -->
+    <script type="text/javascript">
+        window.YM_COUNTER_ID = 12345678; // <-- ЗАМЕНИ на реальный номер счётчика // тот же номер, что и ниже в ym(...) — меняешь в одном месте, работает и тут
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(window.YM_COUNTER_ID, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/12345678" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+    <!-- Google Analytics (GA4).
+         ВАЖНО: замени G-XXXXXXXXXX на реальный Measurement ID — получаешь на analytics.google.com
+         (Админ → Потоки данных → Веб → добавить vetka20.vercel.app, ID вида G-ABC123XYZ). -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // <-- тот же ID, что и в строке выше — меняешь в одном месте
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', window.GA_MEASUREMENT_ID);
+    </script>
 </body>
 </html>
 

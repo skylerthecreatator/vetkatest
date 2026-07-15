@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Политика конфиденциальности | ВЕТКА</title>
+    <meta name="description" content="Политика обработки персональных данных флористического салона ВЕТКА.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Стили только для этой страницы — простой читаемый документ поверх общей палитры сайта */
+        .policy-wrap {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 100px 5% 120px 5%;
+        }
+        .policy-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 40px;
+            font-family: sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--vetka-muted);
+            text-decoration: none;
+        }
+        .policy-back:hover { color: var(--vetka-ink); }
+        .policy-wrap h1 {
+            font-family: "Playfair Display", serif;
+            font-size: 40px;
+            font-weight: 400;
+            color: var(--vetka-ink);
+            margin-bottom: 8px;
+        }
+        .policy-updated {
+            font-family: sans-serif;
+            font-size: 13px;
+            color: var(--vetka-muted);
+            margin-bottom: 48px;
+        }
+        .policy-wrap h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 22px;
+            font-weight: 400;
+            color: var(--vetka-ink);
+            margin: 40px 0 14px 0;
+        }
+        .policy-wrap p, .policy-wrap li {
+            font-family: sans-serif;
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--vetka-ink);
+            margin-bottom: 14px;
+        }
+        .policy-wrap ul { padding-left: 20px; margin-bottom: 14px; }
+        .policy-fill {
+            background: rgba(163, 230, 53, 0.16);
+            border: 1px dashed var(--vetka-olive);
+            border-radius: 4px;
+            padding: 1px 6px;
+            font-weight: 600;
+        }
+        .policy-contacts {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--vetka-line);
+        }
+    </style>
+</head>
+<body>
+    <div class="policy-wrap">
+        <a href="/" class="policy-back">← Вернуться на сайт</a>
+
+        <h1>Политика обработки персональных данных</h1>
+        <p class="policy-updated">Действует с <span class="policy-fill">[дата публикации]</span></p>
+
+        <p>Настоящая Политика определяет порядок обработки и защиты персональных данных пользователей сайта
+        vetka20.vercel.app (далее — «Сайт»), которыми управляет
+        <span class="policy-fill">[ИП / самозанятый — ФИО, ОГРНИП или ИНН]</span> (далее — «Оператор»),
+        в соответствии с требованиями Федерального закона от 27.07.2006 № 152-ФЗ «О персональных данных».</p>
+
+        <h2>1. Какие данные мы собираем</h2>
+        <p>При заполнении формы обратной связи на Сайте Оператор получает следующие данные:</p>
+        <ul>
+            <li>Имя, указанное пользователем;</li>
+            <li>Номер телефона;</li>
+            <li>Предпочитаемый способ связи (Telegram, WhatsApp, MAX, звонок);</li>
+            <li>Комментарий к заявке, если пользователь его оставил;</li>
+            <li>Раздел сайта, из которого была отправлена заявка (техническая информация для внутренней аналитики).</li>
+        </ul>
+
+        <h2>2. Цели обработки</h2>
+        <p>Данные используются исключительно для того, чтобы связаться с пользователем по поводу его заявки:
+        уточнить детали заказа, согласовать букет, ответить на вопрос о курсах школы флористики и т.п.
+        Данные не используются для принятия автоматических решений и не подвергаются профилированию.</p>
+
+        <h2>3. Кто получает доступ к данным</h2>
+        <p>Данные заявки автоматически передаются в рабочий чат мессенджера Telegram, к которому имеет доступ
+        Оператор и его сотрудники, и сохраняются в защищённом хранилище (Upstash Redis) для внутренней истории
+        обращений. Данные <strong>не передаются</strong> третьим лицам, рекламным сетям или иным организациям,
+        за исключением случаев, прямо предусмотренных законодательством РФ.</p>
+
+        <h2>4. Срок хранения</h2>
+        <p>Данные хранятся в течение времени, необходимого для обработки заявки и последующей коммуникации
+        с клиентом, но не более <span class="policy-fill">[например: 1 года]</span> с момента последнего обращения,
+        если иное не требуется законом.</p>
+
+        <h2>5. Файлы cookie и аналитика</h2>
+        <p>Сайт использует Яндекс.Метрику и Google Analytics для сбора обезличенной статистики посещаемости
+        (какие страницы просматривают, как долго, с какого устройства). Эти данные не позволяют напрямую
+        идентифицировать личность пользователя и используются только для улучшения работы Сайта.</p>
+
+        <h2>6. Права пользователя</h2>
+        <p>Пользователь вправе в любой момент запросить у Оператора информацию о том, какие его данные
+        обрабатываются, потребовать их исправления или полного удаления. Для этого достаточно написать
+        запрос на контакты, указанные ниже.</p>
+
+        <h2>7. Согласие на обработку</h2>
+        <p>Заполняя форму на Сайте, пользователь подтверждает, что ознакомлен с условиями настоящей Политики
+        и даёт согласие на обработку указанных им персональных данных на условиях, изложенных выше.
+        Согласие может быть отозвано в любой момент путём обращения к Оператору.</p>
+
+        <div class="policy-contacts">
+            <h2>Контакты Оператора</h2>
+            <p>
+                <span class="policy-fill">[Название/ФИО оператора]</span><br>
+                ИНН/ОГРНИП: <span class="policy-fill">[номер]</span><br>
+                Адрес: г. Иркутск, ул. Советская, 96<br>
+                Телефон: <a href="tel:+79501333361" style="color: var(--vetka-green); text-decoration: none;">+7 (950) 133-33-61</a><br>
+                Telegram: <a href="https://t.me/vetka_2024" style="color: var(--vetka-green); text-decoration: none;">@vetka_2024</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

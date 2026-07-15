@@ -1,4 +1,23 @@
- let currentSlideIndex = 0;
+ // Безопасная отправка цели сразу в Яндекс.Метрику и Google Analytics — если какой-то из счётчиков
+// ещё не настроен или заблокирован рекламным блокировщиком, просто пропускаем его, без ошибок в консоли
+function trackGoal(goalName) {
+    if (typeof window.ym === 'function' && window.YM_COUNTER_ID) {
+        try {
+            window.ym(window.YM_COUNTER_ID, 'reachGoal', goalName);
+        } catch (err) {
+            console.error('Metrika goal error:', err);
+        }
+    }
+    if (typeof window.gtag === 'function') {
+        try {
+            window.gtag('event', goalName);
+        } catch (err) {
+            console.error('GA4 event error:', err);
+        }
+    }
+}
+
+let currentSlideIndex = 0;
 
 function changeSlide(direction) {
     const slides = document.querySelectorAll('.hero-slide');
@@ -43,9 +62,21 @@ const SOURCE_LABELS = {
 // Хранилище ID таймеров — нужно чтобы clearTimeout мог их отменить при быстром закрытии/открытии модалки
 let _modalFocusTimer = null;
 
+// Человек кликнул "Смотреть каталог" в промо-плашке, но ещё не выбрал букет —
+// запоминаем, что промокод в игре, и подставим его в комментарий, когда он всё же откроет форму
+let pendingPromoCode = false;
+
+function rememberPromoCode() {
+    pendingPromoCode = true;
+}
+
 function openContactModal(source = 'unknown', detail = '') {
     const modal = document.getElementById('contactModal');
     if (!modal) return;
+
+    // Сброс формы к чистому состоянию — ВАЖНО делать это ДО заполнения source/detail,
+    // иначе form.reset() внутри resetModal() затирает уже проставленные скрытые поля
+    resetModal();
 
     // Запоминаем источник в скрытом поле формы
     const sourceField = document.getElementById('formSource');
@@ -55,14 +86,20 @@ function openContactModal(source = 'unknown', detail = '') {
     const detailField = document.getElementById('formSourceDetail');
     if (detailField) detailField.value = detail;
 
+    // Промокод — если человек ранее кликал "Смотреть каталог" в промо-плашке, подставляем
+    // напоминание в комментарий вне зависимости от того, откуда именно он в итоге открыл форму
+    if (pendingPromoCode) {
+        const commentField = document.getElementById('clientComment');
+        if (commentField && !commentField.value.trim()) {
+            commentField.value = 'Промокод: VETKA500';
+        }
+    }
+
     // Меняем подзаголовок модалки под контекст
     const subtitle = document.getElementById('modalSubtitleText');
     if (subtitle && SOURCE_LABELS[source]) {
         subtitle.textContent = 'Флорист свяжется с вами и ответит на все вопросы';
     }
-
-    // Сброс формы к чистому состоянию при каждом открытии
-    resetModal();
 
     modal.classList.add('modal-active');
     document.body.style.overflow = 'hidden';
@@ -200,6 +237,8 @@ function submitForm(e) {
             if (stepForm) stepForm.classList.add('modal-step--hidden');
             if (stepThanks) stepThanks.classList.remove('modal-step--hidden');
             if (thanksName) thanksName.textContent = name;
+            pendingPromoCode = false;
+            trackGoal('lead_submitted');
 
             // При выборе звонка — дополнительно показываем номер прямо на экране благодарности
             if (messenger === 'call') {
@@ -347,6 +386,32 @@ function changeReviewSlide(direction) {
     track.style.transform = `translateX(-${shiftAmount}px)`;
 }
 
+// Базовое фото меняется по формату — единственная ось, для которой реально нужна отдельная фотография.
+// Пока это плейсхолдеры из существующих фото каталога — когда будут отдельные фото под каждый формат
+// (композиция / раскидистый букет / на кензане), просто замени пути здесь.
+const CONSTRUCTOR_BASE_IMAGES = {
+    composition: 'images/hero-light-1.jpg',
+    loose: 'images/hero-light-2.jpg',
+    kenzan: 'images/catalog-compositions.jpg'
+};
+
+// Цвет и подпись акцентного цветка — рисуем цветным бейджем поверх фото, а не отдельной фотографией
+const CONSTRUCTOR_FLOWER_ACCENTS = {
+    lily:          { color: '#F7F3E8', label: 'Лилия' },
+    gerbera:       { color: '#E8734A', label: 'Гербера' },
+    'french-rose': { color: '#E8A0B4', label: 'Французская роза' },
+    sunflower:     { color: '#F4C430', label: 'Подсолнух' },
+    greenball:     { color: '#7CB342', label: 'Гринбол' }
+};
+
+// Настроение меняет визуальную обработку самого фото через CSS-фильтр — без новых фотографий
+const CONSTRUCTOR_MOOD_CLASSES = ['mood-soft', 'mood-graphic', 'mood-bold'];
+const CONSTRUCTOR_MOOD_MAP = {
+    soft: 'mood-soft',
+    graphic: 'mood-graphic',
+    dog: 'mood-bold' // "Смело и с характером" — исходное служебное имя в data-атрибуте не меняли, чтобы не трогать лишний раз разметку
+};
+
 function applyOption(button) {
     const category = button.dataset.cat;
     const optionName = button.dataset.val;
@@ -358,8 +423,7 @@ function applyOption(button) {
     });
     button.classList.add('active-opt');
 
-    // 2. Синхронизируем живой превью букета — переключаем data-атрибут,
-    // а какие SVG-слои показывать решает CSS (см. .bq-layer правила в style.css)
+    // 2. Синхронизируем data-атрибуты превью — CSS и логика ниже читают именно их
     const preview = document.getElementById('bouquet-preview');
     if (preview) {
         preview.setAttribute(`data-${category}`, optionName);
@@ -370,29 +434,31 @@ function applyOption(button) {
         summary.textContent = selectedText;
     }
 
-    const previewImage = document.getElementById('constructorPreviewImage');
-    const previewImages = {
-        base: {
-            composition: 'images/hero-light-1.jpg',
-            loose: 'images/hero-light-2.jpg',
-            kenzan: 'images/catalog-compositions.jpg'
-        },
-        flower: {
-            lily: 'images/hero-light-1.jpg',
-            gerbera: 'images/flagship1.jpg',
-            'french-rose': 'images/flagship2.jpg',
-            sunflower: 'images/flagship3.jpg',
-            greenball: 'images/catalog-compositions.jpg'
-        },
-        character: {
-            soft: 'images/hero-light-2.jpg',
-            graphic: 'images/catalog-wedding.jpg',
-            dog: 'images/summcollect.jpg'
-        }
-    };
+    if (!preview) return;
 
-    if (previewImage && previewImages[category] && previewImages[category][optionName]) {
-        previewImage.src = previewImages[category][optionName];
+    // 3. Фото — только по формату (единственная ось, которая реально меняет композицию снимка)
+    const previewImage = document.getElementById('constructorPreviewImage');
+    const baseValue = preview.getAttribute('data-base');
+    if (previewImage && CONSTRUCTOR_BASE_IMAGES[baseValue]) {
+        previewImage.src = CONSTRUCTOR_BASE_IMAGES[baseValue];
+    }
+
+    // 4. Цветовой бейдж — по выбранному акцентному цветку
+    const flowerValue = preview.getAttribute('data-flower');
+    const accent = CONSTRUCTOR_FLOWER_ACCENTS[flowerValue];
+    if (accent) {
+        const dot = document.getElementById('flowerAccentDot');
+        const name = document.getElementById('flowerAccentName');
+        if (dot) dot.style.background = accent.color;
+        if (name) name.textContent = accent.label;
+    }
+
+    // 5. Настроение — фильтр на фото, отражает "характер" без отдельной фотографии
+    const characterValue = preview.getAttribute('data-character');
+    const moodClass = CONSTRUCTOR_MOOD_MAP[characterValue];
+    if (previewImage) {
+        previewImage.classList.remove(...CONSTRUCTOR_MOOD_CLASSES);
+        if (moodClass) previewImage.classList.add(moodClass);
     }
 }
 
@@ -435,6 +501,24 @@ document.querySelectorAll('.opt-btn[data-cat]').forEach(button => {
         }
     });
 })();
+
+// ===== АНАЛИТИКА: клики по внешним контактам (телефон/мессенджеры) =====
+// Один делегированный обработчик на весь документ — не нужно вешать слушатель на каждую ссылку отдельно
+document.addEventListener('click', event => {
+    const link = event.target.closest('a[href]');
+    if (!link) return;
+
+    const href = link.getAttribute('href');
+    if (href.startsWith('tel:')) {
+        trackGoal('phone_click');
+    } else if (href.includes('t.me/') || href.includes('max.ru/')) {
+        trackGoal('messenger_click');
+    } else if (href.includes('wa.me/')) {
+        trackGoal('whatsapp_click');
+    } else if (href.includes('instagram.com/')) {
+        trackGoal('instagram_click');
+    }
+});
 
 // ===== SCROLL-REVEAL: плавное появление карточек и заголовков при прокрутке =====
 (function () {

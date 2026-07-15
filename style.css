@@ -384,31 +384,6 @@
     align-items: center;
 }
 
-.preview-frame[data-base="wood"] .bq-base[data-key="wood"], .preview-frame[data-base="bark"] .bq-base[data-key="bark"], .preview-frame[data-base="frame"] .bq-base[data-key="frame"], .preview-frame[data-flower="anthurium"] .bq-flower[data-key="anthurium"], .preview-frame[data-flower="protea"] .bq-flower[data-key="protea"], .preview-frame[data-flower="calla"] .bq-flower[data-key="calla"] {
-    display: block;
-}
-
-.preview-frame[data-character="wild"] .bq-flower-side {
-    transform: translate(216px, 112px) scale(1.4) rotate(8deg);
-}
-
-.preview-frame[data-character="wild"] .bq-base[data-key="wood"] .bq-stem:nth-child(2) {
-    transform: rotate(3deg);
-    transform-origin: 160px 300px;
-}
-
-.preview-frame[data-character="graphic"] .bq-flower-side {
-    transform: translate(216px, 112px) scale(1.4) rotate(0deg);
-}
-
-.preview-frame[data-character="graphic"] .bq-base[data-key="wood"] .bq-stem {
-    transform: none;
-}
-
-.preview-frame[data-character="graphic"] .bq-vase {
-    stroke-width: 2;
-}
-
 .school::before {
     content: "";
     position: absolute;
@@ -2159,7 +2134,7 @@ body::after {
     justify-content: center;
 }
 
-.bonus-actions a {
+.bonus-actions a, .bonus-actions .bonus-order-btn {
     background: var(--vetka-cream);
     color: var(--vetka-ink);
 }
@@ -2907,40 +2882,6 @@ body::after {
     transform: rotate(-150deg) scaleX(-1);
 }
 
-.constructor-status {
-    display: inline-flex;
-    align-items: center;
-    margin-bottom: 16px;
-    padding: 8px 14px;
-    border: 1px solid rgba(111, 127, 72, 0.2);
-    border-radius: 999px;
-    background: rgba(111, 127, 72, 0.08);
-    color: var(--vetka-green);
-    font-family: "Inter", sans-serif;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-.constructor-soon {
-    display: inline-flex;
-    align-items: center;
-    margin: 0 0 16px 12px;
-    padding: 7px 12px;
-    border: 1px solid rgba(111, 127, 72, 0.20);
-    border-radius: 7px;
-    background: rgba(255, 250, 242, 0.72);
-    color: var(--vetka-ink);
-    box-shadow: 0 10px 22px rgba(75, 58, 42, 0.07);
-    font-family: "Inter", sans-serif;
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-    transform: rotate(-1deg);
-}
-
 .constructor-header-block h2, .constructor-header-block .subtitle {
     color: var(--vetka-ink);
 }
@@ -2964,19 +2905,6 @@ body::after {
     background: var(--vetka-green);
     border-color: var(--vetka-green);
     box-shadow: none;
-}
-
-.preview-frame[data-base="composition"] .bq-base[data-key="wood"], .preview-frame[data-base="loose"] .bq-base[data-key="bark"], .preview-frame[data-base="kenzan"] .bq-base[data-key="frame"], .preview-frame[data-flower="lily"] .bq-flower[data-key="calla"], .preview-frame[data-flower="gerbera"] .bq-flower[data-key="protea"], .preview-frame[data-flower="french-rose"] .bq-flower[data-key="anthurium"], .preview-frame[data-flower="sunflower"] .bq-flower[data-key="protea"], .preview-frame[data-flower="greenball"] .bq-flower[data-key="anthurium"] {
-    display: block;
-}
-
-.preview-frame[data-character="soft"] .bq-flower-side, .preview-frame[data-character="dog"] .bq-flower-side {
-    transform-origin: 160px 240px;
-    transform: rotate(-5deg) translateX(-8px);
-}
-
-.preview-frame[data-character="dog"] .bq-base[data-key="wood"] .bq-stem, .preview-frame[data-character="dog"] .bq-base[data-key="bark"] .bq-stem, .preview-frame[data-character="dog"] .bq-base[data-key="frame"] {
-    filter: saturate(1.25);
 }
 
 .total-box span {
@@ -3178,6 +3106,53 @@ body::after {
     text-transform: uppercase;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+}
+
+.flower-accent-badge {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px 8px 10px;
+    border-radius: 999px;
+    background: rgba(255, 250, 242, 0.9);
+    color: var(--vetka-ink);
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    box-shadow: 0 8px 20px rgba(75, 58, 42, 0.14);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.flower-accent-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 0 1px rgba(48, 42, 36, 0.12);
+    transition: background 0.3s ease;
+    flex-shrink: 0;
+}
+
+/* Настроение — визуальная обработка того же фото через CSS-фильтр, без отдельных фотографий под каждый характер */
+#constructorPreviewImage {
+    transition: filter 0.4s ease;
+}
+
+.mood-soft {
+    filter: brightness(1.06) saturate(0.92) contrast(0.98);
+}
+
+.mood-graphic {
+    filter: contrast(1.18) saturate(0.8) brightness(0.97);
+}
+
+.mood-bold {
+    filter: saturate(1.35) contrast(1.12) brightness(0.96);
 }
 
 .total-box {
@@ -3493,11 +3468,6 @@ body::after {
     box-shadow: 0 10px 24px rgba(48, 42, 36, 0.12);
 }
 
-.preview-frame[data-character="soft"] .bq-base[data-key="wood"] .bq-stem:nth-child(2) {
-    transform-origin: 160px 300px;
-    transform: rotate(4deg);
-}
-
 @media screen and (max-width: 992px) {
     .header-hours {
         display: none;
@@ -3591,13 +3561,6 @@ body::after {
         width: 142%;
         left: 8%;
         transform: rotate(-2deg);
-    }
-
-    .constructor-soon {
-        margin-left: 0;
-        margin-bottom: 18px;
-        justify-content: center;
-        text-align: center;
     }
 
     .fern-right {
