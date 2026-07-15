@@ -69,6 +69,7 @@ export default async function handler(req, res) {
         sourceLabel = '',
         sourceDetail = '',
         comment = '',
+        bonusApplied = false,
         website = '', // honeypot — обычный человек это поле никогда не заполнит
     } = body;
 
@@ -121,6 +122,9 @@ export default async function handler(req, res) {
     if (comment && String(comment).trim()) {
         lines.push(`💭 Комментарий: ${String(comment).trim().slice(0, 500)}`);
     }
+    if (bonusApplied) {
+        lines.push('🎁 Приветственный бонус: 500 баллов (клиент нажал "Получить" на сайте)');
+    }
     const text = lines.join('\n');
 
     // Отправляем в Telegram
@@ -152,6 +156,7 @@ export default async function handler(req, res) {
                 source,
                 sourceDetail,
                 comment,
+                bonusApplied: !!bonusApplied,
                 createdAt: new Date().toISOString(),
             }));
         } catch (err) {
