@@ -19,9 +19,7 @@
     <meta property="og:url" content="https://vetka20.vercel.app/">
     <meta property="og:title" content="ВЕТКА — Дикая флористика без шаблонов">
     <meta property="og:description" content="Авангардные букеты с характером природы. Доставка по Иркутску. Школа флористики.">
-    <meta property="og:image" content="https://vetka20.vercel.app/images/og-cover.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:image" content="https://vetka20.vercel.app/images/hero-light-1.jpg">
     <meta property="og:locale" content="ru_RU">
     <meta property="og:site_name" content="ВЕТКА">
 
@@ -29,7 +27,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="ВЕТКА — Дикая флористика без шаблонов">
     <meta name="twitter:description" content="Авангардные букеты с характером природы. Доставка по Иркутску.">
-    <meta name="twitter:image" content="https://vetka20.vercel.app/images/og-cover.jpg">
+    <meta name="twitter:image" content="https://vetka20.vercel.app/images/hero-light-1.jpg">
 
     <!-- Preconnect: браузер заранее открывает соединение с Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,6 +38,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="tier3.css">
 
     <!-- Structured data: помогает Google показывать часы работы, адрес и телефон прямо в выдаче -->
     <script type="application/ld+json">
@@ -47,7 +46,7 @@
         "@context": "https://schema.org",
         "@type": "Florist",
         "name": "ВЕТКА",
-        "image": "https://vetka20.vercel.app/images/og-cover.jpg",
+        "image": "https://vetka20.vercel.app/images/hero-light-1.jpg",
         "url": "https://vetka20.vercel.app/",
         "telephone": "+79501333361",
         "priceRange": "₽₽₽",
@@ -79,14 +78,38 @@
        <a href="#hero" class="logo">ВЕТКА</a>
         
         <!-- Центр шапки: Расширенное меню навигации -->
-        <nav class="nav">
-            <a href="#catalog">Каталог</a>
-            <a href="#reviews">Отзывы</a>
+        <nav class="nav" aria-label="Основная навигация">
+            <div class="header-catalog-dropdown" id="desktopCatalogDropdown">
+                <button class="header-catalog-toggle" id="desktopCatalogToggle" type="button" aria-expanded="false" aria-controls="desktopCatalogMenu">
+                    Каталог
+                    <svg aria-hidden="true" viewBox="0 0 20 20"><path d="m6 8 4 4 4-4"></path></svg>
+                </button>
+                <div class="header-catalog-menu" id="desktopCatalogMenu" aria-label="Категории каталога">
+                    <div class="header-catalog-menu-head">
+                        <span class="catalog-menu-flower" aria-hidden="true">✿</span>
+                        <div>
+                            <small>Коллекция ВЕТКИ</small>
+                            <strong>Выберите направление</strong>
+                        </div>
+                    </div>
+                    <button type="button" data-catalog-nav="bouquets"><img src="images/hero-light-1.jpg" alt=""><span>Букеты</span></button>
+                    <button type="button" data-catalog-nav="compositions"><img src="images/catalog-compositions.jpg" alt=""><span>Композиции</span></button>
+                    <button type="button" data-catalog-nav="interior"><img src="images/flagship3.jpg" alt=""><span>Интерьерные композиции</span></button>
+                    <button type="button" data-catalog-nav="gifts"><img src="images/catalog-gifts.jpg" alt=""><span>Вазы и подарки</span></button>
+                    <button type="button" data-catalog-nav="wedding"><img src="images/catalog-wedding.jpg" alt=""><span>Свадебное</span></button>
+                </div>
+            </div>
             <a href="#constructor-teaser">Свой концепт</a>
             <a href="#delivery-service">Доставка</a>
             <a href="#flower-subscription">Подписка</a>
             <a href="#school-section">Школа</a>
+            <a href="#reviews">Отзывы</a>
         </nav>
+
+        <button class="mobile-catalog-toggle" id="mobileCatalogToggle" type="button" aria-expanded="false" aria-controls="mobileCatalogPanel">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"></rect><rect x="14" y="4" width="6" height="6" rx="1"></rect><rect x="4" y="14" width="6" height="6" rx="1"></rect><rect x="14" y="14" width="6" height="6" rx="1"></rect></svg>
+            <span>Каталог</span>
+        </button>
 
         <div class="header-contacts">
             <div class="header-geo">
@@ -100,17 +123,51 @@
         </div>
     </header>
 
-    <aside class="bonus-badge" id="bonusBadge" aria-label="Бонусная программа на первый заказ">
-        <button class="bonus-close" type="button" onclick="closeBonusBadge()" aria-label="Скрыть бонус">×</button>
-        <span class="bonus-kicker">Бонусная программа</span>
-        <strong>500 баллов</strong>
-        <span>Приветственных бонусов на первый заказ</span>
-        <div class="bonus-actions">
-            <button type="button" class="bonus-claim-btn" onclick="claimWelcomeBonus()">Получить</button>
+    <div class="mobile-catalog-panel" id="mobileCatalogPanel" aria-hidden="true">
+        <div class="mobile-catalog-panel-head">
+            <div><small>Быстрый переход</small><strong>Каталог</strong></div>
+            <button class="mobile-catalog-close" id="mobileCatalogClose" type="button" aria-label="Закрыть каталог">×</button>
         </div>
+        <div class="mobile-catalog-panel-grid">
+            <button type="button" data-catalog-nav="bouquets"><img src="images/hero-light-1.jpg" alt=""><span>Букеты</span></button>
+            <button type="button" data-catalog-nav="compositions"><img src="images/catalog-compositions.jpg" alt=""><span>Композиции</span></button>
+            <button type="button" data-catalog-nav="interior"><img src="images/flagship3.jpg" alt=""><span>Интерьерные</span></button>
+            <button type="button" data-catalog-nav="gifts"><img src="images/catalog-gifts.jpg" alt=""><span>Вазы и подарки</span></button>
+            <button type="button" data-catalog-nav="wedding"><img src="images/catalog-wedding.jpg" alt=""><span>Свадебное</span></button>
+        </div>
+    </div>
+
+    <nav class="mobile-dock" aria-label="Навигация для телефона">
+        <a href="#hero" aria-label="Вернуться на главный экран">
+            <span aria-hidden="true">✿</span>
+            <small>Главная</small>
+        </a>
+        <a href="#constructor-teaser">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 20h4l11-11-4-4L4 16v4Z"></path><path d="m13.5 6.5 4 4"></path></svg>
+            <small>Концепт</small>
+        </a>
+        <a href="#school-section">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 5.5c2.7-.7 5.3-.2 8 1.5v12c-2.7-1.7-5.3-2.2-8-1.5v-12Z"></path><path d="M20 5.5c-2.7-.7-5.3-.2-8 1.5v12c2.7-1.7 5.3-2.2 8-1.5v-12Z"></path></svg>
+            <small>Школа</small>
+        </a>
+        <button type="button" onclick="openContactModal('mobile-dock')">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 4h3l1.3 4-2 1.5a14.3 14.3 0 0 0 5.2 5.2l1.5-2L20 14v3c0 1.7-1.3 3-3 3A13 13 0 0 1 4 7c0-1.7 1.3-3 3-3Z"></path></svg>
+            <small>Связаться</small>
+        </button>
+    </nav>
+
+    <aside class="bonus-badge" id="bonusBadge" role="region" aria-live="polite" aria-label="Бонусная программа на первый заказ">
+        <div class="bonus-copy">
+            <span class="bonus-kicker">Бонусная программа</span>
+            <strong>500 баллов</strong>
+            <span>Приветственных бонусов на первый заказ</span>
+        </div>
+        <div class="bonus-actions">
+            <a href="https://vetkairkutsk.posiflora.com/wallet-app/d3956895-0a5c-4f32-b268-b5b1f028373c" target="_blank" rel="noopener noreferrer" class="bonus-claim-btn" onclick="claimWelcomeBonus()">Получить</a>
+        </div>
+        <button class="bonus-close" type="button" onclick="closeBonusBadge()" aria-label="Скрыть бонус">×</button>
     </aside>
 
-     
     <!-- Главный экран (Hero) -->
     <section id="hero" class="hero"> 
         <!-- Тот самый легкий неоновый туман на фоне -->
@@ -136,7 +193,7 @@
         <div class="hero-container">
             <!-- Левая часть: Смыслы, Текст и Триггеры -->
             <div class="hero-content">
-                <h1 class="hero-title hero-anim hero-anim-1">Флористика<br><span class="accent-text">без шаблонов</span></h1>
+                <h1 class="hero-title hero-anim hero-anim-1"><span class="hero-title-line">Флористика</span><span class="accent-text hero-title-line">без шаблонов</span></h1>
                 <p class="hero-subtitle hero-anim hero-anim-2">Собираем авторские букеты и композиции для дома, событий и особенных подарков. Лёгкая форма, сезонные цветы и внимательный сервис — от первого сообщения до фото готового букета.</p>
 
                 
@@ -144,8 +201,6 @@
                     <a href="#catalog" class="btn btn-primary">Смотреть букеты</a>
                     <a href="#school-section" class="hero-school-link">Есть школа флористики →</a>
                 </div>
-
-
 
                 <div class="hero-features hero-anim hero-anim-4">
                     <div class="feature-item">
@@ -165,8 +220,12 @@
                 <div class="slider-window">
                     
                     <!-- Стрелки управления, вынесенные поверх слоев -->
-                    <button class="slide-nav prev-btn" onclick="changeSlide(-1)">←</button>
-                    <button class="slide-nav next-btn" onclick="changeSlide(1)">→</button>
+                    <button class="slide-nav prev-btn" onclick="changeSlide(-1)" aria-label="Предыдущая композиция">
+                        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M14.5 6.5 9 12l5.5 5.5"></path></svg>
+                    </button>
+                    <button class="slide-nav next-btn" onclick="changeSlide(1)" aria-label="Следующая композиция">
+                        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9.5 6.5 5.5 5.5-5.5 5.5"></path></svg>
+                    </button>
 
                     <!-- Контейнер с 3D-перспективой -->
                     <div class="slides-container" id="hero-slider">
@@ -209,94 +268,348 @@
         </div> <!-- .hero-container -->
     </section>
 
-        <!-- Блок Флагманов -->
+        <!-- Интерактивный каталог -->
     <section id="catalog" class="catalog">
         <div class="catalog-header">
             <span class="section-eyebrow">Каталог</span>
-            <h2 class="section-title">Выберите настроение букета</h2>
-            <p class="section-subtitle">Готовые направления для заказа: свадебные букеты, интерьерные композиции, вазы и подарки.</p>
+            <h2 class="section-title">Выберите своё направление</h2>
+            <p class="section-subtitle">Откройте категорию, посмотрите примеры и отправьте понравившуюся идею флористу. Состав каждого заказа адаптируем под сезон и ваш бюджет.</p>
         </div>
 
-        <div class="category-grid" aria-label="Категории каталога">
-            <a class="category-card" href="#flagship-products">
-                <img src="images/hero-light-2.jpg" alt="Свадебное направление ВЕТКА" loading="lazy">
+        <div class="category-grid catalog-featured" aria-label="Популярные направления каталога">
+            <button type="button" class="category-card" data-catalog-feature="wedding">
+                <img src="images/catalog-wedding.jpg" alt="Свадебное направление ВЕТКА" loading="lazy">
                 <span>Свадебное</span>
-            </a>
-            <a class="category-card" href="#flagship-products">
+            </button>
+            <button type="button" class="category-card" data-catalog-feature="compositions">
                 <img src="images/catalog-compositions.jpg" alt="Композиции ВЕТКА" loading="lazy">
                 <span>Композиции</span>
-            </a>
-            <a class="category-card" href="#flagship-products">
+            </button>
+            <button type="button" class="category-card" data-catalog-feature="gifts">
                 <img src="images/catalog-gifts.jpg" alt="Вазы и подарки ВЕТКА" loading="lazy">
                 <span>Вазы и подарки</span>
-            </a>
+            </button>
         </div>
-        
-                <div class="catalog-grid" id="flagship-products">
+
+        <p class="catalog-tabs-label">Все категории</p>
+        <div class="catalog-category-tabs" role="tablist" aria-label="Категории каталога">
+            <button type="button" class="catalog-category-tab is-active" role="tab" aria-selected="true" data-catalog-category="bouquets"><img src="images/hero-light-1.jpg" alt=""><span>Букеты</span></button>
+            <button type="button" class="catalog-category-tab" role="tab" aria-selected="false" data-catalog-category="compositions"><img src="images/catalog-compositions.jpg" alt=""><span>Композиции</span></button>
+            <button type="button" class="catalog-category-tab" role="tab" aria-selected="false" data-catalog-category="interior"><img src="images/flagship3.jpg" alt=""><span>Интерьерные композиции</span></button>
+            <button type="button" class="catalog-category-tab" role="tab" aria-selected="false" data-catalog-category="gifts"><img src="images/catalog-gifts.jpg" alt=""><span>Вазы и подарки</span></button>
+            <button type="button" class="catalog-category-tab" role="tab" aria-selected="false" data-catalog-category="wedding"><img src="images/catalog-wedding.jpg" alt=""><span>Свадебное</span></button>
+        </div>
+
+        <div class="catalog-category-intro" id="catalogCategoryIntro" aria-live="polite"></div>
+        <div class="catalog-grid" id="catalogProducts" role="tabpanel" aria-live="polite">
+            <!-- Карточки подставляются из script.js: так фото, цены и описания можно обновлять в одном месте. -->
+        </div>
+
+        <div class="catalog-mobile-controls" aria-label="Переключение примеров">
+            <button type="button" id="catalogPrev" aria-label="Предыдущий пример">←</button>
+            <span id="catalogCounter">1 / 3</span>
+            <button type="button" id="catalogNext" aria-label="Следующий пример">→</button>
+        </div>
+    </section>
+
+
+    <!-- Настоящий интерактивный свой концепт Букетов -->
+    <section id="constructor-teaser" class="constructor-teaser">
+        <div class="constructor-header-block">
+            <h2>Соберите идею <span class="accent-text">букета</span></h2>
+            <p class="subtitle">Выберите формат, любимый акцент и цветовую гамму. Это не финальная корзина, а понятная заявка для флориста: мы увидим направление, уточним детали и соберём живой авторский букет.</p>
+        </div>
+
+        <div class="constructor-mobile-progress" aria-label="Шаги конструктора">
+            <button type="button" class="is-active" data-constructor-step="config"><span>1</span> Настроить</button>
+            <button type="button" data-constructor-step="preview"><span>2</span> Смотреть</button>
+            <button type="button" data-constructor-step="summary"><span>3</span> Отправить</button>
+        </div>
+
+        <div class="constructor-block" data-mobile-active="config">
+            <div class="constructor-ui">
+                <div class="constructor-panel-title">
+                    <span>01</span>
+                    <strong>Настройка</strong>
+                </div>
+
+                <div class="constructor-step">
+                    <h3>Что собираем</h3>
+                    <div class="options-row options-row--base">
+                        <button class="opt-btn active-opt" data-cat="base" data-val="composition">Композиция</button>
+                        <button class="opt-btn" data-cat="base" data-val="bouquet">Букет</button>
+                        <button class="opt-btn" data-cat="base" data-val="bridal">Букет невесты</button>
+                        <button class="opt-btn" data-cat="base" data-val="interior">Интерьерная композиция</button>
+                    </div>
+                </div>
+
+                <div class="constructor-step">
+                    <h3>Любимый акцент</h3>
+                    <div class="options-row options-row--flower">
+                        <button class="opt-btn active-opt" data-cat="flower" data-val="lily">Лилия</button>
+                        <button class="opt-btn" data-cat="flower" data-val="gerbera">Гербера</button>
+                        <button class="opt-btn" data-cat="flower" data-val="french-rose">Французская роза</button>
+                        <button class="opt-btn" data-cat="flower" data-val="sunflower">Подсолнух</button>
+                        <button class="opt-btn" data-cat="flower" data-val="greenball">Гринбол</button>
+                        <button class="opt-btn" data-cat="flower" data-val="other">Другие варианты</button>
+                    </div>
+                </div>
+
+                <div class="constructor-step">
+                    <h3>Цветовая гамма</h3>
+                    <div class="options-row options-row--character">
+                        <button class="opt-btn" data-cat="character" data-val="bright">Ярко</button>
+                        <button class="opt-btn active-opt" data-cat="character" data-val="soft">Нежно</button>
+                        <button class="opt-btn" data-cat="character" data-val="contrast">Контрастно</button>
+                    </div>
+                </div>
+                <button type="button" class="constructor-mobile-next" data-constructor-go="preview">Показать результат <span aria-hidden="true">→</span></button>
+            </div>
+
+            <div class="constructor-preview">
+                <div class="constructor-panel-title">
+                    <span>02</span>
+                    <strong>Витрина</strong>
+                </div>
+                <div class="preview-frame demo-preview" id="bouquet-preview" data-base="composition" data-flower="lily" data-character="soft">
+                    <span class="demo-label">Предпросмотр</span>
+                    <span class="flower-accent-badge" id="flowerAccentBadge">
+                        <span class="flower-accent-dot" id="flowerAccentDot"></span>
+                        <span id="flowerAccentName">Лилия</span>
+                    </span>
+                    <img id="constructorPreviewImage" loading="lazy" src="images/hero-light-1.jpg" alt="Пример концепта ВЕТКА">
+                    <div class="demo-preview-copy">
+                        <h3>Так может звучать ваш букет</h3>
+                        <p>Картинка показывает настроение, а не точную копию. Финальный состав флорист соберёт из свежих сезонных цветов.</p>
+                    </div>
+                </div>
+                <div class="constructor-mobile-actions">
+                    <button type="button" data-constructor-go="config">Изменить</button>
+                    <button type="button" class="is-primary" data-constructor-go="summary">К заявке →</button>
+                </div>
+            </div>
+
+            <div class="constructor-total">
+                <div class="constructor-panel-title">
+                    <span>03</span>
+                    <strong>Заявка</strong>
+                </div>
+                <div class="total-box">
+                    <div class="summary-row">
+                        <span>Формат</span>
+                        <strong id="summary-base">Композиция</strong>
+                    </div>
+                    <div class="summary-row">
+                        <span>Акцент</span>
+                        <strong id="summary-flower">Лилия</strong>
+                    </div>
+                    <div class="summary-row">
+                        <span>Гамма</span>
+                        <strong id="summary-character">Нежно</strong>
+                    </div>
+                    <div class="payment-note">
+                        <span>Оплата</span>
+                        <p>Перед отправкой флорист пришлёт фото готового букета.</p>
+                    </div>
+                    <button class="btn btn-primary constructor-submit" onclick="openContactModal('constructor')">Отправить идею флористу</button>
+                    <button type="button" class="constructor-mobile-back" data-constructor-go="preview">← Вернуться к фото</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Блок Сервиса: Доставка и Оплата -->
+    <section id="delivery-service" class="delivery-service">
+        <div class="service-container">
             
-            <!-- Флагман 1 -->
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="images/flagship1.jpg" alt="Асимметрия №1. Гортензия и Каллы" loading="lazy">
-                </div>
-                <div class="product-info">
-                    <h3>🤍 Асимметрия. Гортензия и Каллы</h3>
-                    <p class="product-desc">Композиция с ломаной геометрией. Плотное ядро гортензии уравновешено строгой графикой калл.<br>Для тех, кто ценит форму.</p>
-                    <div class="product-footer">
-                        <span class="price">8 500 ₽</span>
-                        <!-- ЗАМЕНИЛИ СТРОЧКУ НА ОТКРЫТИЕ ОКНА СВЯЗИ -->
-                        <button class="btn-buy" onclick="openContactModal('catalog', 'Асимметрия. Гортензия и Каллы')">Хочу этот букет</button>
-                    </div>
-                </div>
+            <div class="service-header">
+                <span class="section-eyebrow">От заявки до двери</span>
+                <h2 class="section-title">Сервис и бережная доставка</h2>
+                <p class="section-subtitle">Аккуратно собираем, согласуем детали и отправляем букет только после финального фото.</p>
             </div>
 
-            <!-- Флагман 2 -->
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="images/flagship2.jpg" alt="Нуар и Антуриум" loading="lazy">
-                </div>
-                <div class="product-info">
-                    <h3>🦩 Акцентный нуар</h3>
-                    <p class="product-desc">Выразительный сет для особых пространств. Тяжёлая текстура фиолетовых бутонов встречается<br>с глянцевой графикой зелёных антуриумов.</p>
-                    <div class="product-footer">
-                        <span class="price">9 800 ₽</span>
-                        <!-- ЗАМЕНИЛИ СТРОЧКУ НА ОТКРЫТИЕ ОКНА СВЯЗИ -->
-                        <button class="btn-buy" onclick="openContactModal('catalog', 'Акцентный нуар')">Хочу этот букет</button>
+            <div class="service-grid">
+                <!-- Шаг 1: Аквабоксы -->
+                <div class="service-card">
+                    <span class="service-step-num">01</span>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2C12 2 5 11 5 15.5C5 19.09 8.13 22 12 22C15.87 22 19 19.09 19 15.5C19 11 12 2 12 2Z"/>
+                        </svg>
                     </div>
+                    <h3>Аккуратная упаковка</h3>
+                    <p>Букеты едут на воде, а композиции надёжно фиксируются для дороги. Мы подбираем упаковку под формат заказа и погоду.</p>
+                </div>
+
+                <!-- Шаг 2: Сибирский мороз -->
+                <div class="service-card">
+                    <span class="service-step-num">02</span>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2V22M5 5.5L19 18.5M19 5.5L5 18.5M3 12H21"/>
+                        </svg>
+                    </div>
+                    <h3>Бережный маршрут</h3>
+                    <p>Перед отправкой флорист проверяет форму, свежесть и упаковку. В холодное время года добавляем тёплую защиту, чтобы цветы доехали спокойно.</p>
+                </div>
+
+                <!-- Шаг 3: Прозрачная оплата -->
+                <div class="service-card">
+                    <span class="service-step-num">03</span>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="5" width="20" height="14" rx="2.5"/>
+                            <path d="M2 9.5H22"/>
+                            <path d="M6 14H10" stroke-width="1.6"/>
+                        </svg>
+                    </div>
+                    <h3>Понятная оплата</h3>
+                    <p>Оплата онлайн возможна через СБП. Флорист присылает фото готового букета перед отправкой.</p>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Флагман 3 -->
-            <div class="product-card">
-                <div class="product-img-box">
-                    <img src="images/flagship3.jpg" alt="Интерьерный концепт №3" loading="lazy">
-                </div>
-                <div class="product-info">
-                    <h3>🍁 Интерьерный концепт. Нутан</h3>
-                    <p class="product-desc">Интерьерная арт-композиция в стеклянной вазе. Огненная структура африканского нутана<br>балансирует бархатный нуар темных диантусов.</p>
-                    <div class="product-footer">
-                        <span class="price">11 200 ₽</span>
-                        <!-- ЗАМЕНИЛИ СТРОЧКУ НА ОТКРЫТИЕ ОКНА СВЯЗИ -->
-                        <button class="btn-buy" onclick="openContactModal('catalog', 'Интерьерный концепт. Нутан')">Хочу этот букет</button>
-                    </div>
-                </div>
+    <section id="flower-subscription" class="flower-subscription">
+        <div class="subscription-content">
+            <span class="section-eyebrow">Для дома и бизнеса</span>
+            <h2 class="section-title">Цветочная подписка</h2>
+            <p>Регулярно привозим сезонные букеты для дома и бизнеса. Согласуем стиль, бюджет и удобный график — раз в неделю, к событию или в вашем ритме.</p>
+            <div class="subscription-points">
+                <span>Гибкая частота</span>
+                <span>Свежие сезонные составы</span>
+                <span>Комфортный бюджет</span>
             </div>
+            <div class="subscription-mini-gallery" aria-label="Примеры цветочной подписки">
+                <img src="images/hero-light-2.jpg" alt="Светлый букет для подписки" loading="lazy">
+                <img src="images/salon-space.jpg" alt="Цветы в пространстве салона" loading="lazy">
+                <img src="images/catalog-gifts.jpg" alt="Подарочные цветочные детали" loading="lazy">
+            </div>
+            <button class="btn btn-primary" onclick="openContactModal('subscription')">Обсудить подписку</button>
+        </div>
+        <div class="subscription-media">
+            <img src="images/catalog-compositions.jpg" alt="Цветочная подписка ВЕТКА" loading="lazy">
+            <div class="subscription-note">
+                <span>Куда доставляем</span>
+                <strong>Дом, офис, студия</strong>
+                <small>Раз в неделю, к событию или по вашему графику.</small>
+            </div>
+        </div>
+    </section>
 
+    <section id="care" class="care-section">
+        <div class="care-header">
+            <span class="section-eyebrow">После доставки</span>
+            <h2 class="section-title">Как ухаживать</h2>
+            <p class="section-subtitle">Три короткие инструкции, чтобы композиция, букет или букет невесты дольше радовали свежестью и формой.</p>
         </div>
 
-       <!-- 2. НАХОДИМ КНОПКУ ПОД ТРЕМЯ ФЛАГМАНАМИ И ЗАМЕНЯЕМ НА ВАРИАНТ С ИКОНКОЙ -->
-    <div class="catalog-action-row">
-        <a href="https://t.me/vetka_2024" target="_blank" rel="noopener noreferrer" class="btn-catalog-more">
-            <!-- Вставили легкий SVG-значок Телеграма, который встроен прямо в код -->
-            <svg class="tg-icon" viewBox="0 0 24 24" fill="none" xmlns="http://w3.org">
-                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="currentColor" fill-opacity="0.1"/>
-                <path d="M21.433 8.3514C21.6508 7.37346 20.6738 6.54133 19.7126 6.84534L4.03264 11.8043C3.12569 12.0912 3.1491 13.3768 4.06575 13.6303L8.35624 14.8166L18.0673 8.78913C18.2145 8.69767 18.3616 8.92211 18.211 9.05739L10.0463 16.3861L9.93294 16.4883L9.75389 17.7554C9.64571 18.5209 10.6393 18.919 11.1611 18.3444L13.2505 16.0435L17.5262 19.1672C18.4208 19.8208 19.7027 19.317 19.9195 18.2541L21.433 8.3514Z" fill="currentColor"/>
-            </svg>
-            Смотреть всё наличие в Telegram
-        </a>
-    </div>
+        <div class="care-grid">
+            <details class="care-card">
+                <summary>Инструкция по уходу за композицией</summary>
+                <div class="care-copy">
+                    <p>Ваша композиция создана, чтобы радовать Вас! Мы позаботились о её свежести, теперь несколько простых правил помогут её сохранить.</p>
+                    <p><strong>Где хранить:</strong> вдали от прямых солнечных лучей, отопительных приборов и фруктов.</p>
+                    <p><strong>Как поливать:</strong> каждый день по 50–100 мл воды, в зависимости от размера композиции, в разные участки. Подливайте под цветы, равномерно распределяя влагу.</p>
+                    <p>Пусть эта композиция радует Вас свежестью и красотой!</p>
+                </div>
+            </details>
 
-    </section> <!-- Только тут закрыли всю секцию каталога флагманов -->
+            <details class="care-card">
+                <summary>Инструкция по уходу за букетом</summary>
+                <div class="care-copy">
+                    <p>Ваш букет путешествовал в бережной среде. Он приехал в аквабоксе — картонной вазочке — или аквапаке — прозрачной плёнке с водой.</p>
+                    <p>Если букет в аквапаке, аккуратно развяжите его над раковиной, слейте воду и сразу поставьте букет в вазу так, чтобы все стебли были в воде.</p>
+                    <p>Если букет в аквабоксе, развяжите и переставьте букет в вазу с водой. Аквабокс не предназначен для долгого хранения.</p>
+                    <p><strong>Как ухаживать:</strong> храните вдали от батарей, прямых солнечных лучей и фруктов. Ежедневно меняйте воду, мойте вазу со средством и подрезайте стебли острым ножом или секатором перед тем, как поставить их в свежую воду.</p>
+                    <p>Пусть букет радует Вас как можно дольше!</p>
+                </div>
+            </details>
+
+            <details class="care-card care-card--bridal">
+                <summary>Инструкция по уходу за букетом невесты</summary>
+                <div class="care-copy">
+                    <p><strong>Дорогая наша Невеста!</strong> Поздравляем вас с этим прекрасным днём! Пусть ваш букет радует вас всю свадьбу, а мы подскажем, как сохранить его свежим и красивым.</p>
+                    <p><strong>Главное правило:</strong> букет стоит на аквабоксе с водой. Когда вы перевозите его или он временно не нужен, обязательно поставьте его в воду.</p>
+                    <p><strong>Чтобы не замочить платье:</strong> мы приложили сухие салфетки. Просто промокните ими ножку букета перед тем, как взять его в руки.</p>
+                    <p><strong>Запасная лента для вас.</strong> Если основная испачкается, намокнет или вы захотите сделать красивое свисание — смело меняйте.</p>
+                    <p>Пусть ваш букет будет таким же нежным и живым, как этот день. Счастья вам!</p>
+                </div>
+            </details>
+        </div>
+    </section>
+
+        <!-- Блок Школы Флористики ВЕТКА с кнопкой инстаграма и правильным якорем -->
+    <section id="school-section" class="school">
+        <div class="school-container">
+            <div class="school-media school-feature">
+                <div class="video-wrapper">
+                    <video autoplay loop muted playsinline poster="images/school-cover.jpg">
+                        <source src="images/school-video.mp4" type="video/mp4">
+                    </video>
+                    <div class="media-overlay">
+                        <span class="academy-tag">Школа ВЕТКА</span>
+                        <h2>Учим собирать живые авторские формы</h2>
+                    </div>
+                </div>
+                <a href="https://www.instagram.com/vetka.irk/" target="_blank" rel="noopener noreferrer" class="btn-academy-instagram">Закулисье школы в Instagram →</a>
+            </div>
+
+            <div class="school-info">
+                <span class="section-eyebrow">Обучение ВЕТКА</span>
+                <h2 class="section-title">Школа флористики</h2>
+                <p class="school-lead">Знакомимся с инструментами, работаем с сезонными цветами и природными материалами, узнаем секреты флориста и создаем свою первую композицию. Можно прийти на воркшоп, пройти базу или собрать личную программу.</p>
+                <div class="school-tags">
+                    <span>мини-группы</span>
+                    <span>живые сборки</span>
+                    <span>портфолио</span>
+                    <span>50+ выпускников</span>
+                </div>
+                <div class="school-course-tabs" role="tablist" aria-label="Программы школы">
+                    <button type="button" class="is-active" role="tab" aria-selected="true" data-school-course="0">Интенсив</button>
+                    <button type="button" role="tab" aria-selected="false" data-school-course="1">Воркшопы</button>
+                    <button type="button" role="tab" aria-selected="false" data-school-course="2">Лично</button>
+                </div>
+                <div class="courses-list">
+                    <div class="course-item is-mobile-active">
+                        <div class="course-meta">
+                            <h4>Базовый интенсив</h4>
+                            <span>Ближайший поток в августе</span>
+                        </div>
+                        <p class="course-detail">Погружение в профессию с нуля: теоретическая основа флористики, практика по техникам сборки, зачистка цветка и первый букет.</p>
+                        <div class="course-action">
+                            <span class="course-price">30 000 ₽</span>
+                            <button class="btn-course" onclick="openContactModal('academy-intensive')">Занять место</button>
+                        </div>
+                    </div>
+
+                    <div class="course-item">
+                        <div class="course-meta">
+                            <h4>Тематические воркшопы</h4>
+                            <span>Личная программа</span>
+                        </div>
+                        <p class="course-detail">Мастер-классы для практики, вдохновения и знакомства с авторской флористикой. Темы и график подбираются по запросу.</p>
+                        <div class="course-action">
+                            <span class="course-price">от 2 000 ₽</span>
+                            <button class="btn-course" onclick="openContactModal('academy-workshop')">Записаться</button>
+                        </div>
+                    </div>
+
+                    <div class="course-item">
+                        <div class="course-meta">
+                            <h4>Индивидуальное обучение</h4>
+                            <span>Личная программа</span>
+                        </div>
+                        <p class="course-detail">Программа и график обучения составляется индивидуально под каждый запрос.</p>
+                        <div class="course-action">
+                            <span class="course-price course-price--note">Стоимость рассчитывается отдельно</span>
+                            <button class="btn-course" onclick="openContactModal('academy-individual')">Обсудить формат</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
             <!-- 3-колоночная Карусель Отзывов (Финальный технический фикс) -->
     <section id="reviews" class="reviews-section">
@@ -311,8 +624,13 @@
             <div class="reviews-slider-window-wide">
                 
                 <!-- Стрелки управления -->
-                <button class="review-nav prev-review-btn" onclick="changeReviewSlide(-1)">←</button>
-                <button class="review-nav next-review-btn" onclick="changeReviewSlide(1)">→</button>
+                <button class="review-nav prev-review-btn" onclick="changeReviewSlide(-1)" aria-label="Предыдущий отзыв">
+                    <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M14.5 6.5 9 12l5.5 5.5"></path></svg>
+                </button>
+                <button class="review-nav next-review-btn" onclick="changeReviewSlide(1)" aria-label="Следующий отзыв">
+                    <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9.5 6.5 5.5 5.5-5.5 5.5"></path></svg>
+                </button>
+                <span class="review-counter" id="reviewCounter" aria-live="polite">1 / 12</span>
 
                 <!-- Маска, которая показывает ровно 3 карточки в ряд -->
                 <div class="reviews-viewport-wide">
@@ -341,7 +659,7 @@
                                         <span class="photo-user">@dmitry_v ✨</span>
                                         <span class="photo-platform">Яндекс ★ 5.0</span>
                                     </div>
-                                    <p class="photo-review-text">«аказала букет на важное мероприятие — результат превзошел ожидания. Цветы свежайшие, доставлены точно в срок. Буду рекомендовать друзьям! 🌸»</p>
+                                    <p class="photo-review-text">«Заказала букет на важное мероприятие — результат превзошёл ожидания. Цветы свежайшие, доставлены точно в срок. Буду рекомендовать друзьям! 🌸»</p>
                                 </div>
                             </div>
                         </div>
@@ -497,280 +815,13 @@
         </div> <!-- .reviews-container -->
     </section>
 
-    <!-- Настоящий интерактивный свой концепт Букетов -->
-    <section id="constructor-teaser" class="constructor-teaser">
-        <div class="constructor-header-block">
-            <h2>Соберите идею <span class="accent-text">букета</span></h2>
-            <p class="subtitle">Выберите формат, главный цветок и настроение. Это не финальная корзина, а понятная заявка для флориста: мы увидим направление, уточним детали и соберём живой авторский состав.</p>
-        </div>
-
-        <div class="constructor-block">
-            <div class="constructor-ui">
-                <div class="constructor-panel-title">
-                    <span>01</span>
-                    <strong>Настройка</strong>
-                </div>
-
-                <div class="constructor-step">
-                    <h3>Что собираем</h3>
-                    <div class="options-row">
-                        <button class="opt-btn active-opt" data-cat="base" data-val="composition">Композиция</button>
-                        <button class="opt-btn" data-cat="base" data-val="loose">Раскидистый букет</button>
-                        <button class="opt-btn" data-cat="base" data-val="kenzan">На кензане</button>
-                    </div>
-                </div>
-
-                <div class="constructor-step">
-                    <h3>Любимый акцент</h3>
-                    <div class="options-row">
-                        <button class="opt-btn active-opt" data-cat="flower" data-val="lily">Лилия</button>
-                        <button class="opt-btn" data-cat="flower" data-val="gerbera">Гербера</button>
-                        <button class="opt-btn" data-cat="flower" data-val="french-rose">Французская роза</button>
-                        <button class="opt-btn" data-cat="flower" data-val="sunflower">Подсолнух</button>
-                        <button class="opt-btn" data-cat="flower" data-val="greenball">Гринбол</button>
-                    </div>
-                </div>
-
-                <div class="constructor-step">
-                    <h3>Какой характер</h3>
-                    <div class="options-row">
-                        <button class="opt-btn active-opt" data-cat="character" data-val="soft">Нежно и воздушно</button>
-                        <button class="opt-btn" data-cat="character" data-val="graphic">Строго и графично</button>
-                        <button class="opt-btn" data-cat="character" data-val="dog">Смело и с характером</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="constructor-preview">
-                <div class="constructor-panel-title">
-                    <span>02</span>
-                    <strong>Витрина</strong>
-                </div>
-                <div class="preview-frame demo-preview" id="bouquet-preview" data-base="composition" data-flower="lily" data-character="soft">
-                    <span class="demo-label">Предпросмотр</span>
-                    <span class="flower-accent-badge" id="flowerAccentBadge">
-                        <span class="flower-accent-dot" id="flowerAccentDot"></span>
-                        <span id="flowerAccentName">Лилия</span>
-                    </span>
-                    <img id="constructorPreviewImage" loading="lazy" src="images/hero-light-1.jpg" alt="Пример концепта ВЕТКА">
-                    <div class="demo-preview-copy">
-                        <h3>Так может звучать ваш букет</h3>
-                        <p>Картинка показывает настроение, а не точную копию. Финальный состав флорист соберёт из свежих сезонных цветов.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="constructor-total">
-                <div class="constructor-panel-title">
-                    <span>03</span>
-                    <strong>Заявка</strong>
-                </div>
-                <div class="total-box">
-                    <div class="summary-row">
-                        <span>Формат</span>
-                        <strong id="summary-base">Композиция</strong>
-                    </div>
-                    <div class="summary-row">
-                        <span>Акцент</span>
-                        <strong id="summary-flower">Лилия</strong>
-                    </div>
-                    <div class="summary-row">
-                        <span>Настроение</span>
-                        <strong id="summary-character">Нежно и воздушно</strong>
-                    </div>
-                    <div class="payment-note">
-                        <span>Оплата</span>
-                        <p>Онлайн-оплату через СБП и итоговый бюджет согласуем после переписки. Перед отправкой флорист пришлёт фото готового букета.</p>
-                    </div>
-                    <button class="btn btn-primary constructor-submit" onclick="openContactModal('constructor')">Отправить идею флористу</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-        <!-- Блок Сервиса: Доставка и Оплата -->
-    <section id="delivery-service" class="delivery-service">
-        <div class="service-container">
-            
-            <div class="service-header">
-                <h2 class="section-title">Сервис и бережная доставка</h2>
-                <p class="section-subtitle">Аккуратно собираем, согласуем детали и отправляем букет только после финального фото.</p>
-            </div>
-
-            <div class="service-grid">
-                <!-- Шаг 1: Аквабоксы -->
-                <div class="service-card">
-                    <span class="service-step-num">01</span>
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2C12 2 5 11 5 15.5C5 19.09 8.13 22 12 22C15.87 22 19 19.09 19 15.5C19 11 12 2 12 2Z"/>
-                        </svg>
-                    </div>
-                    <h3>Аккуратная упаковка</h3>
-                    <p>Букеты едут в воде или аквапаке, а композиции надёжно фиксируются для дороги. Мы подбираем упаковку под формат заказа и погоду.</p>
-                </div>
-
-                <!-- Шаг 2: Сибирский мороз -->
-                <div class="service-card">
-                    <span class="service-step-num">02</span>
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2V22M5 5.5L19 18.5M19 5.5L5 18.5M3 12H21"/>
-                        </svg>
-                    </div>
-                    <h3>Бережный маршрут</h3>
-                    <p>Перед отправкой флорист проверяет форму, свежесть и упаковку. В холодное время года добавляем тёплую защиту, чтобы цветы доехали спокойно.</p>
-                </div>
-
-                <!-- Шаг 3: Прозрачная оплата -->
-                <div class="service-card">
-                    <span class="service-step-num">03</span>
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="5" width="20" height="14" rx="2.5"/>
-                            <path d="M2 9.5H22"/>
-                            <path d="M6 14H10" stroke-width="1.6"/>
-                        </svg>
-                    </div>
-                    <h3>Понятная оплата</h3>
-                    <p>Оплата онлайн возможна через СБП. Флорист присылает фото готового букета перед отправкой.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="flower-subscription" class="flower-subscription">
-        <div class="subscription-content">
-            <span class="section-eyebrow">Для дома и бизнеса</span>
-            <h2 class="section-title">Цветочная подписка</h2>
-            <p>Цветочная подписка — это регулярные букеты и композиции для дома, офиса, студии, шоурума, кафе или другого пространства. Мы подбираем сезонные цветы, согласуем стиль и доставляем их с удобной периодичностью.</p>
-            <div class="subscription-points">
-                <span>Гибкая частота</span>
-                <span>Свежие сезонные составы</span>
-                <span>Быстрая корректировка по чату</span>
-            </div>
-            <div class="subscription-mini-gallery" aria-label="Примеры цветочной подписки">
-                <img src="images/hero-light-2.jpg" alt="Светлый букет для подписки" loading="lazy">
-                <img src="images/salon-space.jpg" alt="Цветы в пространстве салона" loading="lazy">
-                <img src="images/catalog-gifts.jpg" alt="Подарочные цветочные детали" loading="lazy">
-            </div>
-            <button class="btn btn-primary" onclick="openContactModal('subscription')">Обсудить подписку</button>
-        </div>
-        <div class="subscription-media">
-            <img src="images/catalog-compositions.jpg" alt="Цветочная подписка ВЕТКА" loading="lazy">
-            <div class="subscription-note">
-                <span>Куда доставляем</span>
-                <strong>Дом, офис, студия</strong>
-                <small>Раз в неделю, к событию или по вашему графику.</small>
-            </div>
-        </div>
-    </section>
-
-    <section id="care" class="care-section">
-        <div class="care-header">
-            <span class="section-eyebrow">После доставки</span>
-            <h2 class="section-title">Как ухаживать</h2>
-            <p class="section-subtitle">Две короткие инструкции, чтобы букет или композиция дольше радовали свежестью и формой.</p>
-        </div>
-
-        <div class="care-grid">
-            <details class="care-card">
-                <summary>Инструкция по уходу за композицией</summary>
-                <div class="care-copy">
-                    <p>Ваша композиция создана, чтобы радовать Вас! Мы позаботились о её свежести, теперь несколько простых правил помогут её сохранить.</p>
-                    <p><strong>Где хранить:</strong> вдали от прямых солнечных лучей, отопительных приборов и фруктов.</p>
-                    <p><strong>Как поливать:</strong> каждый день по 50–100 мл воды, в зависимости от размера композиции, в разные участки. Подливайте под цветы, равномерно распределяя влагу.</p>
-                    <p>Пусть эта композиция радует Вас свежестью и красотой!</p>
-                </div>
-            </details>
-
-            <details class="care-card">
-                <summary>Инструкция по уходу за букетом</summary>
-                <div class="care-copy">
-                    <p>Ваш букет путешествовал в бережной среде. Он приехал в аквабоксе — картонной вазочке — или аквапаке — прозрачной плёнке с водой.</p>
-                    <p>Если букет в аквапаке, аккуратно развяжите его над раковиной, слейте воду и сразу поставьте букет в вазу так, чтобы все стебли были в воде.</p>
-                    <p>Если букет в аквабоксе, развяжите и переставьте букет в вазу с водой. Аквабокс не предназначен для долгого хранения.</p>
-                    <p><strong>Как ухаживать:</strong> храните вдали от батарей, прямых солнечных лучей и фруктов. Ежедневно меняйте воду, мойте вазу со средством и подрезайте стебли острым ножом или секатором перед тем, как поставить их в свежую воду.</p>
-                    <p>Пусть букет радует Вас как можно дольше!</p>
-                </div>
-            </details>
-        </div>
-    </section>
-
-        <!-- Блок Школы Флористики ВЕТКА с кнопкой инстаграма и правильным якорем -->
-    <section id="school-section" class="school">
-        <div class="school-container">
-            <div class="school-media school-feature">
-                <div class="video-wrapper">
-                    <video autoplay loop muted playsinline poster="images/school-cover.jpg">
-                        <source src="images/school-video.mp4" type="video/mp4">
-                    </video>
-                    <div class="media-overlay">
-                        <span class="academy-tag">Школа ВЕТКА</span>
-                        <h2>Учим собирать живые авторские формы</h2>
-                    </div>
-                </div>
-                <a href="https://www.instagram.com/vetka.irk/" target="_blank" rel="noopener noreferrer" class="btn-academy-instagram">Закулисье школы в Instagram →</a>
-            </div>
-
-            <div class="school-info">
-                <span class="section-eyebrow">Обучение ВЕТКА</span>
-                <h2 class="section-title">Школа флористики</h2>
-                <p class="school-lead">Практика в живой мастерской: форма, сезонный материал, коммерческая задача и уверенная подача букета. Можно прийти на воркшоп, пройти базу или собрать личную программу.</p>
-                <div class="school-tags">
-                    <span>мини-группы</span>
-                    <span>живые сборки</span>
-                    <span>портфолио</span>
-                    <span>50+ выпускников</span>
-                </div>
-                <div class="courses-list">
-                    <div class="course-item">
-                        <div class="course-meta">
-                            <h4>Базовый интенсив</h4>
-                            <span>Ближайший поток в Иркутске</span>
-                        </div>
-                        <p class="course-detail">Погружение в профессию с нуля: постановка руки, композиция, работа с акцентными цветами, коммерческие задачи и уверенная подача результата.</p>
-                        <div class="course-action">
-                            <span class="course-price">30 000 ₽</span>
-                            <button class="btn-course" onclick="openContactModal('academy-intensive')">Занять место</button>
-                        </div>
-                    </div>
-
-                    <div class="course-item">
-                        <div class="course-meta">
-                            <h4>Тематические воркшопы</h4>
-                            <span>Каждые выходные</span>
-                        </div>
-                        <p class="course-detail">Однодневные мастер-классы для практики, вдохновения и знакомства с авторской флористикой. Темы меняются по сезону.</p>
-                        <div class="course-action">
-                            <span class="course-price">от 2 000 ₽</span>
-                            <button class="btn-course" onclick="openContactModal('academy-workshop')">Записаться</button>
-                        </div>
-                    </div>
-
-                    <div class="course-item">
-                        <div class="course-meta">
-                            <h4>Индивидуальное обучение</h4>
-                            <span>Личная программа</span>
-                        </div>
-                        <p class="course-detail">Формат под ваш уровень, цель и темп: от первых сборок до отработки конкретных техник и портфолио.</p>
-                        <div class="course-action">
-                            <span class="course-price course-price--note">Стоимость рассчитывается отдельно</span>
-                            <button class="btn-course" onclick="openContactModal('academy-individual')">Обсудить формат</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
 <!-- Подвал сайта с официальной юридической расшифровкой звезд -->
     <footer class="footer">
         <div class="footer-container">
             <!-- 4 колонки футера остаются прежними... -->
             <div class="footer-block footer-brand">
                 <div class="logo">ВЕТКА</div>
-                <p>Цветочный салон ВЕТКА — это необычная флористика, лёгкость и шарм раскидистых букетов. Мы соединяем полевые и акцентные цветы, чтобы создавать тёплые авторские композиции.</p>
+                <p>Цветочный салон ВЕТКА — это необычная флористика, лёгкость и шарм раскидистых букетов. Мы соединяем полевые и экзотические цветы, чтобы создавать особенные композиции.</p>
             </div>
             <div class="footer-block footer-contacts">
                 <h4>Мастерская</h4>
@@ -783,11 +834,11 @@
                 <h4>Навигация</h4>
                 <div class="links-grid">
                     <a href="#catalog">Каталог</a>
-                    <a href="#reviews">Отзывы</a>
                     <a href="#constructor-teaser">Свой концепт</a>
                     <a href="#delivery-service">Доставка</a>
                     <a href="#flower-subscription">Подписка</a>
                     <a href="#care">Уход</a>
+                    <a href="#reviews">Отзывы</a>
                 </div>
             </div>
             <div class="footer-block footer-socials">
@@ -973,4 +1024,3 @@
     </script>
 </body>
 </html>
-
