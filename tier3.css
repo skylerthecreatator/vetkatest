@@ -78,6 +78,7 @@
 }
 
 .catalog-menu-flower {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -86,8 +87,65 @@
     border-radius: 14px 14px 14px 5px;
     background: var(--vetka-green);
     color: var(--vetka-cream);
-    font-size: 18px;
     box-shadow: 0 8px 18px rgba(111, 127, 72, 0.18);
+}
+
+.nav .catalog-menu-flower {
+    width: 38px;
+    height: 38px;
+    margin: 0;
+    padding: 0;
+    color: var(--vetka-cream);
+    border: 0;
+}
+
+.nav .catalog-menu-flower:hover,
+.nav .catalog-menu-flower:focus-visible {
+    color: var(--vetka-cream);
+    border: 0;
+}
+
+.catalog-menu-flower > span {
+    position: relative;
+    width: 22px;
+    height: 22px;
+    display: block;
+}
+
+.catalog-menu-flower > span::before,
+.catalog-menu-flower > span::after {
+    content: "";
+    position: absolute;
+    border-radius: 999px;
+    background: currentColor;
+}
+
+.catalog-menu-flower > span::before {
+    top: 0;
+    bottom: 0;
+    left: 7px;
+    width: 8px;
+}
+
+.catalog-menu-flower > span::after {
+    top: 7px;
+    right: 0;
+    left: 0;
+    height: 8px;
+}
+
+.catalog-menu-flower::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #d8b36f;
+    box-shadow: 0 0 0 1.5px rgba(255, 253, 248, .8);
+    transform: translate(-50%, -50%);
 }
 
 .header-catalog-menu-head div {
@@ -125,6 +183,10 @@
 }
 
 .header-catalog-menu button {
+    --catalog-dot: #758948;
+    --catalog-dot-soft: rgba(117, 137, 72, .14);
+    --catalog-row-soft: rgba(232, 238, 218, .62);
+    --catalog-row-text: var(--vetka-green);
     display: grid;
     grid-template-columns: 8px 1fr;
     align-items: center;
@@ -146,41 +208,56 @@
     content: "";
     width: 6px;
     height: 6px;
-    border: 1px solid rgba(111, 127, 72, 0.34);
+    border: 1px solid color-mix(in srgb, var(--catalog-dot) 48%, transparent);
     border-radius: 50%;
-    background: rgba(111, 127, 72, 0.14);
-    transition: background 0.18s ease, transform 0.18s ease;
+    background: var(--catalog-dot-soft);
+    transition: background 0.18s ease, border-color .18s ease, box-shadow .18s ease, transform 0.18s ease;
 }
 
 .header-catalog-menu button:hover {
-    background: rgba(232, 238, 218, 0.62);
-    color: var(--vetka-green);
+    background: var(--catalog-row-soft);
+    color: var(--catalog-row-text);
     transform: translateX(2px);
 }
 
-.header-catalog-menu button:hover::before {
-    background: var(--vetka-green);
+.header-catalog-menu button:hover::before,
+.header-catalog-menu button:focus-visible::before {
+    border-color: var(--catalog-dot);
+    background: var(--catalog-dot);
+    box-shadow: 0 0 0 4px var(--catalog-dot-soft);
     transform: scale(1.15);
 }
 
 .header-catalog-menu button:nth-of-type(2)::before {
-    border-color: rgba(188, 121, 126, 0.42);
-    background: rgba(188, 121, 126, 0.16);
+    border-color: color-mix(in srgb, var(--catalog-dot) 48%, transparent);
 }
 
-.header-catalog-menu button:nth-of-type(3)::before {
-    border-color: rgba(179, 137, 93, 0.42);
-    background: rgba(179, 137, 93, 0.16);
+.header-catalog-menu button:nth-of-type(2) {
+    --catalog-dot: #bc797e;
+    --catalog-dot-soft: rgba(188, 121, 126, .16);
+    --catalog-row-soft: rgba(244, 226, 226, .58);
+    --catalog-row-text: #8e555b;
 }
 
-.header-catalog-menu button:nth-of-type(4)::before {
-    border-color: rgba(120, 103, 136, 0.38);
-    background: rgba(120, 103, 136, 0.14);
+.header-catalog-menu button:nth-of-type(3) {
+    --catalog-dot: #b3895d;
+    --catalog-dot-soft: rgba(179, 137, 93, .16);
+    --catalog-row-soft: rgba(242, 230, 211, .62);
+    --catalog-row-text: #8a663f;
 }
 
-.header-catalog-menu button:nth-of-type(5)::before {
-    border-color: rgba(201, 139, 143, 0.5);
-    background: rgba(201, 139, 143, 0.2);
+.header-catalog-menu button:nth-of-type(4) {
+    --catalog-dot: #786788;
+    --catalog-dot-soft: rgba(120, 103, 136, .14);
+    --catalog-row-soft: rgba(233, 228, 238, .64);
+    --catalog-row-text: #675574;
+}
+
+.header-catalog-menu button:nth-of-type(5) {
+    --catalog-dot: #c98b8f;
+    --catalog-dot-soft: rgba(201, 139, 143, .18);
+    --catalog-row-soft: rgba(246, 229, 230, .64);
+    --catalog-row-text: #965f63;
 }
 
 .header-catalog-menu img {
@@ -1783,35 +1860,46 @@
 }
 
 .promo-badge-btn .badge-offer {
-    min-height: 29px;
-    margin-top: 4px;
-    display: flex;
+    min-width: 158px;
+    min-height: 43px;
+    margin-top: 5px;
+    display: grid;
+    grid-template-columns: minmax(94px, auto) auto;
+    grid-template-areas:
+        "old discount"
+        "price discount";
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 2px 9px;
 }
 
 .promo-badge-btn .badge-old-price {
-    color: #8c8177;
-    font: 600 12px/1.1 "Inter", sans-serif;
+    grid-area: old;
+    justify-self: center;
+    color: #675e56;
+    font: 700 12px/1.1 "Inter", sans-serif;
     text-decoration: line-through;
-    text-decoration-thickness: 1.5px;
+    text-decoration-color: #a65e58;
+    text-decoration-thickness: 1.6px;
 }
 
 #bouquetDayCard .promo-badge-btn .badge-price {
+    grid-area: price;
+    justify-self: center;
     margin: 0;
     color: #60763a;
-    font-size: 23px;
+    font-size: 25px;
     line-height: 1;
 }
 
 .promo-badge-btn .badge-discount {
-    padding: 5px 8px;
+    grid-area: discount;
+    padding: 7px 9px;
     border-radius: 999px;
     color: #fffaf3;
     background: #ad6259;
     box-shadow: 0 6px 14px rgba(173, 98, 89, .22);
-    font: 800 11px/1 "Inter", sans-serif;
+    font: 800 12px/1 "Inter", sans-serif;
     letter-spacing: .02em;
 }
 
@@ -1955,7 +2043,7 @@
 
 @media (max-width: 768px) {
     .promo-badge-btn .badge-offer { gap: 6px; }
-    .promo-badge-btn .badge-old-price { font-size: 10px; }
+    .promo-badge-btn .badge-old-price { font-size: 11px; }
     #bouquetDayCard .promo-badge-btn .badge-price { font-size: 20px; }
     .promo-badge-btn .badge-discount { padding: 4px 7px; font-size: 10px; }
 
