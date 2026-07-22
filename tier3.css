@@ -1877,10 +1877,10 @@
     grid-area: old;
     justify-self: center;
     color: #675e56;
-    font: 700 12px/1.1 "Inter", sans-serif;
+    font: 750 13px/1.1 "Inter", sans-serif;
     text-decoration: line-through;
     text-decoration-color: #a65e58;
-    text-decoration-thickness: 1.6px;
+    text-decoration-thickness: 1.8px;
 }
 
 #bouquetDayCard .promo-badge-btn .badge-price {
