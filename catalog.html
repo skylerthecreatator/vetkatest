@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог цветов ВЕТКА | Букеты и композиции в Иркутске</title>
+    <meta name="description" content="Каталог ВЕТКА: авторские букеты, композиции, интерьерная флористика, подарки и свадебное оформление в Иркутске.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://vetka20.vercel.app/catalog.html">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="catalog-page.css">
+</head>
+<body>
+    <header class="catalog-headerbar">
+        <a class="catalog-logo" href="index.html" aria-label="На главную ВЕТКА">ВЕТКА</a>
+        <nav aria-label="Навигация каталога">
+            <a href="index.html">На главную</a>
+            <a href="index.html#constructor-teaser">Собрать идею</a>
+        </nav>
+        <a class="catalog-contact" href="index.html?order=Помощь%20с%20выбором">Связаться</a>
+    </header>
+
+    <main>
+        <section class="catalog-hero">
+            <div class="catalog-hero-copy">
+                <span class="catalog-eyebrow">Каталог ВЕТКА</span>
+                <h1>Цветы с живой формой</h1>
+                <p>Выберите направление и отправьте понравившийся пример флористу. Каждый состав адаптируем под сезон, палитру и ваш бюджет.</p>
+            </div>
+            <div class="catalog-hero-note">
+                <strong>90 минут</strong>
+                <span>бережная доставка по Иркутску после сборки и согласования</span>
+            </div>
+        </section>
+
+        <section class="catalog-browser" aria-labelledby="catalogPageTitle">
+            <div class="catalog-browser-head">
+                <div>
+                    <span class="catalog-eyebrow">Выберите категорию</span>
+                    <h2 id="catalogPageTitle">Букеты</h2>
+                </div>
+                <p id="catalogPageDescription"></p>
+            </div>
+
+            <div class="catalog-category-list" id="catalogCategoryList" role="tablist" aria-label="Категории каталога"></div>
+            <div class="catalog-product-grid" id="catalogPageProducts" aria-live="polite"></div>
+            <button class="catalog-more" id="catalogMore" type="button" hidden>Показать ещё</button>
+        </section>
+
+        <section class="catalog-help">
+            <div>
+                <span class="catalog-eyebrow">Не нашли точное совпадение?</span>
+                <h2>Соберём вариант под ваш повод</h2>
+                <p>Покажите референс или опишите настроение — флорист предложит форму и сезонный состав.</p>
+            </div>
+            <a href="index.html#constructor-teaser">Собрать идею букета</a>
+        </section>
+    </main>
+
+    <nav class="catalog-mobile-dock" aria-label="Быстрые действия">
+        <a href="index.html">Главная</a>
+        <a href="#catalogPageTitle">Категории</a>
+        <a href="index.html?order=Помощь%20с%20выбором">Связаться</a>
+    </nav>
+
+    <script src="catalog-data.js"></script>
+    <script src="catalog-page.js"></script>
+</body>
+</html>

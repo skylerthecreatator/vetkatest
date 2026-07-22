@@ -1766,6 +1766,153 @@
     display: none !important;
 }
 
+/* ===== КЛИЕНТСКИЕ АКЦЕНТЫ: БУКЕТ ДНЯ, ДОСТАВКА, ШКОЛА ===== */
+.promo-badge-btn .badge-price {
+    display: block;
+    margin-top: 5px;
+    color: var(--olive, #758948);
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.hero-slide.is-synced .promo-badge-btn {
+    border-color: rgba(117, 137, 72, .28);
+}
+
+.catalog-page-cta {
+    margin: 34px auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+
+.catalog-page-cta .btn {
+    min-width: 220px;
+    text-align: center;
+}
+
+.catalog-page-cta span {
+    color: #7a746c;
+    font-size: 13px;
+}
+
+.service-speed-banner {
+    margin: 34px 0 30px;
+    padding: 22px 26px;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 26px;
+    border: 1px solid rgba(117, 137, 72, .27);
+    border-radius: 26px;
+    background:
+        radial-gradient(circle at 7% 50%, rgba(163, 190, 92, .18), transparent 180px),
+        rgba(255, 253, 248, .88);
+    box-shadow: 0 18px 46px rgba(72, 60, 46, .09);
+}
+
+.service-speed-value {
+    min-width: 150px;
+    padding-right: 24px;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    border-right: 1px solid rgba(117, 137, 72, .22);
+    color: #667a3e;
+}
+
+.service-speed-value strong {
+    font-family: 'Playfair Display', serif;
+    font-size: 54px;
+    line-height: .9;
+}
+
+.service-speed-value span,
+.service-speed-copy > span {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .11em;
+    text-transform: uppercase;
+}
+
+.service-speed-copy > span { color: #667a3e; }
+.service-speed-copy p { margin: 6px 0 0; color: #746f68; font-size: 14px; line-height: 1.5; }
+.service-speed-banner button {
+    padding: 13px 21px;
+    border: 0;
+    border-radius: 999px;
+    color: #fff;
+    background: #2c2721;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.school-proof {
+    margin: 18px 0 20px;
+    padding: 17px 20px;
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    border: 1px solid rgba(117, 137, 72, .24);
+    border-radius: 20px;
+    background: linear-gradient(105deg, rgba(232, 239, 213, .84), rgba(255, 253, 248, .86));
+}
+
+.school-proof > strong {
+    color: #667a3e;
+    font-family: 'Playfair Display', serif;
+    font-size: 45px;
+    line-height: 1;
+}
+
+.school-proof div { padding-left: 17px; border-left: 1px solid rgba(117, 137, 72, .24); }
+.school-proof span { color: #493f35; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.school-proof p { margin: 3px 0 0; color: #777067; font-size: 12px; line-height: 1.35; }
+
+@media (max-width: 768px) {
+    .promo-badge-btn .badge-price { font-size: 16px; }
+
+    .catalog-page-cta {
+        margin-top: 24px;
+        padding: 0 12px;
+        display: block;
+        text-align: center;
+    }
+
+    .catalog-page-cta .btn { width: 100%; }
+    .catalog-page-cta span { margin-top: 9px; display: block; font-size: 11px; }
+
+    .service-speed-banner {
+        margin: 26px 0 22px;
+        padding: 20px;
+        grid-template-columns: auto minmax(0, 1fr);
+        gap: 14px 16px;
+        border-radius: 22px;
+    }
+
+    .service-speed-value {
+        min-width: 0;
+        padding-right: 16px;
+    }
+
+    .service-speed-value strong { font-size: 46px; }
+    .service-speed-copy p { font-size: 12px; }
+    .service-speed-banner button { grid-column: 1 / -1; width: 100%; min-height: 46px; }
+
+    .school-proof { margin: 16px 0 18px; padding: 15px 16px; }
+    .school-proof > strong { font-size: 40px; }
+    .school-proof p { font-size: 11px; }
+}
+
+@media (max-width: 430px) {
+    .service-speed-copy > span { font-size: 10px; }
+    .service-speed-value span { font-size: 10px; }
+    .service-speed-copy p { line-height: 1.42; }
+}
+
 /* Launch-ready mobile polish: readable contact sheet and a compact bonus after scroll. */
 @media screen and (max-width: 768px) {
     .modal-overlay {

@@ -174,11 +174,11 @@
         <div class="hero-fog"></div>
 
         <!-- Основная ветка первого экрана -->
-        <img src="images/branch-decor.png" alt="декор" class="hero-branch-decor" loading="lazy">
+        <img src="images/branch-decor.png" alt="" aria-hidden="true" class="hero-branch-decor" loading="lazy">
 
         <!-- Папоротник слева и папоротник справа -->
-        <img src="images/side-fern.png" alt="декор" class="fern-left" loading="lazy">
-        <img src="images/side-fern.png" alt="декор" class="fern-right" loading="lazy">
+        <img src="images/side-fern.png" alt="" aria-hidden="true" class="fern-left" loading="lazy">
+        <img src="images/side-fern.png" alt="" aria-hidden="true" class="fern-right" loading="lazy">
 
         <!-- Плавающие частицы — заполняют пустое пространство по краям экрана живым, лёгким движением -->
         <div class="floating-particles" aria-hidden="true">
@@ -231,12 +231,13 @@
                     <div class="slides-container" id="hero-slider">
                         
                         <!-- КАРТОЧКА 1: Букет дня -->
-                        <div class="hero-slide active-slide">
-                            <img src="images/hero-light-1.jpg" alt="Авторская композиция ВЕТКА">
-                            <a href="https://t.me/vetka_2024" target="_blank" rel="noopener noreferrer" class="promo-badge-btn">
+                        <div class="hero-slide active-slide" id="bouquetDayCard">
+                            <img id="bouquetDayImage" src="images/hero-light-1.jpg" alt="Авторская композиция ВЕТКА">
+                            <a id="bouquetDayLink" href="https://t.me/vetka_2024" target="_blank" rel="noopener noreferrer" class="promo-badge-btn">
                                 <span class="badge-tag">ВЕТКА / композиция дня</span>
-                                <span class="badge-line">Свежий сезонный состав</span>
-                                <span class="badge-action">Обсудить в Telegram →</span>
+                                <span class="badge-line" id="bouquetDayTitle">Свежий сезонный состав</span>
+                                <span class="badge-price" id="bouquetDayPrice">Актуальная цена — в Telegram</span>
+                                <span class="badge-action">Посмотреть пост в Telegram →</span>
                             </a>
                         </div>
 
@@ -309,6 +310,10 @@
             <button type="button" id="catalogPrev" aria-label="Предыдущий пример">←</button>
             <span id="catalogCounter">1 / 3</span>
             <button type="button" id="catalogNext" aria-label="Следующий пример">→</button>
+        </div>
+        <div class="catalog-page-cta">
+            <a class="btn btn-primary" href="catalog.html">Открыть весь каталог</a>
+            <span>Все категории на отдельной удобной странице</span>
         </div>
     </section>
 
@@ -428,6 +433,15 @@
                 <p class="section-subtitle">Аккуратно собираем, согласуем детали и отправляем букет только после финального фото.</p>
             </div>
 
+            <div class="service-speed-banner" aria-label="Доставка по Иркутску от 90 минут">
+                <div class="service-speed-value"><strong>90</strong><span>минут</span></div>
+                <div class="service-speed-copy">
+                    <span>Доставка по Иркутску</span>
+                    <p>Бережно привезём готовый заказ от 90 минут после сборки и согласования с флористом.</p>
+                </div>
+                <button type="button" onclick="openContactModal('delivery')">Уточнить время</button>
+            </div>
+
             <div class="service-grid">
                 <!-- Шаг 1: Аквабоксы -->
                 <div class="service-card">
@@ -544,7 +558,7 @@
         <div class="school-container">
             <div class="school-media school-feature">
                 <div class="video-wrapper">
-                    <video autoplay loop muted playsinline poster="images/school-cover.jpg">
+                    <video id="schoolVideo" loop muted playsinline preload="none" poster="images/school-cover.jpg" aria-label="Флористическая практика в школе ВЕТКА">
                         <source src="images/school-video.mp4" type="video/mp4">
                     </video>
                     <div class="media-overlay">
@@ -563,7 +577,11 @@
                     <span>мини-группы</span>
                     <span>живые сборки</span>
                     <span>портфолио</span>
-                    <span>50+ выпускников</span>
+                    <span>сезонные цветы</span>
+                </div>
+                <div class="school-proof" aria-label="Более 50 выпускников школы ВЕТКА">
+                    <strong>50+</strong>
+                    <div><span>выпускников</span><p>уже прошли обучение в школе ВЕТКА</p></div>
                 </div>
                 <div class="school-course-tabs" role="tablist" aria-label="Программы школы">
                     <button type="button" class="is-active" role="tab" aria-selected="true" data-school-course="0">Интенсив</button>
@@ -574,7 +592,7 @@
                     <div class="course-item is-mobile-active">
                         <div class="course-meta">
                             <h4>Базовый интенсив</h4>
-                            <span>Ближайший поток в августе</span>
+                            <span>Ближайший поток — август 2026</span>
                         </div>
                         <p class="course-detail">Погружение в профессию с нуля: теоретическая основа флористики, практика по техникам сборки, зачистка цветка и первый букет.</p>
                         <div class="course-action">
@@ -989,6 +1007,7 @@
         </div>
     </div>
 
+    <script src="catalog-data.js"></script>
     <script src="script.js"></script>
 
     <!-- Яндекс.Метрика.

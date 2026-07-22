@@ -338,6 +338,8 @@ function closeBonusBadge() {
     if (!badge || badge.classList.contains('bonus-closing') || badge.classList.contains('bonus-hidden')) return;
 
     document.body.classList.remove('bonus-notice-visible');
+    document.body.classList.remove('bonus-notice-compact');
+    badge.classList.remove('bonus-compact');
 
     try {
         sessionStorage.setItem('vetkaBonusDismissed', '1');
@@ -371,6 +373,66 @@ function restoreBonusBadgeState() {
 }
 
 restoreBonusBadgeState();
+
+// На первом экране бонус остаётся заметным. После начала просмотра сайта он
+// превращается в компактное напоминание и перестаёт перекрывать контент.
+let bonusPresentationFrame = null;
+
+function updateBonusPresentation() {
+    const badge = document.getElementById('bonusBadge');
+    if (!badge) return;
+
+    const shouldCompact = window.innerWidth <= 768 &&
+        window.scrollY > Math.min(280, window.innerHeight * 0.38) &&
+        !badge.classList.contains('bonus-hidden') &&
+        !badge.classList.contains('bonus-closing') &&
+        !badge.classList.contains('bonus-claimed');
+
+    badge.classList.toggle('bonus-compact', shouldCompact);
+    document.body.classList.toggle('bonus-notice-compact', shouldCompact);
+}
+
+function scheduleBonusPresentationUpdate() {
+    if (bonusPresentationFrame !== null) return;
+    bonusPresentationFrame = window.requestAnimationFrame(() => {
+        bonusPresentationFrame = null;
+        updateBonusPresentation();
+    });
+}
+
+window.addEventListener('scroll', scheduleBonusPresentationUpdate, { passive: true });
+window.addEventListener('resize', scheduleBonusPresentationUpdate);
+window.addEventListener('load', updateBonusPresentation);
+
+// Тяжёлое видео школы не загружается вместе с первым экраном. Оно начинает
+// воспроизводиться без звука только когда пользователь доходит до блока школы.
+const schoolVideo = document.getElementById('schoolVideo');
+if (schoolVideo) {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!reducedMotion && 'IntersectionObserver' in window) {
+        const schoolVideoObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.intersectionRatio >= 0.12) {
+                    schoolVideo.play().catch(() => {
+                        // Автовоспроизведение может быть отключено настройками браузера.
+                    });
+                } else {
+                    schoolVideo.pause();
+                }
+            });
+        }, {
+            rootMargin: '220px 0px',
+            threshold: [0, 0.12]
+        });
+
+        schoolVideoObserver.observe(schoolVideo);
+    }
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) schoolVideo.pause();
+    });
+}
 
 function parsePixelValue(value, fallback) {
     const parsedValue = parseInt(value, 10);
@@ -513,7 +575,7 @@ document.querySelectorAll('.care-card').forEach(card => {
 // ===== КАТАЛОГ ПО КАТЕГОРИЯМ =====
 // Пока используются уже согласованные изображения проекта. Когда появятся реальные фото каталога,
 // достаточно заменить пути, названия и цены в этом объекте — интерфейс и мобильная версия не меняются.
-const CATALOG_DATA = {
+const CATALOG_DATA = window.VETKA_CATALOG_DATA || {
     bouquets: {
         title: 'Букеты',
         description: 'Авторские букеты с живой формой: от мягких сезонных сочетаний до выразительной графики.',
@@ -696,10 +758,9 @@ document.querySelectorAll('[data-catalog-feature]').forEach(button => {
 
 document.querySelectorAll('[data-catalog-nav]').forEach(button => {
     button.addEventListener('click', () => {
-        renderCatalogCategory(button.dataset.catalogNav);
         button.blur();
         closeHeaderCatalogMenus();
-        document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        window.location.href = `catalog.html?category=${encodeURIComponent(button.dataset.catalogNav)}`;
     });
 });
 
@@ -722,6 +783,50 @@ document.getElementById('catalogProducts')?.addEventListener('scroll', event => 
     catalogProductIndex = Math.max(0, Math.min(cardCount - 1, Math.round(event.currentTarget.scrollLeft / card.offsetWidth)));
     updateCatalogCounter();
 }, { passive: true });
+
+// ===== БУКЕТ ДНЯ ИЗ TELEGRAM =====
+// Если синхронизация ещё не настроена или Telegram временно недоступен,
+// карточка остаётся с аккуратным запасным контентом из разметки.
+async function loadBouquetDay() {
+    const card = document.getElementById('bouquetDayCard');
+    if (!card) return;
+
+    try {
+        const response = await fetch('/api/bouquet-day', {
+            headers: { Accept: 'application/json' },
+            cache: 'no-store',
+        });
+        if (!response.ok) return;
+
+        const payload = await response.json();
+        const bouquet = payload?.bouquet;
+        if (!bouquet?.title) return;
+
+        const title = document.getElementById('bouquetDayTitle');
+        const price = document.getElementById('bouquetDayPrice');
+        const image = document.getElementById('bouquetDayImage');
+        const link = document.getElementById('bouquetDayLink');
+
+        if (title) title.textContent = bouquet.title;
+        if (price) price.textContent = bouquet.price || 'Цена — по запросу';
+        if (image && bouquet.photoUrl) {
+            image.src = bouquet.photoUrl;
+            image.alt = `${bouquet.title} — букет дня ВЕТКА`;
+        }
+        if (link && bouquet.sourcePostUrl) link.href = bouquet.sourcePostUrl;
+        card.classList.add('is-synced');
+    } catch (error) {
+        console.info('Букет дня остаётся на запасном контенте:', error);
+    }
+}
+
+loadBouquetDay();
+
+// Заказ из отдельной страницы каталога открываем сразу в форме на главной.
+const requestedCatalogItem = new URLSearchParams(window.location.search).get('order');
+if (requestedCatalogItem) {
+    window.setTimeout(() => openContactModal('catalog', requestedCatalogItem), 120);
+}
 
 // ===== МОБИЛЬНЫЙ ПОШАГОВЫЙ КОНСТРУКТОР =====
 function setConstructorMobileStep(stepName, shouldScroll = true) {

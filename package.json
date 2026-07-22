@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "scripts": {
+    "telegram:webhook": "node scripts/configure-telegram-webhook.mjs"
+  },
   "dependencies": {
     "@upstash/redis": "^1.34.0"
   }
