@@ -8,7 +8,7 @@ export default async function handler(req, res) {
 
     try {
         const bouquet = await readBouquetDay();
-        res.setHeader('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=300');
+        res.setHeader('Cache-Control', 'private, no-store, max-age=0');
         return res.status(200).json({ ok: true, bouquet: publicBouquetDay(bouquet) });
     } catch (error) {
         console.error('Bouquet day read failed:', error);
