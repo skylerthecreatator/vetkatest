@@ -99,16 +99,16 @@ main { position: relative; z-index: 1; width: min(1400px, calc(100% - 40px)); ma
     content: "";
     position: absolute;
     z-index: -1;
-    right: -92px;
-    bottom: -80px;
-    width: 255px;
-    height: 372px;
-    background: url("images/botanical-bellflower.webp") center / contain no-repeat;
-    filter: saturate(.64) contrast(.9);
+    right: -54px;
+    bottom: -74px;
+    width: 285px;
+    height: 335px;
+    background: url("images/botanical-rose-redoute.webp") center / contain no-repeat;
+    filter: saturate(.74) contrast(.94);
     mix-blend-mode: multiply;
     -webkit-mask-image: radial-gradient(ellipse 70% 76% at 50% 50%, #000 38%, transparent 88%);
     mask-image: radial-gradient(ellipse 70% 76% at 50% 50%, #000 38%, transparent 88%);
-    opacity: .12;
+    opacity: .17;
     pointer-events: none;
     transform: rotate(4deg);
 }
@@ -159,7 +159,21 @@ main { position: relative; z-index: 1; width: min(1400px, calc(100% - 40px)); ma
 .catalog-hero-note strong { color: var(--olive-dark); font: 700 30px/1 Playfair Display, serif; white-space: nowrap; }
 .catalog-hero-note span { color: var(--muted); font-size: 13px; line-height: 1.45; }
 
-.catalog-browser { padding: 40px 48px 48px; border: 1px solid rgba(255,255,255,.75); border-radius: 36px; background: rgba(255,253,248,.78); box-shadow: 0 28px 80px rgba(64,53,39,.09); }
+.catalog-browser { position: relative; isolation: isolate; overflow: hidden; padding: 40px 48px 48px; border: 1px solid rgba(255,255,255,.75); border-radius: 36px; background: rgba(255,253,248,.78); box-shadow: 0 28px 80px rgba(64,53,39,.09); }
+.catalog-browser::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: 34px;
+    right: -66px;
+    width: 255px;
+    height: 308px;
+    background: url("images/botanical-peony-line.webp") center / contain no-repeat;
+    opacity: .11;
+    pointer-events: none;
+    transform: rotate(8deg);
+}
+.catalog-browser > * { position: relative; z-index: 1; }
 .catalog-browser-head { display: grid; grid-template-columns: minmax(260px, .7fr) 1fr; gap: 60px; align-items: end; }
 .catalog-browser h2 { font-size: clamp(38px, 5vw, 64px); }
 #catalogPageTitle { scroll-margin-top: 120px; }
@@ -291,13 +305,14 @@ main { position: relative; z-index: 1; width: min(1400px, calc(100% - 40px)); ma
     .catalog-contact { padding: 12px 17px; }
     main { width: calc(100% - 20px); }
     .catalog-hero { min-height: 0; padding: 36px 10px 28px; gap: 18px; }
-    .catalog-hero::after { right: -76px; bottom: -48px; width: 178px; height: 260px; opacity: .08; }
+    .catalog-hero::after { right: -72px; bottom: -30px; width: 176px; height: 210px; opacity: .11; }
     .catalog-hero h1 { font-size: 44px; }
     .catalog-hero-copy p { font-size: 14px; line-height: 1.6; }
     .catalog-assurances { display: none; }
     .catalog-hero-note { padding: 14px 16px; border-radius: 20px; }
     .catalog-hero-note strong { font-size: 25px; }
     .catalog-browser { padding: 28px 12px 24px; border-radius: 26px; }
+    .catalog-browser::before { top: 108px; right: -76px; width: 156px; height: 188px; opacity: .08; }
     .catalog-browser-head { padding: 0 8px; display: block; }
     .catalog-browser h2 { font-size: 38px; }
     .catalog-browser-head > p { font-size: 13px; }

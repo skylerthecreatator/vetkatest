@@ -1815,6 +1815,255 @@
     display: none !important;
 }
 
+/* ===== BOTANICAL RHYTHM: varied, visible decoration along the long page ===== */
+.catalog,
+.constructor-teaser,
+.delivery-service,
+.flower-subscription,
+.care-section,
+.school,
+.reviews-section,
+.footer {
+    isolation: isolate;
+}
+
+.catalog.catalog-gateway::before {
+    width: 270px;
+    height: 326px;
+    left: -48px;
+    top: 86px;
+    background-image: url("images/botanical-peony-line.webp");
+    background-position: center;
+    opacity: .16;
+    transform: rotate(-8deg);
+}
+
+.catalog.catalog-gateway::after {
+    width: 350px;
+    height: 510px;
+    right: -68px;
+    bottom: 12px;
+    opacity: .18;
+}
+
+.constructor-teaser::before,
+.constructor-teaser::after,
+.delivery-service::before,
+.delivery-service::after,
+.flower-subscription::before,
+.care-section::before,
+.care-section::after,
+.school::before,
+.reviews-section::before,
+.reviews-section::after,
+.footer::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    pointer-events: none;
+}
+
+.constructor-teaser::before {
+    width: 285px;
+    height: 335px;
+    top: 34px;
+    right: -54px;
+    background-image: url("images/botanical-rose-redoute.webp");
+    filter: saturate(.76) contrast(.95);
+    mix-blend-mode: multiply;
+    -webkit-mask-image: radial-gradient(ellipse 72% 78% at 50% 48%, #000 48%, transparent 94%);
+    mask-image: radial-gradient(ellipse 72% 78% at 50% 48%, #000 48%, transparent 94%);
+    opacity: .15;
+    transform: rotate(7deg);
+}
+
+.constructor-teaser::after {
+    width: 265px;
+    height: 320px;
+    left: -62px;
+    bottom: 18px;
+    background-image: url("images/botanical-peony-line.webp");
+    opacity: .13;
+    transform: rotate(10deg);
+}
+
+.delivery-service::before {
+    width: 300px;
+    height: 362px;
+    top: 38px;
+    left: -72px;
+    background-image: url("images/botanical-peony-line.webp");
+    filter: none;
+    opacity: .14;
+    transform: rotate(-9deg);
+}
+
+.delivery-service::after {
+    width: 280px;
+    height: 408px;
+    right: -48px;
+    bottom: -34px;
+    background-image: url("images/botanical-bellflower.webp");
+    filter: saturate(.72) contrast(.92);
+    mix-blend-mode: multiply;
+    -webkit-mask-image: radial-gradient(ellipse 72% 80% at 50% 50%, #000 42%, transparent 92%);
+    mask-image: radial-gradient(ellipse 72% 80% at 50% 50%, #000 42%, transparent 92%);
+    opacity: .16;
+    transform: rotate(4deg);
+}
+
+.flower-subscription::before {
+    width: 255px;
+    height: 300px;
+    top: 18px;
+    right: -36px;
+    background-image: url("images/botanical-rose-redoute.webp");
+    filter: saturate(.74) contrast(.94);
+    mix-blend-mode: multiply;
+    -webkit-mask-image: radial-gradient(ellipse 72% 80% at 50% 48%, #000 46%, transparent 94%);
+    mask-image: radial-gradient(ellipse 72% 80% at 50% 48%, #000 46%, transparent 94%);
+    opacity: .14;
+    transform: rotate(9deg);
+}
+
+.flower-subscription > * {
+    position: relative;
+    z-index: 1;
+}
+
+.care-section::before {
+    width: 255px;
+    height: 372px;
+    left: -54px;
+    top: 26px;
+    background-image: url("images/botanical-bellflower.webp");
+    filter: saturate(.68) contrast(.92);
+    mix-blend-mode: multiply;
+    -webkit-mask-image: radial-gradient(ellipse 72% 80% at 50% 50%, #000 44%, transparent 92%);
+    mask-image: radial-gradient(ellipse 72% 80% at 50% 50%, #000 44%, transparent 92%);
+    opacity: .17;
+    transform: rotate(-5deg);
+}
+
+.care-section::after {
+    width: 240px;
+    height: 290px;
+    right: -50px;
+    bottom: -16px;
+    background-image: url("images/botanical-peony-line.webp");
+    opacity: .13;
+    transform: rotate(8deg) scaleX(-1);
+}
+
+.school::before {
+    width: 300px;
+    height: 352px;
+    top: 28px;
+    right: -58px;
+    background-image: url("images/botanical-rose-redoute.webp");
+    filter: saturate(.72) contrast(.94);
+    mix-blend-mode: multiply;
+    -webkit-mask-image: radial-gradient(ellipse 72% 80% at 50% 48%, #000 48%, transparent 94%);
+    mask-image: radial-gradient(ellipse 72% 80% at 50% 48%, #000 48%, transparent 94%);
+    opacity: .14;
+    transform: rotate(8deg);
+}
+
+.reviews-section::before {
+    display: block;
+    width: 270px;
+    height: 325px;
+    left: -58px;
+    bottom: -18px;
+    background-image: url("images/botanical-peony-line.webp");
+    filter: none;
+    opacity: .13;
+    transform: rotate(-7deg);
+}
+
+.reviews-section::after {
+    width: 250px;
+    height: 365px;
+    top: 34px;
+    right: -44px;
+    background-image: url("images/botanical-bellflower.webp");
+    filter: saturate(.68) contrast(.92);
+    mix-blend-mode: multiply;
+    -webkit-mask-image: radial-gradient(ellipse 72% 80% at 50% 50%, #000 44%, transparent 92%);
+    mask-image: radial-gradient(ellipse 72% 80% at 50% 50%, #000 44%, transparent 92%);
+    opacity: .15;
+    transform: rotate(5deg);
+}
+
+.footer {
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    width: 340px;
+    height: 410px;
+    right: -70px;
+    bottom: -112px;
+    background-image: url("images/botanical-peony-line.webp");
+    filter: brightness(1.75) saturate(.45);
+    opacity: .15;
+    transform: rotate(7deg);
+}
+
+.footer > * {
+    position: relative;
+    z-index: 1;
+}
+
+@media screen and (max-width: 768px) {
+    .catalog.catalog-gateway::before {
+        width: 150px;
+        height: 184px;
+        left: -62px;
+        top: 110px;
+        opacity: .12;
+    }
+
+    .catalog.catalog-gateway::after {
+        width: 180px;
+        height: 263px;
+        right: -66px;
+        top: 206px;
+        bottom: auto;
+        opacity: .12;
+    }
+
+    .constructor-teaser::before,
+    .delivery-service::before,
+    .flower-subscription::before,
+    .care-section::before,
+    .school::before,
+    .reviews-section::before {
+        width: 150px;
+        height: 190px;
+        opacity: .105;
+    }
+
+    .constructor-teaser::before { top: 72px; right: -70px; }
+    .delivery-service::before { top: 54px; left: -70px; }
+    .flower-subscription::before { top: 238px; right: -72px; }
+    .care-section::before { top: 70px; left: -72px; }
+    .school::before { top: 54px; right: -74px; }
+    .reviews-section::before { left: -72px; bottom: 70px; }
+
+    .constructor-teaser::after,
+    .delivery-service::after,
+    .care-section::after,
+    .reviews-section::after,
+    .footer::before {
+        display: none;
+    }
+}
+
 /* ===== КАТАЛОГ-КАК-ВИТРИНА И ВЫРАЗИТЕЛЬНАЯ ЦЕНА ДНЯ ===== */
 .catalog-menu-flower {
     text-decoration: none;
@@ -1838,44 +2087,45 @@
 }
 
 .promo-badge-btn .badge-offer {
-    position: relative;
-    width: 190px;
-    min-height: 47px;
+    width: 198px;
+    min-height: 52px;
     margin-top: 5px;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "old discount"
+        "price price";
     align-items: center;
     justify-content: center;
-    gap: 3px;
+    column-gap: 10px;
+    row-gap: 3px;
     text-align: center;
 }
 
 .promo-badge-btn .badge-old-price {
-    display: block;
-    width: 100%;
-    text-align: center;
-    color: #675e56;
-    font: 750 13px/1.1 "Inter", sans-serif;
+    grid-area: old;
+    justify-self: end;
+    color: #514942;
+    font: 750 13.5px/1.1 "Inter", sans-serif;
     text-decoration: line-through;
-    text-decoration-color: #a65e58;
-    text-decoration-thickness: 1.8px;
+    text-decoration-color: rgba(166, 94, 88, .56);
+    text-decoration-thickness: 1.35px;
+    transform: translateX(-2px);
 }
 
 #bouquetDayCard .promo-badge-btn .badge-price {
-    display: block;
-    width: 100%;
+    grid-area: price;
+    justify-self: center;
     margin: 0;
-    text-align: center;
     color: #60763a;
-    font-size: 25px;
+    font-size: 26px;
     line-height: 1;
 }
 
 .promo-badge-btn .badge-discount {
-    position: absolute;
-    right: -8px;
-    bottom: 2px;
-    padding: 7px 9px;
+    grid-area: discount;
+    justify-self: start;
+    padding: 6px 9px;
     border-radius: 999px;
     color: #fffaf3;
     background: #ad6259;
@@ -2037,10 +2287,10 @@
 }
 
 @media (max-width: 768px) {
-    .promo-badge-btn .badge-offer { width: 172px; min-height: 42px; gap: 2px; }
-    .promo-badge-btn .badge-old-price { font-size: 11px; }
-    #bouquetDayCard .promo-badge-btn .badge-price { font-size: 20px; }
-    .promo-badge-btn .badge-discount { right: -4px; bottom: 2px; padding: 5px 7px; font-size: 10px; }
+    .promo-badge-btn .badge-offer { width: 178px; min-height: 46px; column-gap: 8px; row-gap: 2px; }
+    .promo-badge-btn .badge-old-price { font-size: 11.5px; }
+    #bouquetDayCard .promo-badge-btn .badge-price { font-size: 22px; }
+    .promo-badge-btn .badge-discount { padding: 5px 7px; font-size: 10px; }
 
     .catalog.catalog-gateway {
         padding-top: 54px;
@@ -2428,7 +2678,6 @@
 .bonus-badge.bonus-hidden {
     display: none !important;
 }
-
 
 /* Bonus readability: the full notice must be readable at a glance. */
 .bonus-badge:not(.bonus-compact):not(.bonus-claimed) {
@@ -3747,4 +3996,58 @@
 
 .bonus-badge.bonus-hidden {
     display: none !important;
+}
+
+/* Botanical placement stays last so mobile legacy rules cannot fade it away. */
+.catalog.catalog-gateway::after {
+    right: -68px;
+    bottom: 12px;
+    width: 350px;
+    height: 510px;
+    opacity: 0.18;
+}
+
+@media screen and (max-width: 768px) {
+    .catalog.catalog-gateway::before {
+        top: 118px;
+        left: -58px;
+        width: 158px;
+        height: 190px;
+        opacity: 0.12;
+    }
+
+    .catalog.catalog-gateway::after {
+        top: 206px;
+        right: -66px;
+        bottom: auto;
+        width: 180px;
+        height: 263px;
+        opacity: 0.12;
+    }
+
+    .constructor-teaser::before,
+    .delivery-service::before,
+    .flower-subscription::before,
+    .care-section::before,
+    .school::before,
+    .reviews-section::before {
+        width: 150px;
+        height: 190px;
+        opacity: 0.105;
+    }
+
+    .constructor-teaser::before { top: 28px; right: -60px; }
+    .delivery-service::before { top: 30px; left: -57px; }
+    .flower-subscription::before { top: 42px; right: -56px; }
+    .care-section::before { top: 92px; left: -60px; }
+    .school::before { top: 42px; right: -60px; }
+    .reviews-section::before { top: 70px; left: -58px; }
+
+    .constructor-teaser::after,
+    .delivery-service::after,
+    .care-section::after,
+    .reviews-section::after,
+    .footer::before {
+        display: none;
+    }
 }
