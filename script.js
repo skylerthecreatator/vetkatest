@@ -820,7 +820,7 @@ async function loadBouquetDay() {
         if (price) price.textContent = bouquet.price ? formatPrice(bouquet.price) : 'Цена — по запросу';
         if (oldPrice) {
             oldPrice.hidden = !bouquet.oldPrice;
-            oldPrice.textContent = bouquet.oldPrice ? `Было ${formatPrice(bouquet.oldPrice)}` : '';
+            oldPrice.textContent = bouquet.oldPrice ? formatPrice(bouquet.oldPrice) : '';
         }
         if (discount) {
             discount.hidden = !bouquet.discountPercent;

@@ -11,28 +11,78 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="catalog-page.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="tier3.css">
+    <link rel="stylesheet" href="catalog-page.css?v=20260723">
 </head>
 <body>
-    <header class="catalog-headerbar">
-        <a class="catalog-logo" href="index.html" aria-label="На главную ВЕТКА">ВЕТКА</a>
-        <nav aria-label="Навигация каталога">
-            <a href="index.html">Главная</a>
+    <header class="header">
+        <a href="index.html" class="logo" aria-label="На главную ВЕТКА">ВЕТКА</a>
+
+        <nav class="nav" aria-label="Основная навигация">
+            <div class="header-catalog-dropdown" id="desktopCatalogDropdown">
+                <button class="header-catalog-toggle" id="desktopCatalogToggle" type="button" aria-expanded="false" aria-controls="desktopCatalogMenu">
+                    Каталог
+                    <svg aria-hidden="true" viewBox="0 0 20 20"><path d="m6 8 4 4 4-4"></path></svg>
+                </button>
+                <div class="header-catalog-menu" id="desktopCatalogMenu" aria-label="Категории каталога">
+                    <div class="header-catalog-menu-head">
+                        <a class="catalog-menu-flower" href="catalog.html" aria-label="Открыть весь каталог">
+                            <svg aria-hidden="true" viewBox="0 0 32 32">
+                                <g fill="currentColor">
+                                    <ellipse cx="16" cy="8.5" rx="4.3" ry="6.4"></ellipse>
+                                    <ellipse cx="16" cy="8.5" rx="4.3" ry="6.4" transform="rotate(72 16 16)"></ellipse>
+                                    <ellipse cx="16" cy="8.5" rx="4.3" ry="6.4" transform="rotate(144 16 16)"></ellipse>
+                                    <ellipse cx="16" cy="8.5" rx="4.3" ry="6.4" transform="rotate(216 16 16)"></ellipse>
+                                    <ellipse cx="16" cy="8.5" rx="4.3" ry="6.4" transform="rotate(288 16 16)"></ellipse>
+                                </g>
+                                <circle cx="16" cy="16" r="3.2"></circle>
+                            </svg>
+                        </a>
+                        <div><small>Коллекция ВЕТКИ</small><strong>Выберите направление</strong></div>
+                    </div>
+                    <button type="button" data-catalog-nav="bouquets"><img src="images/hero-light-1.jpg" alt=""><span>Букеты</span></button>
+                    <button type="button" data-catalog-nav="compositions"><img src="images/catalog-compositions.jpg" alt=""><span>Композиции</span></button>
+                    <button type="button" data-catalog-nav="interior"><img src="images/flagship3.jpg" alt=""><span>Интерьерные композиции</span></button>
+                    <button type="button" data-catalog-nav="gifts"><img src="images/catalog-gifts.jpg" alt=""><span>Вазы и подарки</span></button>
+                    <button type="button" data-catalog-nav="wedding"><img src="images/catalog-wedding.jpg" alt=""><span>Свадебное</span></button>
+                </div>
+            </div>
             <a href="index.html#constructor-teaser">Свой концепт</a>
             <a href="index.html#delivery-service">Доставка</a>
             <a href="index.html#flower-subscription">Подписка</a>
             <a href="index.html#school-section">Школа</a>
             <a href="index.html#reviews">Отзывы</a>
         </nav>
-        <div class="catalog-header-contacts">
-            <div class="catalog-header-geo">
-                <strong>ИРКУТСК</strong>
-                <a href="https://2gis.ru/irkutsk/firm/70000001084131858?m=104.315705%2C52.279294%2F18.82&amp;utm_source=ig&amp;utm_medium=social&amp;utm_content=link_in_bio" target="_blank" rel="noopener noreferrer">ул. Советская, 96 <span aria-hidden="true">📍</span></a>
+
+        <button class="mobile-catalog-toggle" id="mobileCatalogToggle" type="button" aria-expanded="false" aria-controls="mobileCatalogPanel">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"></rect><rect x="14" y="4" width="6" height="6" rx="1"></rect><rect x="4" y="14" width="6" height="6" rx="1"></rect><rect x="14" y="14" width="6" height="6" rx="1"></rect></svg>
+            <span>Каталог</span>
+        </button>
+
+        <div class="header-contacts">
+            <div class="header-geo">
+                <span class="geo-city">Иркутск</span>
+                <a href="https://2gis.ru/irkutsk/firm/70000001084131858?m=104.315705%2C52.279294%2F18.82&amp;utm_source=ig&amp;utm_medium=social&amp;utm_content=link_in_bio" target="_blank" rel="noopener noreferrer" class="geo-street">ул. Советская, 96 📍</a>
             </div>
-            <div class="catalog-header-hours"><span>10:00–20:00</span><small>ежедневно</small></div>
-            <a class="catalog-contact" href="index.html?order=Помощь%20с%20выбором">Связаться</a>
+            <div class="header-hours">10:00–20:00 ежедневно</div>
+            <a class="header-phone-btn" href="index.html?order=Помощь%20с%20выбором">Связаться</a>
         </div>
     </header>
+
+    <div class="mobile-catalog-panel" id="mobileCatalogPanel" aria-hidden="true">
+        <div class="mobile-catalog-panel-head">
+            <div><small>Быстрый переход</small><strong>Каталог</strong></div>
+            <button class="mobile-catalog-close" id="mobileCatalogClose" type="button" aria-label="Закрыть каталог">×</button>
+        </div>
+        <div class="mobile-catalog-panel-grid">
+            <button type="button" data-catalog-nav="bouquets"><img src="images/hero-light-1.jpg" alt=""><span>Букеты</span></button>
+            <button type="button" data-catalog-nav="compositions"><img src="images/catalog-compositions.jpg" alt=""><span>Композиции</span></button>
+            <button type="button" data-catalog-nav="interior"><img src="images/flagship3.jpg" alt=""><span>Интерьерные</span></button>
+            <button type="button" data-catalog-nav="gifts"><img src="images/catalog-gifts.jpg" alt=""><span>Вазы и подарки</span></button>
+            <button type="button" data-catalog-nav="wedding"><img src="images/catalog-wedding.jpg" alt=""><span>Свадебное</span></button>
+        </div>
+    </div>
 
     <main>
         <section class="catalog-hero">
@@ -61,7 +111,13 @@
                 <p id="catalogPageDescription"></p>
             </div>
 
-            <div class="catalog-category-list" id="catalogCategoryList" role="tablist" aria-label="Категории каталога"></div>
+            <div class="catalog-category-list-wrap">
+                <div class="catalog-mobile-swipe-hint" aria-hidden="true">
+                    <span>Листайте категории</span>
+                    <b>→</b>
+                </div>
+                <div class="catalog-category-list" id="catalogCategoryList" role="tablist" aria-label="Категории каталога"></div>
+            </div>
             <div class="catalog-product-grid" id="catalogPageProducts" aria-live="polite"></div>
             <button class="catalog-more" id="catalogMore" type="button" hidden>Показать ещё</button>
         </section>
@@ -96,6 +152,6 @@
     </nav>
 
     <script src="catalog-data.js"></script>
-    <script src="catalog-page.js"></script>
+    <script src="catalog-page.js?v=20260723"></script>
 </body>
 </html>

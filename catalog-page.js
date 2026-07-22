@@ -96,6 +96,67 @@ moreButton.addEventListener('click', () => {
 renderCategories();
 renderProducts();
 
+const desktopCatalogDropdown = document.getElementById('desktopCatalogDropdown');
+const desktopCatalogToggle = document.getElementById('desktopCatalogToggle');
+const mobileCatalogToggle = document.getElementById('mobileCatalogToggle');
+const mobileCatalogPanel = document.getElementById('mobileCatalogPanel');
+const mobileCatalogClose = document.getElementById('mobileCatalogClose');
+
+function closeCatalogHeaderPanels() {
+    desktopCatalogDropdown?.classList.remove('is-open');
+    desktopCatalogToggle?.setAttribute('aria-expanded', 'false');
+    mobileCatalogPanel?.classList.remove('is-open');
+    mobileCatalogPanel?.setAttribute('aria-hidden', 'true');
+    mobileCatalogToggle?.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('catalog-menu-open');
+}
+
+desktopCatalogToggle?.addEventListener('click', event => {
+    event.stopPropagation();
+    const shouldOpen = !desktopCatalogDropdown.classList.contains('is-open');
+    closeCatalogHeaderPanels();
+    if (shouldOpen) {
+        desktopCatalogDropdown.classList.add('is-open');
+        desktopCatalogToggle.setAttribute('aria-expanded', 'true');
+    }
+});
+
+mobileCatalogToggle?.addEventListener('click', () => {
+    const shouldOpen = !mobileCatalogPanel.classList.contains('is-open');
+    closeCatalogHeaderPanels();
+    if (shouldOpen) {
+        mobileCatalogPanel.classList.add('is-open');
+        mobileCatalogPanel.setAttribute('aria-hidden', 'false');
+        mobileCatalogToggle.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('catalog-menu-open');
+    }
+});
+
+mobileCatalogClose?.addEventListener('click', closeCatalogHeaderPanels);
+
+document.querySelectorAll('[data-catalog-nav]').forEach(button => {
+    button.addEventListener('click', () => {
+        selectCategory(button.dataset.catalogNav);
+        closeCatalogHeaderPanels();
+        document.getElementById('catalogPageTitle')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+});
+
+document.addEventListener('click', event => {
+    if (desktopCatalogDropdown?.classList.contains('is-open') && !desktopCatalogDropdown.contains(event.target)) {
+        closeCatalogHeaderPanels();
+    }
+    if (mobileCatalogPanel?.classList.contains('is-open') &&
+        !mobileCatalogPanel.contains(event.target) &&
+        !mobileCatalogToggle?.contains(event.target)) {
+        closeCatalogHeaderPanels();
+    }
+});
+
+document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closeCatalogHeaderPanels();
+});
+
 if (matchMedia('(max-width: 720px)').matches) {
     requestAnimationFrame(() => {
         document.querySelector(`[data-category="${activeCategory}"]`)?.scrollIntoView({
