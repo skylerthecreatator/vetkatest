@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vetka20.vercel.app/sitemap.xml
+Sitemap: https://vetkatest.vercel.app/sitemap.xml

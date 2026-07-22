@@ -1,4 +1,4 @@
-import { BOUQUET_DAY_KEY, getRedis } from '../lib/bouquet-day.js';
+import { BOUQUET_DAY_KEY, getRedis, getTelegramWebhookSecret } from '../lib/bouquet-day.js';
 
 function getBody(req) {
     if (typeof req.body !== 'string') return req.body || {};
@@ -49,7 +49,7 @@ export default async function handler(req, res) {
         return res.status(405).json({ ok: false, error: 'method_not_allowed' });
     }
 
-    const expectedSecret = process.env.TELEGRAM_WEBHOOK_SECRET;
+    const expectedSecret = getTelegramWebhookSecret();
     const receivedSecret = req.headers['x-telegram-bot-api-secret-token'];
     if (!expectedSecret) return res.status(503).json({ ok: false, error: 'webhook_not_configured' });
     if (receivedSecret !== expectedSecret) return res.status(401).json({ ok: false, error: 'unauthorized' });

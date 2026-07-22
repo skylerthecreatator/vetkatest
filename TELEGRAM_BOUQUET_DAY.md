@@ -7,8 +7,8 @@
 1. Добавить существующего бота заявок администратором канала `@vetka_2024` с правом видеть публикации.
 2. В окружении сайта оставить текущие `BOT_TOKEN`, `CHAT_ID`, `KV_REST_API_URL`, `KV_REST_API_TOKEN` и добавить:
    - `TELEGRAM_CHANNEL_ID=@vetka_2024`
-   - `TELEGRAM_WEBHOOK_SECRET` — случайная строка длиной 32–64 символа.
-3. После публикации сайта выполнить настройку webhook с теми же значениями `BOT_TOKEN`, `TELEGRAM_WEBHOOK_SECRET` и `SITE_URL`:
+   - `TELEGRAM_WEBHOOK_SECRET` — необязательно: если переменная не задана, сайт безопасно вычисляет секрет из уже настроенного `BOT_TOKEN` и не передаёт токен в браузер.
+3. После публикации сайта выполнить настройку webhook с теми же значениями `BOT_TOKEN`, `TELEGRAM_WEBHOOK_SECRET` и `SITE_URL=https://vetkatest.vercel.app`:
 
    `npm run telegram:webhook`
 

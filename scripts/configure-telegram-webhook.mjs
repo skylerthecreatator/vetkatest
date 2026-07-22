@@ -1,6 +1,9 @@
 const token = process.env.BOT_TOKEN;
 const siteUrl = String(process.env.SITE_URL || '').replace(/\/$/, '');
-const secret = process.env.TELEGRAM_WEBHOOK_SECRET;
+const { createHash } = await import('node:crypto');
+const secret = process.env.TELEGRAM_WEBHOOK_SECRET || (token
+    ? createHash('sha256').update(`${token}:vetka-bouquet-day`).digest('hex')
+    : '');
 
 if (!token || !siteUrl || !secret) {
     console.error('Нужны BOT_TOKEN, SITE_URL и TELEGRAM_WEBHOOK_SECRET.');
