@@ -25,10 +25,18 @@ export function parseBouquetPost(post) {
 
     const lines = text.split(/\r?\n/).map(cleanLine).filter(Boolean);
     const pricePattern = /(?:от\s*)?\d[\d\s]*\s*(?:₽|руб(?:\.|лей)?)/gi;
+    const oldPriceMatch = text.match(/старая\s+цена\s*[:—-]?\s*((?:от\s*)?\d[\d\s]*\s*(?:₽|руб(?:\.|лей)?))/i);
     const newPriceMatch = text.match(/новая\s+цена\s*[:—-]?\s*((?:от\s*)?\d[\d\s]*\s*(?:₽|руб(?:\.|лей)?))/i);
     const allPrices = Array.from(text.matchAll(pricePattern), match => match[0]);
     const rawPrice = newPriceMatch?.[1] || allPrices.at(-1) || '';
+    const rawOldPrice = oldPriceMatch?.[1] || '';
     const price = rawPrice.replace(/\s+/g, ' ').trim();
+    const oldPrice = rawOldPrice.replace(/\s+/g, ' ').trim();
+    const numericPrice = Number(price.replace(/\D/g, ''));
+    const numericOldPrice = Number(oldPrice.replace(/\D/g, ''));
+    const discountPercent = numericOldPrice > numericPrice && numericPrice > 0
+        ? Math.round((1 - numericPrice / numericOldPrice) * 100)
+        : null;
     const contentLines = lines.filter(line => {
         if (/(?:старая|новая)\s+цена/i.test(line)) return false;
         return !/(?:от\s*)?\d[\d\s]*\s*(?:₽|руб(?:\.|лей)?)/i.test(line);
@@ -51,6 +59,8 @@ export function parseBouquetPost(post) {
         title: title.slice(0, 120),
         description: description.slice(0, 500),
         price: price.slice(0, 60),
+        oldPrice: oldPrice.slice(0, 60),
+        discountPercent,
         photoFileId: largestPhoto?.file_id || null,
     };
 }

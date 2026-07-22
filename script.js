@@ -804,11 +804,28 @@ async function loadBouquetDay() {
 
         const title = document.getElementById('bouquetDayTitle');
         const price = document.getElementById('bouquetDayPrice');
+        const oldPrice = document.getElementById('bouquetDayOldPrice');
+        const discount = document.getElementById('bouquetDayDiscount');
         const image = document.getElementById('bouquetDayImage');
         const link = document.getElementById('bouquetDayLink');
 
+        const formatPrice = value => {
+            const match = String(value || '').match(/(\d[\d\s]*)\s*(₽|руб(?:\.|лей)?)/i);
+            if (!match) return String(value || '');
+            const amount = Number(match[1].replace(/\s/g, '')).toLocaleString('ru-RU');
+            return `${amount} ₽`;
+        };
+
         if (title) title.textContent = bouquet.title;
-        if (price) price.textContent = bouquet.price || 'Цена — по запросу';
+        if (price) price.textContent = bouquet.price ? formatPrice(bouquet.price) : 'Цена — по запросу';
+        if (oldPrice) {
+            oldPrice.hidden = !bouquet.oldPrice;
+            oldPrice.textContent = bouquet.oldPrice ? `Было ${formatPrice(bouquet.oldPrice)}` : '';
+        }
+        if (discount) {
+            discount.hidden = !bouquet.discountPercent;
+            discount.textContent = bouquet.discountPercent ? `−${bouquet.discountPercent}%` : '';
+        }
         if (image && bouquet.photoUrl) {
             image.src = bouquet.photoUrl;
             image.alt = `${bouquet.title} — букет дня ВЕТКА`;

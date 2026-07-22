@@ -86,7 +86,7 @@
                 </button>
                 <div class="header-catalog-menu" id="desktopCatalogMenu" aria-label="Категории каталога">
                     <div class="header-catalog-menu-head">
-                        <span class="catalog-menu-flower" aria-hidden="true">✿</span>
+                        <a class="catalog-menu-flower" href="catalog.html" aria-label="Открыть весь каталог">✿</a>
                         <div>
                             <small>Коллекция ВЕТКИ</small>
                             <strong>Выберите направление</strong>
@@ -236,7 +236,11 @@
                             <a id="bouquetDayLink" href="https://t.me/vetka_2024" target="_blank" rel="noopener noreferrer" class="promo-badge-btn">
                                 <span class="badge-tag">ВЕТКА / композиция дня</span>
                                 <span class="badge-line" id="bouquetDayTitle">Свежий сезонный состав</span>
-                                <span class="badge-price" id="bouquetDayPrice">Актуальная цена — в Telegram</span>
+                                <span class="badge-offer" id="bouquetDayOffer">
+                                    <span class="badge-old-price" id="bouquetDayOldPrice" hidden></span>
+                                    <span class="badge-price" id="bouquetDayPrice">Цена — в Telegram</span>
+                                    <span class="badge-discount" id="bouquetDayDiscount" hidden></span>
+                                </span>
                                 <span class="badge-action">Посмотреть пост в Telegram →</span>
                             </a>
                         </div>
@@ -270,50 +274,41 @@
     </section>
 
         <!-- Интерактивный каталог -->
-    <section id="catalog" class="catalog">
+    <section id="catalog" class="catalog catalog-gateway">
         <div class="catalog-header">
-            <span class="section-eyebrow">Каталог</span>
+            <span class="section-eyebrow">Каталог ВЕТКА</span>
             <h2 class="section-title">Выберите своё направление</h2>
-            <p class="section-subtitle">Откройте категорию, посмотрите примеры и отправьте понравившуюся идею флористу. Состав каждого заказа адаптируем под сезон и ваш бюджет.</p>
+            <p class="section-subtitle">В отдельном каталоге удобно смотреть примеры, цены и категории. Выберите направление — откроем сразу нужную подборку.</p>
         </div>
 
         <div class="category-grid catalog-featured" aria-label="Популярные направления каталога">
-            <button type="button" class="category-card" data-catalog-feature="wedding">
+            <a class="category-card" href="catalog.html?category=wedding">
                 <img src="images/catalog-wedding.jpg" alt="Свадебное направление ВЕТКА" loading="lazy">
-                <span>Свадебное</span>
-            </button>
-            <button type="button" class="category-card" data-catalog-feature="compositions">
+                <span><small>Букеты и оформление</small>Свадебное</span>
+            </a>
+            <a class="category-card" href="catalog.html?category=compositions">
                 <img src="images/catalog-compositions.jpg" alt="Композиции ВЕТКА" loading="lazy">
-                <span>Композиции</span>
-            </button>
-            <button type="button" class="category-card" data-catalog-feature="gifts">
+                <span><small>Для дома и подарка</small>Композиции</span>
+            </a>
+            <a class="category-card" href="catalog.html?category=gifts">
                 <img src="images/catalog-gifts.jpg" alt="Вазы и подарки ВЕТКА" loading="lazy">
-                <span>Вазы и подарки</span>
-            </button>
+                <span><small>Детали к цветам</small>Вазы и подарки</span>
+            </a>
         </div>
 
-        <p class="catalog-tabs-label">Все категории</p>
-        <div class="catalog-category-tabs" role="tablist" aria-label="Категории каталога">
-            <button type="button" class="catalog-category-tab is-active" role="tab" aria-selected="true" data-catalog-category="bouquets"><img src="images/hero-light-1.jpg" alt=""><span>Букеты</span></button>
-            <button type="button" class="catalog-category-tab" role="tab" aria-selected="false" data-catalog-category="compositions"><img src="images/catalog-compositions.jpg" alt=""><span>Композиции</span></button>
-            <button type="button" class="catalog-category-tab" role="tab" aria-selected="false" data-catalog-category="interior"><img src="images/flagship3.jpg" alt=""><span>Интерьерные композиции</span></button>
-            <button type="button" class="catalog-category-tab" role="tab" aria-selected="false" data-catalog-category="gifts"><img src="images/catalog-gifts.jpg" alt=""><span>Вазы и подарки</span></button>
-            <button type="button" class="catalog-category-tab" role="tab" aria-selected="false" data-catalog-category="wedding"><img src="images/catalog-wedding.jpg" alt=""><span>Свадебное</span></button>
-        </div>
-
-        <div class="catalog-category-intro" id="catalogCategoryIntro" aria-live="polite"></div>
-        <div class="catalog-grid" id="catalogProducts" role="tabpanel" aria-live="polite">
-            <!-- Карточки подставляются из script.js: так фото, цены и описания можно обновлять в одном месте. -->
-        </div>
-
-        <div class="catalog-mobile-controls" aria-label="Переключение примеров">
-            <button type="button" id="catalogPrev" aria-label="Предыдущий пример">←</button>
-            <span id="catalogCounter">1 / 3</span>
-            <button type="button" id="catalogNext" aria-label="Следующий пример">→</button>
-        </div>
-        <div class="catalog-page-cta">
-            <a class="btn btn-primary" href="catalog.html">Открыть весь каталог</a>
-            <span>Все категории на отдельной удобной странице</span>
+        <div class="catalog-gateway-footer">
+            <div class="catalog-quick-links" aria-label="Все направления каталога">
+                <span>Все направления</span>
+                <a href="catalog.html?category=bouquets">Букеты</a>
+                <a href="catalog.html?category=compositions">Композиции</a>
+                <a href="catalog.html?category=interior">Интерьерные</a>
+                <a href="catalog.html?category=gifts">Вазы и подарки</a>
+                <a href="catalog.html?category=wedding">Свадебное</a>
+            </div>
+            <a class="catalog-gateway-cta" href="catalog.html">
+                <span>Смотреть все примеры и цены</span>
+                <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h13M13 7l5 5-5 5"></path></svg>
+            </a>
         </div>
     </section>
 

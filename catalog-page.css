@@ -43,7 +43,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 
 .catalog-logo { font: 400 28px/1 Playfair Display, serif; letter-spacing: .22em; }
-.catalog-headerbar nav { display: flex; gap: 30px; color: var(--muted); font-size: 14px; font-weight: 600; }
+.catalog-headerbar nav { display: flex; gap: clamp(14px, 1.55vw, 27px); color: var(--muted); font-size: 13px; font-weight: 600; white-space: nowrap; }
 .catalog-headerbar nav a:hover { color: var(--olive-dark); }
 .catalog-contact {
     justify-self: end;

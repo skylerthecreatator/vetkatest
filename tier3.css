@@ -1766,6 +1766,278 @@
     display: none !important;
 }
 
+/* ===== КАТАЛОГ-КАК-ВИТРИНА И ВЫРАЗИТЕЛЬНАЯ ЦЕНА ДНЯ ===== */
+.catalog-menu-flower {
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform .2s ease, background-color .2s ease, box-shadow .2s ease;
+}
+
+.catalog-menu-flower:hover,
+.catalog-menu-flower:focus-visible {
+    transform: translateY(-2px) rotate(5deg);
+    background: #5f7338;
+    box-shadow: 0 11px 24px rgba(111, 127, 72, .28);
+    outline: 2px solid rgba(117, 137, 72, .25);
+    outline-offset: 3px;
+}
+
+.promo-badge-btn .badge-offer {
+    min-height: 29px;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.promo-badge-btn .badge-old-price {
+    color: #8c8177;
+    font: 600 12px/1.1 "Inter", sans-serif;
+    text-decoration: line-through;
+    text-decoration-thickness: 1.5px;
+}
+
+#bouquetDayCard .promo-badge-btn .badge-price {
+    margin: 0;
+    color: #60763a;
+    font-size: 23px;
+    line-height: 1;
+}
+
+.promo-badge-btn .badge-discount {
+    padding: 5px 8px;
+    border-radius: 999px;
+    color: #fffaf3;
+    background: #ad6259;
+    box-shadow: 0 6px 14px rgba(173, 98, 89, .22);
+    font: 800 11px/1 "Inter", sans-serif;
+    letter-spacing: .02em;
+}
+
+.promo-badge-btn .badge-old-price[hidden],
+.promo-badge-btn .badge-discount[hidden] {
+    display: none;
+}
+
+.catalog.catalog-gateway {
+    padding-top: 72px;
+    padding-bottom: 82px;
+}
+
+.catalog-gateway .catalog-header {
+    margin-bottom: 38px;
+}
+
+.catalog-gateway .catalog-header .section-subtitle {
+    max-width: 760px;
+}
+
+.catalog-gateway .catalog-featured {
+    width: min(1180px, 100%);
+    margin-bottom: 38px;
+    gap: 18px;
+}
+
+.catalog-gateway .catalog-featured .category-card,
+.catalog-gateway .catalog-featured .category-card:nth-child(2),
+.catalog-gateway .catalog-featured .category-card:nth-child(3) {
+    height: 292px;
+    min-height: 292px;
+    transform: none;
+    border-radius: 24px;
+}
+
+.catalog-gateway .catalog-featured .category-card:nth-child(2) {
+    transform: translateY(14px);
+}
+
+.catalog-gateway .catalog-featured .category-card img {
+    min-height: 292px;
+}
+
+.catalog-gateway .catalog-featured .category-card::after {
+    background: linear-gradient(to top, rgba(34, 28, 22, .78), rgba(34, 28, 22, .05) 66%);
+}
+
+.catalog-gateway .catalog-featured .category-card span {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 34px;
+}
+
+.catalog-gateway .catalog-featured .category-card small {
+    font: 700 10px/1.2 "Inter", sans-serif;
+    letter-spacing: .11em;
+    text-transform: uppercase;
+}
+
+.catalog-gateway-footer {
+    width: min(1180px, 100%);
+    margin: 0 auto;
+    padding: 17px 18px 17px 24px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 24px;
+    border: 1px solid rgba(75, 58, 42, .11);
+    border-radius: 23px;
+    background: rgba(255, 253, 248, .82);
+    box-shadow: 0 16px 42px rgba(75, 58, 42, .07);
+}
+
+.catalog-quick-links {
+    display: flex;
+    align-items: center;
+    gap: 9px 17px;
+    flex-wrap: wrap;
+}
+
+.catalog-quick-links > span {
+    width: 100%;
+    color: var(--vetka-clay);
+    font: 800 9px/1 "Inter", sans-serif;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+}
+
+.catalog-quick-links a {
+    position: relative;
+    color: var(--vetka-muted);
+    font: 600 12px/1.2 "Inter", sans-serif;
+    text-decoration: none;
+}
+
+.catalog-quick-links a + a::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(111, 127, 72, .55);
+}
+
+.catalog-quick-links a:hover {
+    color: var(--vetka-green);
+}
+
+.catalog-gateway-cta {
+    min-height: 48px;
+    padding: 0 18px 0 21px;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    border-radius: 999px;
+    color: var(--vetka-cream);
+    background: var(--vetka-ink);
+    font: 700 12px/1.2 "Inter", sans-serif;
+    text-decoration: none;
+    transition: transform .2s ease, background-color .2s ease;
+}
+
+.catalog-gateway-cta:hover {
+    transform: translateY(-2px);
+    background: var(--vetka-green);
+}
+
+.catalog-gateway-cta svg {
+    width: 19px;
+    height: 19px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+@media (max-width: 768px) {
+    .promo-badge-btn .badge-offer { gap: 6px; }
+    .promo-badge-btn .badge-old-price { font-size: 10px; }
+    #bouquetDayCard .promo-badge-btn .badge-price { font-size: 20px; }
+    .promo-badge-btn .badge-discount { padding: 4px 7px; font-size: 10px; }
+
+    .catalog.catalog-gateway {
+        padding-top: 54px;
+        padding-bottom: 60px;
+    }
+
+    .catalog-gateway .catalog-header {
+        margin-bottom: 22px;
+    }
+
+    .catalog.catalog-gateway .catalog-featured {
+        width: auto;
+        margin: 0 14px 16px;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+        overflow: visible;
+    }
+
+    .catalog-gateway .catalog-featured .category-card,
+    .catalog-gateway .catalog-featured .category-card:nth-child(2),
+    .catalog-gateway .catalog-featured .category-card:nth-child(3) {
+        height: 138px;
+        min-height: 138px;
+        transform: none;
+        border-radius: 19px;
+    }
+
+    .catalog-gateway .catalog-featured .category-card:first-child {
+        grid-column: 1 / -1;
+        height: 178px;
+        min-height: 178px;
+    }
+
+    .catalog-gateway .catalog-featured .category-card img {
+        min-height: 138px;
+    }
+
+    .catalog-gateway .catalog-featured .category-card:first-child img {
+        min-height: 178px;
+    }
+
+    .catalog-gateway .catalog-featured .category-card span {
+        left: 15px;
+        right: 12px;
+        bottom: 14px;
+        gap: 4px;
+        font-size: 22px;
+    }
+
+    .catalog-gateway .catalog-featured .category-card small {
+        font-size: 8px;
+    }
+
+    .catalog-gateway-footer {
+        width: auto;
+        margin: 0 14px;
+        padding: 18px;
+        display: block;
+        border-radius: 20px;
+    }
+
+    .catalog-quick-links {
+        gap: 10px 17px;
+    }
+
+    .catalog-quick-links a {
+        font-size: 11px;
+    }
+
+    .catalog-gateway-cta {
+        width: 100%;
+        min-height: 50px;
+        margin-top: 18px;
+        justify-content: space-between;
+        font-size: 12px;
+    }
+}
+
 /* ===== КЛИЕНТСКИЕ АКЦЕНТЫ: БУКЕТ ДНЯ, ДОСТАВКА, ШКОЛА ===== */
 .promo-badge-btn .badge-price {
     display: block;
@@ -2065,6 +2337,7 @@
 .bonus-badge.bonus-hidden {
     display: none !important;
 }
+
 
 /* Bonus readability: the full notice must be readable at a glance. */
 .bonus-badge:not(.bonus-compact):not(.bonus-claimed) {
