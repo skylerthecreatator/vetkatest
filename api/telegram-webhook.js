@@ -13,21 +13,33 @@ function isExpectedChannel(chat) {
 
 function cleanLine(line) {
     return line
-        .replace(/#букет_?дня(?=\s|$)/gi, '')
+        .replace(/#букет_?дня(?:_ветка)?(?=\s|$)/gi, '')
         .replace(/(?:^|\s)букет\s+дня(?=\s|$)\s*[:—-]?/gi, '')
+        .replace(/^[^\p{L}\p{N}]+/u, '')
         .trim();
 }
 
 export function parseBouquetPost(post) {
     const text = String(post.caption || post.text || '').trim();
-    if (!/(?:#букет_?дня(?=\s|$)|(?:^|\s)букет\s+дня(?=\s|$))/i.test(text)) return null;
+    if (!/(?:#букет_?дня(?:_ветка)?(?=\s|$)|(?:^|\s)букет\s+дня(?=\s|$))/i.test(text)) return null;
 
     const lines = text.split(/\r?\n/).map(cleanLine).filter(Boolean);
-    const priceMatch = text.match(/(?:от\s*)?\d[\d\s]{2,}\s*(?:₽|руб(?:\.|лей)?)/i);
-    const price = priceMatch ? priceMatch[0].replace(/\s+/g, ' ').trim() : '';
-    const contentLines = lines.filter(line => !price || !line.includes(priceMatch[0]));
-    const title = (contentLines.shift() || 'Букет дня').replace(/^[:—-]+|[:—-]+$/g, '').trim();
-    const description = contentLines.join(' ').trim();
+    const pricePattern = /(?:от\s*)?\d[\d\s]*\s*(?:₽|руб(?:\.|лей)?)/gi;
+    const newPriceMatch = text.match(/новая\s+цена\s*[:—-]?\s*((?:от\s*)?\d[\d\s]*\s*(?:₽|руб(?:\.|лей)?))/i);
+    const allPrices = Array.from(text.matchAll(pricePattern), match => match[0]);
+    const rawPrice = newPriceMatch?.[1] || allPrices.at(-1) || '';
+    const price = rawPrice.replace(/\s+/g, ' ').trim();
+    const contentLines = lines.filter(line => {
+        if (/(?:старая|новая)\s+цена/i.test(line)) return false;
+        return !/(?:от\s*)?\d[\d\s]*\s*(?:₽|руб(?:\.|лей)?)/i.test(line);
+    });
+    const availabilityLine = contentLines.find(line => /(?:букет|композици\w*)\s+в\s+наличии/i.test(line));
+    const firstContentLine = contentLines.find(line => line !== availabilityLine);
+    const defaultTitle = /композици/i.test(availabilityLine || '') ? 'Композиция дня' : 'Букет дня';
+    const title = (firstContentLine || defaultTitle).replace(/^[:—~\-\s]+|[:—~\-\s]+$/g, '').trim();
+    const description = (availabilityLine || contentLines.filter(line => line !== firstContentLine).join(' '))
+        .replace(/^[^\p{L}\p{N}]+/u, '')
+        .trim();
     const photos = Array.isArray(post.photo) ? post.photo : [];
     const largestPhoto = photos.reduce((largest, photo) => {
         const size = Number(photo.file_size || (photo.width || 0) * (photo.height || 0));
