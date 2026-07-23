@@ -827,6 +827,9 @@ async function loadBouquetDay() {
             discount.textContent = bouquet.discountPercent ? `−${bouquet.discountPercent}%` : '';
         }
         if (image && bouquet.photoUrl) {
+            image.addEventListener('error', () => {
+                image.src = 'images/hero-light-1.jpg';
+            }, { once: true });
             image.src = bouquet.photoUrl;
             image.alt = `${bouquet.title} — букет дня ВЕТКА`;
         }
