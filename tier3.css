@@ -4082,3 +4082,107 @@
         display: none;
     }
 }
+
+/* Final visual rhythm: concise metadata and a lighter bouquet-day card. */
+.geo-street {
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .01em;
+}
+
+.bonus-kicker {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    letter-spacing: .085em;
+}
+
+.product-footer .price,
+.course-price,
+.price--request,
+.promo-badge-btn .badge-price,
+.promo-badge-btn .badge-old-price,
+.promo-badge-btn .badge-discount,
+#bouquetDayCard .promo-badge-btn .badge-price,
+#bouquetDayCard .promo-badge-btn .badge-old-price,
+#bouquetDayCard .promo-badge-btn .badge-discount {
+    font-family: "Inter", sans-serif;
+    font-variant-numeric: tabular-nums;
+}
+
+#bouquetDayCard .promo-badge-btn {
+    background: rgba(255, 253, 248, .76);
+    border-color: rgba(255, 255, 255, .72);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+}
+
+.hero-features {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    max-width: 650px;
+}
+
+.hero-features .feature-item {
+    min-width: 0;
+    padding: 0 18px;
+}
+
+.hero-features .feature-item:first-child {
+    padding-left: 0;
+}
+
+.hero-features .feature-item + .feature-item {
+    padding-left: 18px;
+    border-left: 1px solid var(--vetka-line);
+}
+
+.feature-num {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    letter-spacing: -.035em;
+    font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 768px) {
+    .hero-features {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        max-width: none;
+    }
+
+    .hero-features .feature-item {
+        min-height: 64px;
+        padding: 0 8px;
+    }
+
+    .hero-features .feature-item + .feature-item {
+        padding-left: 8px;
+    }
+
+    .feature-num { font-size: 22px; }
+    .feature-txt { font-size: 8px; }
+
+    #bouquetDayCard .promo-badge-btn {
+        background: rgba(255, 253, 248, .82);
+    }
+}
+
+@media (max-width: 380px) {
+    .hero-features .feature-item { padding: 0 5px; }
+    .feature-num { font-size: 20px; }
+    .feature-txt { font-size: 7.5px; letter-spacing: .045em; }
+}
+
+@supports (content-visibility: auto) {
+    .constructor-teaser,
+    .flower-subscription,
+    .delivery-service,
+    .care-section,
+    .school,
+    .reviews-section,
+    .footer {
+        content-visibility: auto;
+        contain-intrinsic-size: auto 900px;
+    }
+}

@@ -409,11 +409,21 @@ window.addEventListener('load', updateBonusPresentation);
 const schoolVideo = document.getElementById('schoolVideo');
 if (schoolVideo) {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const schoolVideoSource = schoolVideo.querySelector('source[data-src]');
+    let schoolVideoLoaded = false;
+
+    const loadSchoolVideo = () => {
+        if (schoolVideoLoaded || !schoolVideoSource?.dataset.src) return;
+        schoolVideoSource.src = schoolVideoSource.dataset.src;
+        schoolVideo.load();
+        schoolVideoLoaded = true;
+    };
 
     if (!reducedMotion && 'IntersectionObserver' in window) {
         const schoolVideoObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting && entry.intersectionRatio >= 0.12) {
+                    loadSchoolVideo();
                     schoolVideo.play().catch(() => {
                         // Автовоспроизведение может быть отключено настройками браузера.
                     });

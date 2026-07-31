@@ -103,11 +103,11 @@
                             <strong>Выберите направление</strong>
                         </div>
                     </div>
-                    <button type="button" data-catalog-nav="bouquets"><img src="images/hero-light-1.jpg" alt=""><span>Букеты</span></button>
-                    <button type="button" data-catalog-nav="compositions"><img src="images/catalog-compositions.jpg" alt=""><span>Композиции</span></button>
-                    <button type="button" data-catalog-nav="interior"><img src="images/flagship3.jpg" alt=""><span>Интерьерные композиции</span></button>
-                    <button type="button" data-catalog-nav="gifts"><img src="images/catalog-gifts.jpg" alt=""><span>Вазы и подарки</span></button>
-                    <button type="button" data-catalog-nav="wedding"><img src="images/catalog-wedding.jpg" alt=""><span>Свадебное</span></button>
+                    <button type="button" data-catalog-nav="bouquets"><img src="images/hero-light-1.jpg" alt="" loading="lazy" decoding="async"><span>Букеты</span></button>
+                    <button type="button" data-catalog-nav="compositions"><img src="images/catalog-compositions.jpg" alt="" loading="lazy" decoding="async"><span>Композиции</span></button>
+                    <button type="button" data-catalog-nav="interior"><img src="images/flagship3.jpg" alt="" loading="lazy" decoding="async"><span>Интерьерные композиции</span></button>
+                    <button type="button" data-catalog-nav="gifts"><img src="images/catalog-gifts.jpg" alt="" loading="lazy" decoding="async"><span>Вазы и подарки</span></button>
+                    <button type="button" data-catalog-nav="wedding"><img src="images/catalog-wedding.jpg" alt="" loading="lazy" decoding="async"><span>Свадебное</span></button>
                 </div>
             </div>
             <a href="#constructor-teaser">Свой концепт</a>
@@ -140,11 +140,11 @@
             <button class="mobile-catalog-close" id="mobileCatalogClose" type="button" aria-label="Закрыть каталог">×</button>
         </div>
         <div class="mobile-catalog-panel-grid">
-            <button type="button" data-catalog-nav="bouquets"><img src="images/hero-light-1.jpg" alt=""><span>Букеты</span></button>
-            <button type="button" data-catalog-nav="compositions"><img src="images/catalog-compositions.jpg" alt=""><span>Композиции</span></button>
-            <button type="button" data-catalog-nav="interior"><img src="images/flagship3.jpg" alt=""><span>Интерьерные</span></button>
-            <button type="button" data-catalog-nav="gifts"><img src="images/catalog-gifts.jpg" alt=""><span>Вазы и подарки</span></button>
-            <button type="button" data-catalog-nav="wedding"><img src="images/catalog-wedding.jpg" alt=""><span>Свадебное</span></button>
+            <button type="button" data-catalog-nav="bouquets"><img src="images/hero-light-1.jpg" alt="" loading="lazy" decoding="async"><span>Букеты</span></button>
+            <button type="button" data-catalog-nav="compositions"><img src="images/catalog-compositions.jpg" alt="" loading="lazy" decoding="async"><span>Композиции</span></button>
+            <button type="button" data-catalog-nav="interior"><img src="images/flagship3.jpg" alt="" loading="lazy" decoding="async"><span>Интерьерные</span></button>
+            <button type="button" data-catalog-nav="gifts"><img src="images/catalog-gifts.jpg" alt="" loading="lazy" decoding="async"><span>Вазы и подарки</span></button>
+            <button type="button" data-catalog-nav="wedding"><img src="images/catalog-wedding.jpg" alt="" loading="lazy" decoding="async"><span>Свадебное</span></button>
         </div>
     </div>
 
@@ -185,11 +185,11 @@
         <div class="hero-fog"></div>
 
         <!-- Основная ветка первого экрана -->
-        <img src="images/branch-decor.png" alt="" aria-hidden="true" class="hero-branch-decor" loading="lazy">
+        <img src="images/branch-decor.png" alt="" aria-hidden="true" class="hero-branch-decor" loading="lazy" decoding="async" fetchpriority="low">
 
         <!-- Папоротник слева и папоротник справа -->
-        <img src="images/side-fern.png" alt="" aria-hidden="true" class="fern-left" loading="lazy">
-        <img src="images/side-fern.png" alt="" aria-hidden="true" class="fern-right" loading="lazy">
+        <img src="images/side-fern.png" alt="" aria-hidden="true" class="fern-left" loading="lazy" decoding="async" fetchpriority="low">
+        <img src="images/side-fern.png" alt="" aria-hidden="true" class="fern-right" loading="lazy" decoding="async" fetchpriority="low">
 
         <!-- Плавающие частицы — заполняют пустое пространство по краям экрана живым, лёгким движением -->
         <div class="floating-particles" aria-hidden="true">
@@ -222,6 +222,10 @@
                         <span class="feature-num">90 мин</span>
                         <span class="feature-txt">бережная доставка по Иркутску</span>
                     </div>
+                    <div class="feature-item">
+                        <span class="feature-num">50+</span>
+                        <span class="feature-txt">учеников школы ВЕТКА</span>
+                    </div>
                 </div>
             </div>
 
@@ -243,7 +247,7 @@
                         
                         <!-- КАРТОЧКА 1: Букет дня -->
                         <div class="hero-slide active-slide" id="bouquetDayCard">
-                            <img id="bouquetDayImage" src="images/hero-light-1.jpg" alt="Авторская композиция ВЕТКА">
+                            <img id="bouquetDayImage" src="images/hero-light-1.jpg" alt="Авторская композиция ВЕТКА" decoding="async" fetchpriority="high">
                             <a id="bouquetDayLink" href="https://t.me/vetka_2024" target="_blank" rel="noopener noreferrer" class="promo-badge-btn">
                                 <span class="badge-tag">ВЕТКА / композиция дня</span>
                                 <span class="badge-line" id="bouquetDayTitle">Свежий сезонный состав</span>
@@ -565,7 +569,7 @@
             <div class="school-media school-feature">
                 <div class="video-wrapper">
                     <video id="schoolVideo" loop muted playsinline preload="none" poster="images/school-cover.jpg" aria-label="Флористическая практика в школе ВЕТКА">
-                        <source src="images/school-video.mp4" type="video/mp4">
+                        <source data-src="images/school-video.mp4" type="video/mp4">
                     </video>
                     <div class="media-overlay">
                         <span class="academy-tag">Школа ВЕТКА</span>
@@ -1016,36 +1020,6 @@
     <script src="catalog-data.js"></script>
     <script src="script.js"></script>
 
-    <!-- Яндекс.Метрика.
-         ВАЖНО: замени 00000000 на реальный номер счётчика — получаешь на metrika.yandex.ru
-         после регистрации сайта (Добавить счётчик → указать vetkatest.vercel.app). -->
-    <script type="text/javascript">
-        window.YM_COUNTER_ID = 12345678; // <-- ЗАМЕНИ на реальный номер счётчика // тот же номер, что и ниже в ym(...) — меняешь в одном месте, работает и тут
-        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-        ym(window.YM_COUNTER_ID, "init", {
-            clickmap: true,
-            trackLinks: true,
-            accurateTrackBounce: true,
-            webvisor: true
-        });
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/12345678" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-
-    <!-- Google Analytics (GA4).
-         ВАЖНО: замени G-XXXXXXXXXX на реальный Measurement ID — получаешь на analytics.google.com
-         (Админ → Потоки данных → Веб → добавить vetkatest.vercel.app, ID вида G-ABC123XYZ). -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-        window.GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // <-- тот же ID, что и в строке выше — меняешь в одном месте
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){ dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', window.GA_MEASUREMENT_ID);
-    </script>
+    <!-- Аналитику добавим после передачи клиентом реальных ID счётчиков. Пустые тестовые ID не грузим. -->
 </body>
 </html>

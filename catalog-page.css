@@ -219,7 +219,15 @@ main { position: relative; z-index: 1; width: min(1400px, calc(100% - 40px)); ma
 .catalog-product h3 { margin: 10px 0; font: 400 26px/1.13 Playfair Display, serif; }
 .catalog-product p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
 .catalog-product-footer { margin-top: auto; padding-top: 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-.catalog-product-footer strong { color: var(--olive-dark); font: 700 20px/1 Playfair Display, serif; }
+.catalog-product-footer strong {
+    color: var(--olive-dark);
+    font-family: Inter, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -.025em;
+    font-variant-numeric: tabular-nums;
+}
 .catalog-product-footer a { padding: 11px 18px; border: 1px solid var(--line); border-radius: 999px; font-size: 12px; font-weight: 600; }
 .catalog-product-footer a:hover { color: #fff; background: var(--olive); }
 .catalog-more { margin: 30px auto 0; padding: 14px 30px; display: block; border: 0; border-radius: 999px; color: #fff; background: var(--olive); font-weight: 600; cursor: pointer; }
