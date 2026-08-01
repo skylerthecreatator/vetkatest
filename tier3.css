@@ -4187,10 +4187,11 @@
     }
 }
 
-/* Long Telegram captions stay inside the bouquet-day card on every screen. */
+/* Long Telegram captions stay tidy without hiding the bouquet. */
 #bouquetDayCard .promo-badge-btn {
-    width: min(360px, calc(100% - 30px));
-    min-height: 144px;
+    width: min(300px, calc(100% - 30px));
+    min-height: 0;
+    padding: 9px 16px;
     white-space: normal;
     text-align: center;
 }
@@ -4202,31 +4203,40 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     line-clamp: 2;
-    font-size: 17px;
+    font-size: 15px;
     line-height: 1.14;
+}
+
+#bouquetDayCard .badge-tag {
+    font-size: 10px;
+}
+
+#bouquetDayCard .badge-offer {
+    width: 172px;
+    min-height: 43px;
+    margin-top: 1px;
+}
+
+#bouquetDayCard .badge-old-price {
+    font-size: 10.5px;
+}
+
+#bouquetDayCard .badge-price {
+    font-size: 23px;
+}
+
+#bouquetDayCard .badge-discount {
+    padding: 5px 7px;
+    font-size: 10px;
+}
+
+#bouquetDayCard .badge-action {
+    font-size: 9px;
 }
 
 .mobile-catalog-all-link,
 .footer-back-to-top {
     display: none;
-}
-
-@media (min-width: 769px) {
-    .slider-window {
-        padding-bottom: 176px;
-    }
-
-    #bouquetDayCard {
-        overflow: visible;
-    }
-
-    #bouquetDayCard .promo-badge-btn {
-        bottom: -160px;
-    }
-
-    .slider-window .slide-nav {
-        top: 275px;
-    }
 }
 
 @media (max-width: 768px) {
@@ -4256,21 +4266,13 @@
     }
 
     #bouquetDayCard .badge-line {
-        font-size: 16px;
+        font-size: 14px;
         line-height: 1.13;
     }
 
     .hero-slide .promo-badge-btn {
-        bottom: -124px;
-        min-height: 130px;
-    }
-
-    .slides-container {
-        height: calc(var(--mobile-slide-image-height) + 142px);
-    }
-
-    .slider-window {
-        padding-bottom: 160px;
+        bottom: 14px;
+        min-height: 0;
     }
 
     .slides-container {
@@ -4278,8 +4280,18 @@
     }
 
     #bouquetDayCard .promo-badge-btn {
-        bottom: -146px;
-        min-height: 130px;
+        bottom: 14px;
+        min-height: 0;
+        padding: 8px 12px;
+    }
+
+    #bouquetDayCard .badge-offer {
+        width: 160px;
+        min-height: 40px;
+    }
+
+    #bouquetDayCard .badge-price {
+        font-size: 20px;
     }
 
     .footer-back-to-top {
