@@ -4186,3 +4186,86 @@
         contain-intrinsic-size: auto 900px;
     }
 }
+
+/* Long Telegram captions stay inside the bouquet-day card on every screen. */
+#bouquetDayCard .promo-badge-btn {
+    width: min(360px, calc(100% - 30px));
+    white-space: normal;
+    text-align: center;
+}
+
+#bouquetDayCard .badge-line {
+    display: -webkit-box;
+    max-width: 100%;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    font-size: 17px;
+    line-height: 1.14;
+}
+
+.mobile-catalog-all-link,
+.footer-back-to-top {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-catalog-all-link {
+        min-height: 52px;
+        margin-top: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 18px;
+        border: 1px solid rgba(111, 127, 72, .25);
+        border-radius: 16px;
+        color: var(--vetka-cream);
+        background: var(--vetka-ink);
+        box-shadow: 0 12px 24px rgba(48, 42, 36, .12);
+        font: 700 13px/1 "Inter", sans-serif;
+        text-decoration: none;
+    }
+
+    .mobile-catalog-all-link span {
+        font-size: 18px;
+        transition: transform .2s ease;
+    }
+
+    .mobile-catalog-all-link:active span {
+        transform: translateX(3px);
+    }
+
+    #bouquetDayCard .badge-line {
+        font-size: 16px;
+        line-height: 1.13;
+    }
+
+    .hero-slide .promo-badge-btn {
+        bottom: -124px;
+        min-height: 130px;
+    }
+
+    .slides-container {
+        height: calc(var(--mobile-slide-image-height) + 142px);
+    }
+
+    .footer-back-to-top {
+        min-height: 52px;
+        margin: 0 0 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        border: 1px solid rgba(111, 127, 72, .28);
+        border-radius: 16px;
+        color: var(--vetka-cream);
+        background: var(--vetka-ink);
+        font: 700 13px/1 "Inter", sans-serif;
+        text-decoration: none;
+    }
+
+    .footer-back-to-top span {
+        font-size: 18px;
+    }
+}
