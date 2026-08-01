@@ -4190,6 +4190,7 @@
 /* Long Telegram captions stay inside the bouquet-day card on every screen. */
 #bouquetDayCard .promo-badge-btn {
     width: min(360px, calc(100% - 30px));
+    min-height: 144px;
     white-space: normal;
     text-align: center;
 }
@@ -4208,6 +4209,24 @@
 .mobile-catalog-all-link,
 .footer-back-to-top {
     display: none;
+}
+
+@media (min-width: 769px) {
+    .slider-window {
+        padding-bottom: 176px;
+    }
+
+    #bouquetDayCard {
+        overflow: visible;
+    }
+
+    #bouquetDayCard .promo-badge-btn {
+        bottom: -160px;
+    }
+
+    .slider-window .slide-nav {
+        top: 275px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -4248,6 +4267,19 @@
 
     .slides-container {
         height: calc(var(--mobile-slide-image-height) + 142px);
+    }
+
+    .slider-window {
+        padding-bottom: 160px;
+    }
+
+    .slides-container {
+        height: var(--mobile-slide-image-height);
+    }
+
+    #bouquetDayCard .promo-badge-btn {
+        bottom: -146px;
+        min-height: 130px;
     }
 
     .footer-back-to-top {
