@@ -1,8 +1,10 @@
 const catalogData = window.VETKA_CATALOG_DATA || {};
 const categoryKeys = Object.keys(catalogData);
+const pageSize = 6;
 let activeCategory = categoryKeys.includes(new URLSearchParams(location.search).get('category'))
     ? new URLSearchParams(location.search).get('category')
     : (categoryKeys[0] || 'bouquets');
+let visibleCount = pageSize;
 
 const categoryList = document.getElementById('catalogCategoryList');
 const productGrid = document.getElementById('catalogPageProducts');
@@ -81,7 +83,7 @@ function renderProducts() {
     description.textContent = category.description;
     let activeGroup = null;
     const nodes = [];
-    category.products.forEach((product, index) => {
+    category.products.slice(0, visibleCount).forEach((product, index) => {
         if (product.group && product.group !== activeGroup) {
             activeGroup = product.group;
             nodes.push(productGroup(product.group));
@@ -89,12 +91,23 @@ function renderProducts() {
         nodes.push(productCard(product, category, index));
     });
     productGrid.replaceChildren(...nodes);
-    moreButton.hidden = true;
+    const remaining = category.products.length - visibleCount;
+    moreButton.hidden = remaining <= 0;
+    if (remaining > 0) {
+        const revealAll = activeCategory === 'wedding';
+        const nextCount = revealAll ? remaining : Math.min(pageSize, remaining);
+        const label = revealAll
+            ? `Показать все ${remaining} оставшихся работ`
+            : `Показать ещё ${nextCount} вариантов`;
+        moreButton.setAttribute('aria-label', label);
+        moreButton.innerHTML = `<span><strong>${label}</strong><small>В коллекции осталось ${remaining}</small></span><b aria-hidden="true">↓</b>`;
+    }
 }
 
 function selectCategory(key) {
     if (!catalogData[key]) return;
     activeCategory = key;
+    visibleCount = pageSize;
     const url = new URL(location.href);
     url.searchParams.set('category', key);
     history.replaceState({}, '', url);
@@ -104,6 +117,15 @@ function selectCategory(key) {
         document.querySelector(`[data-category="${key}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     }
 }
+
+moreButton.addEventListener('click', () => {
+    const category = catalogData[activeCategory];
+    if (!category) return;
+    visibleCount += activeCategory === 'wedding'
+        ? category.products.length - visibleCount
+        : pageSize;
+    renderProducts();
+});
 
 renderCategories();
 renderProducts();
