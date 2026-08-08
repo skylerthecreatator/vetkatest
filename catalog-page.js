@@ -1,10 +1,8 @@
 const catalogData = window.VETKA_CATALOG_DATA || {};
 const categoryKeys = Object.keys(catalogData);
-const pageSize = 6;
 let activeCategory = categoryKeys.includes(new URLSearchParams(location.search).get('category'))
     ? new URLSearchParams(location.search).get('category')
     : (categoryKeys[0] || 'bouquets');
-let visibleCount = pageSize;
 
 const categoryList = document.getElementById('catalogCategoryList');
 const productGrid = document.getElementById('catalogPageProducts');
@@ -28,9 +26,9 @@ function renderCategories() {
     categoryList.replaceChildren(...categoryKeys.map(key => categoryButton(key, catalogData[key])));
 }
 
-function productCard(product, category) {
+function productCard(product, category, index) {
     const article = document.createElement('article');
-    article.className = `catalog-product${product.price ? '' : ' catalog-product--reference'}`;
+    article.className = `catalog-product${product.price ? '' : ' catalog-product--reference'}${index === 0 ? ' catalog-product--feature' : ''}`;
 
     const image = document.createElement('img');
     image.src = product.image;
@@ -69,26 +67,34 @@ function productCard(product, category) {
     return article;
 }
 
+function productGroup(group) {
+    const heading = document.createElement('div');
+    heading.className = 'catalog-product-group';
+    heading.innerHTML = `<span>${group}</span><i aria-hidden="true"></i>`;
+    return heading;
+}
+
 function renderProducts() {
     const category = catalogData[activeCategory];
     if (!category) return;
     title.textContent = category.title;
     description.textContent = category.description;
-    const products = category.products.slice(0, visibleCount);
-    productGrid.replaceChildren(...products.map(product => productCard(product, category)));
-    const remaining = category.products.length - visibleCount;
-    moreButton.hidden = remaining <= 0;
-    if (remaining > 0) {
-        const nextCount = Math.min(pageSize, remaining);
-        moreButton.setAttribute('aria-label', `Показать ещё ${nextCount} вариантов`);
-        moreButton.innerHTML = `<span><strong>Показать ещё ${nextCount} вариантов</strong><small>В коллекции осталось ${remaining}</small></span><b aria-hidden="true">↓</b>`;
-    }
+    let activeGroup = null;
+    const nodes = [];
+    category.products.forEach((product, index) => {
+        if (product.group && product.group !== activeGroup) {
+            activeGroup = product.group;
+            nodes.push(productGroup(product.group));
+        }
+        nodes.push(productCard(product, category, index));
+    });
+    productGrid.replaceChildren(...nodes);
+    moreButton.hidden = true;
 }
 
 function selectCategory(key) {
     if (!catalogData[key]) return;
     activeCategory = key;
-    visibleCount = pageSize;
     const url = new URL(location.href);
     url.searchParams.set('category', key);
     history.replaceState({}, '', url);
@@ -98,11 +104,6 @@ function selectCategory(key) {
         document.querySelector(`[data-category="${key}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     }
 }
-
-moreButton.addEventListener('click', () => {
-    visibleCount += pageSize;
-    renderProducts();
-});
 
 renderCategories();
 renderProducts();

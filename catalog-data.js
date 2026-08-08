@@ -24,6 +24,7 @@ const bouquetWorks = [
     description: bouquetReference,
     price,
     action: 'Хочу этот вариант',
+    group: 'Авторские букеты',
 }));
 
 const bouquetVisuals = [
@@ -43,6 +44,7 @@ const bouquetVisuals = [
     title: `Букет в авторской форме № ${index + 1}`,
     description: 'Визуальный пример: соберём букет в похожей форме и палитре.',
     action: 'Хочу этот вариант',
+    group: 'Идеи для вашего букета',
 }));
 
 const weddingWorks = [
@@ -64,6 +66,7 @@ const weddingWorks = [
     title: `Букет невесты № ${index + 1}`,
     description: weddingReference,
     action: 'Хочу этот вариант',
+    group: 'Букеты невесты',
 }));
 
 window.VETKA_CATALOG_DATA = {
@@ -114,7 +117,7 @@ window.VETKA_CATALOG_DATA = {
         cover: weddingWorks[0].image,
         products: [
             ...weddingWorks,
-            { image: 'images/catalog-wedding.jpg', title: 'Свадебное оформление', description: 'Проект разрабатываем индивидуально: от общей концепции до подбора цветочного материала и монтажа.', action: 'Рассчитать оформление' },
+            { image: 'images/catalog-wedding.jpg', title: 'Свадебное оформление', description: 'Проект разрабатываем индивидуально: от общей концепции до подбора цветочного материала и монтажа.', action: 'Рассчитать оформление', group: 'Свадебное оформление' },
         ]
     }
 };
