@@ -441,6 +441,10 @@
     font: 700 13px/1.25 "Inter", sans-serif;
 }
 
+.product-footer--reference {
+    justify-content: flex-end;
+}
+
 .catalog-swipe-hint {
     display: none;
 }

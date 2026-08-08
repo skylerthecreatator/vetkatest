@@ -52,12 +52,17 @@ function productCard(product, category) {
 
     const footer = document.createElement('div');
     footer.className = 'catalog-product-footer';
-    const price = document.createElement('strong');
-    price.textContent = product.price || 'Индивидуальный расчёт';
+    if (product.price) {
+        const price = document.createElement('strong');
+        price.textContent = product.price;
+        footer.append(price);
+    } else {
+        footer.classList.add('catalog-product-footer--reference');
+    }
     const action = document.createElement('a');
     action.href = `index.html?order=${encodeURIComponent(product.title)}`;
-    action.textContent = product.action || 'Заказать';
-    footer.append(price, action);
+    action.textContent = product.action || 'Хочу этот вариант';
+    footer.append(action);
 
     body.append(label, heading, copy, footer);
     article.append(image, body);

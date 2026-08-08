@@ -732,9 +732,8 @@ function renderCatalogCategory(categoryKey) {
     intro.innerHTML = `<span>${category.title}</span><p>${category.description}</p>`;
     grid.innerHTML = category.products.map(product => {
         const action = product.action || 'Хочу этот вариант';
-        const price = product.price
-            ? `<span class="price">${product.price}</span>`
-            : '<span class="price price--request">Стоимость рассчитывается индивидуально</span>';
+        const price = product.price ? `<span class="price">${product.price}</span>` : '';
+        const footerClass = product.price ? 'product-footer' : 'product-footer product-footer--reference';
 
         return `
             <article class="product-card">
@@ -745,7 +744,7 @@ function renderCatalogCategory(categoryKey) {
                     <span class="product-category-label">${category.title}</span>
                     <h3>${product.title}</h3>
                     <p class="product-desc">${product.description}</p>
-                    <div class="product-footer">
+                    <div class="${footerClass}">
                         ${price}
                         <button class="btn-buy" type="button" data-catalog-order="${product.title}">${action}</button>
                     </div>

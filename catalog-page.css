@@ -219,6 +219,7 @@ main { position: relative; z-index: 1; width: min(1400px, calc(100% - 40px)); ma
 .catalog-product h3 { margin: 10px 0; font: 400 26px/1.13 Playfair Display, serif; }
 .catalog-product p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
 .catalog-product-footer { margin-top: auto; padding-top: 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.catalog-product-footer--reference { justify-content: flex-end; }
 .catalog-product-footer strong {
     color: var(--olive-dark);
     font-family: Inter, sans-serif;
