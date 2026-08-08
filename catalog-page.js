@@ -30,7 +30,7 @@ function renderCategories() {
 
 function productCard(product, category) {
     const article = document.createElement('article');
-    article.className = 'catalog-product';
+    article.className = `catalog-product${product.price ? '' : ' catalog-product--reference'}`;
 
     const image = document.createElement('img');
     image.src = product.image;
@@ -76,7 +76,13 @@ function renderProducts() {
     description.textContent = category.description;
     const products = category.products.slice(0, visibleCount);
     productGrid.replaceChildren(...products.map(product => productCard(product, category)));
-    moreButton.hidden = visibleCount >= category.products.length;
+    const remaining = category.products.length - visibleCount;
+    moreButton.hidden = remaining <= 0;
+    if (remaining > 0) {
+        const nextCount = Math.min(pageSize, remaining);
+        moreButton.setAttribute('aria-label', `Показать ещё ${nextCount} вариантов`);
+        moreButton.innerHTML = `<span><strong>Показать ещё ${nextCount} вариантов</strong><small>В коллекции осталось ${remaining}</small></span><b aria-hidden="true">↓</b>`;
+    }
 }
 
 function selectCategory(key) {
