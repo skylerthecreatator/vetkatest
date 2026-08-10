@@ -10,6 +10,7 @@ const categoryList = document.getElementById('catalogCategoryList');
 const productGrid = document.getElementById('catalogPageProducts');
 const title = document.getElementById('catalogPageTitle');
 const description = document.getElementById('catalogPageDescription');
+const collectionCount = document.getElementById('catalogPageCount');
 const moreButton = document.getElementById('catalogMore');
 
 function categoryButton(key, category) {
@@ -19,7 +20,8 @@ function categoryButton(key, category) {
     button.dataset.category = key;
     button.setAttribute('aria-selected', String(key === activeCategory));
     button.className = key === activeCategory ? 'is-active' : '';
-    button.innerHTML = `<img src="${category.cover}" alt=""><span>${category.shortTitle || category.title}</span>`;
+    const worksCount = category.products.filter(product => !product.featured).length;
+    button.innerHTML = `<img src="${category.cover}" alt="" loading="lazy" decoding="async"><span>${category.shortTitle || category.title}</span><small>${worksCount || 'скоро'}</small>`;
     button.addEventListener('click', () => selectCategory(key));
     return button;
 }
@@ -30,12 +32,16 @@ function renderCategories() {
 
 function productCard(product, category, index) {
     const article = document.createElement('article');
-    article.className = `catalog-product${product.price ? '' : ' catalog-product--reference'}${index === 0 ? ' catalog-product--feature' : ''}`;
+    const isFeature = product.featured || index % pageSize === 0;
+    const isTall = !isFeature && index % 5 === 3;
+    article.className = `catalog-product${product.price ? '' : ' catalog-product--reference'}${isFeature ? ' catalog-product--feature' : ''}${isTall ? ' catalog-product--tall' : ''}`;
 
     const image = document.createElement('img');
     image.src = product.image;
     image.alt = `${product.title} — ВЕТКА`;
-    image.loading = 'lazy';
+    image.loading = index === 0 ? 'eager' : 'lazy';
+    image.decoding = 'async';
+    image.fetchPriority = index === 0 ? 'high' : 'auto';
 
     const body = document.createElement('div');
     body.className = 'catalog-product-body';
@@ -92,6 +98,8 @@ function renderProducts() {
     if (!category) return;
     title.textContent = category.title;
     description.textContent = category.description;
+    const productCount = category.products.filter(product => !product.featured).length;
+    collectionCount.textContent = productCount ? `${productCount} ${declineWorks(productCount)} в коллекции` : 'Подборка скоро появится';
     if (!category.products.length) {
         productGrid.replaceChildren(emptyCatalogState(category));
         moreButton.hidden = true;
@@ -118,6 +126,15 @@ function renderProducts() {
         moreButton.setAttribute('aria-label', label);
         moreButton.innerHTML = `<span><strong>${label}</strong><small>В коллекции осталось ${remaining}</small></span><b aria-hidden="true">↓</b>`;
     }
+}
+
+function declineWorks(count) {
+    const lastTwo = count % 100;
+    const last = count % 10;
+    if (lastTwo >= 11 && lastTwo <= 14) return 'работ';
+    if (last === 1) return 'работа';
+    if (last >= 2 && last <= 4) return 'работы';
+    return 'работ';
 }
 
 function selectCategory(key) {
