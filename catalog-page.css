@@ -213,6 +213,22 @@ main { position: relative; z-index: 1; width: min(1400px, calc(100% - 40px)); ma
 .catalog-category-list button.is-active span { border-color: transparent; color: #fff; background: var(--olive-dark); box-shadow: 0 5px 16px rgba(63,77,33,.34); }
 
 .catalog-product-grid { display: grid; grid-auto-flow: dense; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.catalog-empty {
+    grid-column: 1 / -1;
+    min-height: 290px;
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    border: 1px dashed rgba(117,137,72,.42);
+    border-radius: 28px;
+    background: linear-gradient(135deg, rgba(241,245,229,.88), rgba(255,253,248,.94));
+}
+.catalog-empty > span { color: var(--olive-dark); font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.catalog-empty h3 { margin: 12px 0 10px; font: 400 38px/1.05 Playfair Display, serif; }
+.catalog-empty p { max-width: 520px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
+.catalog-empty a { margin-top: 24px; padding: 12px 18px; border-radius: 999px; color: #fff; background: var(--olive-dark); font-size: 12px; font-weight: 700; }
 .catalog-product-group { grid-column: 1 / -1; margin: 12px 0 -6px; display: flex; align-items: center; gap: 14px; color: var(--olive-dark); }
 .catalog-product-group span { flex: 0 0 auto; padding: 8px 12px; border: 1px solid rgba(117,137,72,.22); border-radius: 999px; background: rgba(246,249,237,.88); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 .catalog-product-group i { width: 100%; height: 1px; display: block; background: linear-gradient(90deg, rgba(117,137,72,.35), transparent); }
@@ -420,6 +436,8 @@ main { position: relative; z-index: 1; width: min(1400px, calc(100% - 40px)); ma
     .catalog-category-list::-webkit-scrollbar { display: none; }
     .catalog-category-list button { min-width: 145px; height: 92px; scroll-snap-align: start; border-radius: 17px; }
     .catalog-product-grid { display: block; }
+    .catalog-empty { min-height: 250px; margin-bottom: 18px; padding: 30px 24px; border-radius: 22px; }
+    .catalog-empty h3 { font-size: 31px; }
     .catalog-product { margin-bottom: 18px; border-radius: 22px; }
     .catalog-product > img { aspect-ratio: 1 / .82; }
     .catalog-product-body { min-height: 202px; padding: 20px; }

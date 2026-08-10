@@ -76,11 +76,27 @@ function productGroup(group) {
     return heading;
 }
 
+function emptyCatalogState(category) {
+    const card = document.createElement('article');
+    card.className = 'catalog-empty';
+    card.innerHTML = `
+        <span>ВЕТКА / скоро в каталоге</span>
+        <h3>${category.title}</h3>
+        <p>Пока подбираем фотографии работ. Можно сразу описать задачу — флорист предложит подходящий вариант.</p>
+        <a href="index.html?order=${encodeURIComponent(category.title)}">Обсудить с флористом</a>`;
+    return card;
+}
+
 function renderProducts() {
     const category = catalogData[activeCategory];
     if (!category) return;
     title.textContent = category.title;
     description.textContent = category.description;
+    if (!category.products.length) {
+        productGrid.replaceChildren(emptyCatalogState(category));
+        moreButton.hidden = true;
+        return;
+    }
     let activeGroup = null;
     const nodes = [];
     category.products.slice(0, visibleCount).forEach((product, index) => {
