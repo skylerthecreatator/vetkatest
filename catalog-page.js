@@ -32,8 +32,12 @@ function renderCategories() {
 
 function productCard(product, category, index) {
     const article = document.createElement('article');
-    const isFeature = product.featured || index === 0;
-    article.className = `catalog-product${product.price ? '' : ' catalog-product--reference'}${isFeature ? ' catalog-product--feature' : ''}`;
+    // Повторяющийся кураторский ритм: одна большая работа, две камерные рядом,
+    // затем три обычные. Так каталог выглядит как прогулка по саду, но не получает дыр в сетке.
+    const gardenPosition = index % 6;
+    const isFeature = product.featured || gardenPosition === 0;
+    const isSide = !isFeature && (gardenPosition === 1 || gardenPosition === 2);
+    article.className = `catalog-product${product.price ? '' : ' catalog-product--reference'}${isFeature ? ' catalog-product--feature' : ''}${isSide ? ' catalog-product--side' : ''}`;
 
     const image = document.createElement('img');
     image.src = product.image;
@@ -81,13 +85,6 @@ function productCard(product, category, index) {
     return article;
 }
 
-function productGroup(group) {
-    const heading = document.createElement('div');
-    heading.className = 'catalog-product-group';
-    heading.innerHTML = `<span>${group}</span><i aria-hidden="true"></i>`;
-    return heading;
-}
-
 function emptyCatalogState(category) {
     const card = document.createElement('article');
     card.className = 'catalog-empty';
@@ -111,13 +108,8 @@ function renderProducts() {
         moreButton.hidden = true;
         return;
     }
-    let activeGroup = null;
     const nodes = [];
     category.products.slice(0, visibleCount).forEach((product, index) => {
-        if (product.group && product.group !== activeGroup) {
-            activeGroup = product.group;
-            nodes.push(productGroup(product.group));
-        }
         nodes.push(productCard(product, category, index));
     });
     productGrid.replaceChildren(...nodes);
