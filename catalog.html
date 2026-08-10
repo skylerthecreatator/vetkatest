@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="tier3.css">
-    <link rel="stylesheet" href="catalog-page.css?v=20260810-2">
+    <link rel="stylesheet" href="catalog-page.css?v=20260810-3">
 </head>
 <body>
     <header class="header">
@@ -151,8 +151,55 @@
         <a href="index.html?order=Помощь%20с%20выбором">Связаться</a>
     </nav>
 
+    <div class="modal-overlay" id="catalogOrderModal" aria-hidden="true">
+        <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="catalogOrderTitle">
+            <button class="modal-close" id="catalogOrderClose" type="button" aria-label="Закрыть">&times;</button>
+            <div id="catalogOrderFormStep">
+                <h2 class="modal-title" id="catalogOrderTitle">Хочу этот вариант</h2>
+                <p class="modal-subtitle">Оставьте контакт — флорист уточнит детали и соберёт букет в похожем настроении.</p>
+                <div class="catalog-order-context" id="catalogOrderContext" aria-live="polite"></div>
+
+                <form class="contact-form" id="catalogOrderForm" novalidate>
+                    <input type="text" id="catalogHpWebsite" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="form-field">
+                        <label class="form-label" for="catalogClientName">Ваше имя</label>
+                        <input class="form-input" type="text" id="catalogClientName" placeholder="Например, Анна" autocomplete="given-name" required>
+                        <span class="form-error" id="catalogNameError">Введите ваше имя</span>
+                    </div>
+                    <div class="form-field">
+                        <label class="form-label" for="catalogClientPhone">Номер телефона</label>
+                        <input class="form-input" type="tel" id="catalogClientPhone" placeholder="+7 (___) ___-__-__" autocomplete="tel" required>
+                        <span class="form-error" id="catalogPhoneError">Введите корректный номер</span>
+                    </div>
+                    <div class="form-field">
+                        <span class="form-label">Как вам удобнее получить ответ?</span>
+                        <div class="messenger-choice">
+                            <label class="messenger-radio"><input type="radio" name="catalogMessenger" value="telegram" checked><span class="messenger-radio-label">Telegram</span></label>
+                            <label class="messenger-radio"><input type="radio" name="catalogMessenger" value="whatsapp"><span class="messenger-radio-label">WhatsApp</span></label>
+                            <label class="messenger-radio"><input type="radio" name="catalogMessenger" value="call"><span class="messenger-radio-label">Позвонить</span></label>
+                            <label class="messenger-radio"><input type="radio" name="catalogMessenger" value="max"><span class="messenger-radio-label">MAX</span></label>
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label class="form-label" for="catalogClientComment">Комментарий <span class="form-label-optional">(необязательно)</span></label>
+                        <textarea class="form-input form-textarea" id="catalogClientComment" placeholder="Например: хочу такой букет к субботе" rows="2"></textarea>
+                    </div>
+                    <button class="form-submit-btn" id="catalogOrderSubmit" type="submit"><span class="form-submit-text">Отправить флористу</span><span class="form-submit-loader" aria-hidden="true"></span></button>
+                    <span class="form-error form-error--general" id="catalogGeneralError"></span>
+                    <p class="form-privacy">Нажимая кнопку, вы соглашаетесь на <a href="privacy.html" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">обработку персональных данных</a>.</p>
+                </form>
+            </div>
+            <div class="modal-step--hidden catalog-order-success" id="catalogOrderThanks">
+                <div class="catalog-order-success-mark">✓</div>
+                <h2 class="modal-title">Заявка отправлена</h2>
+                <p class="modal-subtitle">Флорист получил выбранный вариант и свяжется с вами в ближайшее время.</p>
+            </div>
+        </div>
+    </div>
+
     <script src="catalog-media.js?v=20260810-1"></script>
     <script src="catalog-data.js?v=20260810-2"></script>
-    <script src="catalog-page.js?v=20260810-2"></script>
+    <script src="catalog-contact.js?v=20260810-1"></script>
+    <script src="catalog-page.js?v=20260810-3"></script>
 </body>
 </html>

@@ -32,9 +32,8 @@ function renderCategories() {
 
 function productCard(product, category, index) {
     const article = document.createElement('article');
-    const isFeature = product.featured || index % pageSize === 0;
-    const isTall = !isFeature && index % 5 === 3;
-    article.className = `catalog-product${product.price ? '' : ' catalog-product--reference'}${isFeature ? ' catalog-product--feature' : ''}${isTall ? ' catalog-product--tall' : ''}`;
+    const isFeature = product.featured || index === 0;
+    article.className = `catalog-product${product.price ? '' : ' catalog-product--reference'}${isFeature ? ' catalog-product--feature' : ''}`;
 
     const image = document.createElement('img');
     image.src = product.image;
@@ -65,9 +64,16 @@ function productCard(product, category, index) {
     } else {
         footer.classList.add('catalog-product-footer--reference');
     }
-    const action = document.createElement('a');
-    action.href = `index.html?order=${encodeURIComponent(product.title)}`;
+    const action = document.createElement('button');
+    action.type = 'button';
     action.textContent = product.action || 'Хочу этот вариант';
+    action.addEventListener('click', () => {
+        window.openCatalogOrderModal({
+            category: category.title,
+            product: product.title,
+            price: product.price || '',
+        });
+    });
     footer.append(action);
 
     body.append(label, heading, copy, footer);
