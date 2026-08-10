@@ -4,6 +4,8 @@ const interiorReference = 'Соберём цветочную работу для
 const weddingReference = 'Соберём свадебный букет в похожем настроении и согласуем детали с вашим образом.';
 
 const catalogMedia = window.VETKA_CATALOG_MEDIA || {};
+const weddingCover = 'images/wedding-soft-cover.jpg';
+const weddingEditorialCover = 'images/wedding-editorial-cover.jpg';
 
 function priceFromFilename(file) {
     const match = String(file).match(/(?:^|[^\d])(\d{4,5})\s*(?:rub|р|₽)/i);
@@ -80,10 +82,10 @@ window.VETKA_CATALOG_DATA = {
         title: 'Свадебное',
         shortTitle: 'Свадебное',
         description: 'Свадебные букеты и цветочное оформление. Форму, оттенки и детали согласуем с вашим образом и сценарием дня.',
-        cover: cover(weddingWorks, cover(bouquetWorks, 'images/hero-light-1.jpg')),
+        cover: weddingCover,
         products: [
             {
-                image: cover(weddingWorks, cover(bouquetWorks, 'images/hero-light-1.jpg')),
+                image: weddingEditorialCover,
                 title: 'Свадебное оформление',
                 description: 'Проект разрабатываем индивидуально: от общей концепции до подбора цветочного материала и монтажа.',
                 action: 'Рассчитать оформление',

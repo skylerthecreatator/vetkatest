@@ -32,8 +32,6 @@ function renderCategories() {
 
 function productCard(product, category, index) {
     const article = document.createElement('article');
-    // Повторяющийся кураторский ритм: одна большая работа, две камерные рядом,
-    // затем три обычные. Так каталог выглядит как прогулка по саду, но не получает дыр в сетке.
     const gardenPosition = index % 6;
     const isFeature = product.featured || gardenPosition === 0;
     const isSide = !isFeature && (gardenPosition === 1 || gardenPosition === 2);
