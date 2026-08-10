@@ -2284,30 +2284,88 @@
 }
 
 .catalog-gateway-cta {
-    min-height: 48px;
-    padding: 0 18px 0 21px;
+    position: relative;
+    isolation: isolate;
+    min-height: 66px;
+    padding: 0 16px 0 24px;
     display: inline-flex;
     align-items: center;
-    gap: 15px;
+    justify-content: space-between;
+    gap: 22px;
     border-radius: 999px;
-    color: var(--vetka-cream);
-    background: var(--vetka-ink);
-    font: 700 12px/1.2 "Inter", sans-serif;
+    color: #fffdf6;
+    background:
+        radial-gradient(circle at 16% 0%, rgba(255, 250, 229, .34), transparent 34%),
+        linear-gradient(135deg, #7d9051 0%, #5f743e 44%, #2b241e 100%);
+    font: 800 13px/1.2 "Inter", sans-serif;
     text-decoration: none;
-    transition: transform .2s ease, background-color .2s ease;
+    letter-spacing: .01em;
+    box-shadow:
+        0 18px 38px rgba(72, 88, 46, .22),
+        inset 0 1px 0 rgba(255, 255, 255, .38);
+    overflow: hidden;
+    transition: transform .22s ease, box-shadow .22s ease, filter .22s ease;
+}
+
+.catalog-gateway-cta::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    z-index: -1;
+    border-radius: inherit;
+    border: 1px solid rgba(255, 253, 248, .28);
+}
+
+.catalog-gateway-cta::after {
+    content: "";
+    position: absolute;
+    top: -44%;
+    left: -28%;
+    width: 42%;
+    height: 188%;
+    z-index: -1;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .22), transparent);
+    transform: rotate(18deg);
+    transition: left .55s ease;
 }
 
 .catalog-gateway-cta:hover {
-    transform: translateY(-2px);
-    background: var(--vetka-green);
+    transform: translateY(-3px);
+    filter: saturate(1.05);
+    box-shadow:
+        0 23px 48px rgba(72, 88, 46, .28),
+        inset 0 1px 0 rgba(255, 255, 255, .45);
+}
+
+.catalog-gateway-cta:hover::after {
+    left: 86%;
+}
+
+.catalog-gateway-cta span {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    white-space: nowrap;
+}
+
+.catalog-gateway-cta small {
+    color: rgba(255, 253, 248, .72);
+    font: 800 9px/1.1 "Inter", sans-serif;
+    letter-spacing: .14em;
+    text-transform: uppercase;
 }
 
 .catalog-gateway-cta svg {
-    width: 19px;
-    height: 19px;
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    padding: 10px;
+    border-radius: 50%;
+    background: rgba(255, 253, 248, .94);
     fill: none;
+    color: var(--vetka-green);
     stroke: currentColor;
-    stroke-width: 1.7;
+    stroke-width: 1.8;
     stroke-linecap: round;
     stroke-linejoin: round;
 }
@@ -2409,10 +2467,26 @@
 
     .catalog-gateway-cta {
         width: 100%;
-        min-height: 50px;
+        min-height: 64px;
         margin-top: 18px;
+        padding: 0 12px 0 18px;
         justify-content: space-between;
         font-size: 12px;
+    }
+
+    .catalog-gateway-cta span {
+        white-space: normal;
+    }
+
+    .catalog-gateway-cta small {
+        font-size: 8px;
+        letter-spacing: .11em;
+    }
+
+    .catalog-gateway-cta svg {
+        width: 36px;
+        height: 36px;
+        flex-basis: 36px;
     }
 }
 
