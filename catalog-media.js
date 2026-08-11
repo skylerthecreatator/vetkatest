@@ -1,7 +1,6 @@
 // This file is generated from images/catalog. Keep image folders organised by category.
 window.VETKA_CATALOG_MEDIA = Object.freeze({
     "interior":  [
-                     "photo_2026-08-10_00-49-06.jpg",
                      "photo_2026-08-10_00-52-24.jpg",
                      "photo_2026-08-10_00-52-25.jpg",
                      "photo_2026-08-10_00-52-26.jpg",
@@ -49,7 +48,6 @@ window.VETKA_CATALOG_MEDIA = Object.freeze({
                     "photo_2026-08-10_00-55-46.jpg",
                     "photo_2026-08-10_00-55-47 (2).jpg",
                     "photo_2026-08-10_00-55-47.jpg",
-                    "photo_2026-08-10_00-55-48.jpg",
                     "photo_2026-08-10_00-55-49.jpg",
                     "photo_2026-08-10_00-55-50.jpg",
                     "photo_2026-08-10_00-55-51 (2).jpg",
@@ -202,7 +200,6 @@ window.VETKA_CATALOG_MEDIA = Object.freeze({
                      "photo_2026-08-10_00-41-57.jpg",
                      "photo_2026-08-10_00-41-58.jpg",
                      "photo_2026-08-10_00-41-59.jpg",
-                     "photo_2026-08-10_00-42-00 (2).jpg",
                      "photo_2026-08-10_00-42-00.jpg",
                      "photo_2026-08-10_00-42-01.jpg",
                      "photo_2026-08-10_00-42-02.jpg",
@@ -257,7 +254,6 @@ window.VETKA_CATALOG_MEDIA = Object.freeze({
                      "photo_2026-08-10_00-42-57.jpg",
                      "photo_2026-08-10_00-42-58.jpg",
                      "photo_2026-08-10_00-42-59.jpg",
-                     "photo_2026-08-10_00-43-01 (2).jpg",
                      "photo_2026-08-10_00-43-01.jpg",
                      "photo_2026-08-10_00-43-02.jpg",
                      "photo_2026-08-10_00-43-04.jpg",
@@ -268,22 +264,17 @@ window.VETKA_CATALOG_MEDIA = Object.freeze({
                      "photo_2026-08-10_00-43-09.jpg",
                      "photo_2026-08-10_00-43-10.jpg",
                      "photo_2026-08-10_00-43-11.jpg",
-                     "photo_2026-08-10_00-43-12 (2).jpg",
                      "photo_2026-08-10_00-43-12.jpg",
                      "photo_2026-08-10_00-43-13.jpg",
-                     "photo_2026-08-10_00-43-14 (2).jpg",
                      "photo_2026-08-10_00-43-14.jpg",
                      "photo_2026-08-10_00-43-15.jpg",
                      "photo_2026-08-10_00-43-38.jpg",
                      "photo_2026-08-10_00-43-39.jpg",
-                     "photo_2026-08-10_00-43-40 (2).jpg",
                      "photo_2026-08-10_00-43-40.jpg",
-                     "photo_2026-08-10_00-43-41 (2).jpg",
                      "photo_2026-08-10_00-43-41.jpg",
                      "photo_2026-08-10_00-43-42 (2).jpg",
                      "photo_2026-08-10_00-43-42.jpg",
                      "photo_2026-08-10_00-43-43.jpg",
-                     "photo_2026-08-10_00-43-46.jpg",
-                     "ninthnoneprice.jpg"
+                     "photo_2026-08-10_00-43-46.jpg"
                  ]
 });

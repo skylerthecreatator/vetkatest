@@ -75,7 +75,7 @@ window.VETKA_CATALOG_DATA = {
         title: 'Вазы и подарки',
         shortTitle: 'Вазы и подарки',
         description: 'Раздел готовим к наполнению. Уже можно рассказать, для кого подарок и какой повод — найдём красивое решение.',
-        cover: cover(interiorWorks, cover(bouquetWorks, 'images/hero-light-1.jpg')),
+        cover: 'images/catalog-gifts.jpg',
         products: [],
     },
     wedding: {
