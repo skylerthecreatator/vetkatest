@@ -38,7 +38,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="tier3.css?v=20260811-3">
+    <link rel="stylesheet" href="tier3.css?v=20260813-constructor-2">
 
     <!-- Structured data: помогает Google показывать часы работы, адрес и телефон прямо в выдаче -->
     <script type="application/ld+json">
@@ -356,21 +356,29 @@
                 <div class="constructor-step">
                     <h3>Что собираем</h3>
                     <div class="options-row options-row--base">
-                        <button class="opt-btn active-opt" data-cat="base" data-val="composition">Композиция</button>
-                        <button class="opt-btn" data-cat="base" data-val="bouquet">Букет</button>
-                        <button class="opt-btn" data-cat="base" data-val="bridal">Букет невесты</button>
-                        <button class="opt-btn" data-cat="base" data-val="interior">Интерьерная композиция</button>
+                        <button class="opt-btn constructor-photo-option active-opt" data-cat="base" data-val="composition">
+                            <img src="images/constructor/types/constructor-composition.webp" alt="" loading="lazy" decoding="async"><span>Композиция</span>
+                        </button>
+                        <button class="opt-btn constructor-photo-option" data-cat="base" data-val="bouquet">
+                            <img src="images/constructor/types/constructor-bouquet.webp" alt="" loading="lazy" decoding="async"><span>Букет</span>
+                        </button>
+                        <button class="opt-btn constructor-photo-option" data-cat="base" data-val="bridal">
+                            <img src="images/constructor/types/constructor-wedding-bouquet.webp" alt="" loading="lazy" decoding="async"><span>Букет невесты</span>
+                        </button>
+                        <button class="opt-btn constructor-photo-option" data-cat="base" data-val="interior">
+                            <img src="images/constructor/types/constructor-interior.webp" alt="" loading="lazy" decoding="async"><span>Интерьерная композиция</span>
+                        </button>
                     </div>
                 </div>
 
                 <div class="constructor-step">
                     <h3>Любимый акцент</h3>
                     <div class="options-row options-row--flower">
-                        <button class="opt-btn active-opt" data-cat="flower" data-val="lily">Лилия</button>
-                        <button class="opt-btn" data-cat="flower" data-val="gerbera">Гербера</button>
-                        <button class="opt-btn" data-cat="flower" data-val="french-rose">Французская роза</button>
-                        <button class="opt-btn" data-cat="flower" data-val="sunflower">Подсолнух</button>
-                        <button class="opt-btn" data-cat="flower" data-val="greenball">Гринбол</button>
+                        <button class="opt-btn constructor-accent-option active-opt" data-cat="flower" data-val="lily"><img src="images/constructor/accents/constructor-lily.webp" alt="" loading="lazy" decoding="async"><span>Лилия</span></button>
+                        <button class="opt-btn constructor-accent-option" data-cat="flower" data-val="gerbera"><img src="images/constructor/accents/constructor-gerbera.webp" alt="" loading="lazy" decoding="async"><span>Гербера</span></button>
+                        <button class="opt-btn constructor-accent-option" data-cat="flower" data-val="french-rose"><img src="images/constructor/accents/constructor-french-rose.webp" alt="" loading="lazy" decoding="async"><span>Французская роза</span></button>
+                        <button class="opt-btn constructor-accent-option" data-cat="flower" data-val="sunflower"><img src="images/constructor/accents/constructor-sunflower.webp" alt="" loading="lazy" decoding="async"><span>Подсолнух</span></button>
+                        <button class="opt-btn constructor-accent-option" data-cat="flower" data-val="greenball"><img src="images/constructor/accents/constructor-greenball.webp" alt="" loading="lazy" decoding="async"><span>Гринбол</span></button>
                         <button class="opt-btn" data-cat="flower" data-val="other">Другие варианты</button>
                     </div>
                 </div>
@@ -378,9 +386,9 @@
                 <div class="constructor-step">
                     <h3>Цветовая гамма</h3>
                     <div class="options-row options-row--character">
-                        <button class="opt-btn" data-cat="character" data-val="bright">Ярко</button>
-                        <button class="opt-btn active-opt" data-cat="character" data-val="soft">Нежно</button>
-                        <button class="opt-btn" data-cat="character" data-val="contrast">Контрастно</button>
+                        <button class="opt-btn constructor-palette-option" data-cat="character" data-val="bright"><img src="images/constructor/palettes/constructor-bright.webp" alt="" loading="lazy" decoding="async"><span>Ярко</span></button>
+                        <button class="opt-btn constructor-palette-option active-opt" data-cat="character" data-val="soft"><img src="images/constructor/palettes/constructor-soft.webp" alt="" loading="lazy" decoding="async"><span>Нежно</span></button>
+                        <button class="opt-btn constructor-palette-option" data-cat="character" data-val="contrast"><img src="images/constructor/palettes/constructor-contrast.webp" alt="" loading="lazy" decoding="async"><span>Контрастно</span></button>
                     </div>
                 </div>
                 <button type="button" class="constructor-mobile-next" data-constructor-go="preview">Показать результат <span aria-hidden="true">→</span></button>
@@ -397,7 +405,7 @@
                         <span class="flower-accent-dot" id="flowerAccentDot"></span>
                         <span id="flowerAccentName">Лилия</span>
                     </span>
-                    <img id="constructorPreviewImage" loading="lazy" src="images/hero-light-1.jpg" alt="Пример концепта ВЕТКА">
+                    <img id="constructorPreviewImage" loading="lazy" src="images/constructor/types/constructor-composition.webp" alt="Референс композиции ВЕТКА">
                     <div class="demo-preview-copy">
                         <h3>Так может звучать ваш букет</h3>
                         <p>Картинка показывает настроение, а не точную копию. Финальный состав флорист соберёт из свежих сезонных цветов.</p>
@@ -431,7 +439,7 @@
                         <span>Оплата</span>
                         <p>Перед отправкой флорист пришлёт фото готового букета.</p>
                     </div>
-                    <button class="btn btn-primary constructor-submit" onclick="openContactModal('constructor')">Отправить идею флористу</button>
+                    <button class="btn btn-primary constructor-submit" onclick="openConstructorContactModal()">Отправить идею флористу</button>
                     <button type="button" class="constructor-mobile-back" data-constructor-go="preview">← Вернуться к фото</button>
                 </div>
             </div>

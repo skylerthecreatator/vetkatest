@@ -886,10 +886,22 @@ document.querySelectorAll('[data-constructor-go]').forEach(button => {
 // Пока это плейсхолдеры из существующих фото каталога — когда будут отдельные фото под каждый формат,
 // просто замени пути здесь.
 const CONSTRUCTOR_BASE_IMAGES = {
-    composition: 'images/catalog-compositions.jpg',
-    bouquet: 'images/hero-light-1.jpg',
-    bridal: 'images/hero-light-2.jpg',
-    interior: 'images/catalog-gifts.jpg'
+    composition: {
+        image: 'images/constructor/types/constructor-composition.webp',
+        alt: 'Референс композиции ВЕТКА'
+    },
+    bouquet: {
+        image: 'images/constructor/types/constructor-bouquet.webp',
+        alt: 'Референс авторского букета ВЕТКА'
+    },
+    bridal: {
+        image: 'images/constructor/types/constructor-wedding-bouquet.webp',
+        alt: 'Референс букета невесты ВЕТКА'
+    },
+    interior: {
+        image: 'images/constructor/types/constructor-interior.webp',
+        alt: 'Референс интерьерной композиции ВЕТКА'
+    }
 };
 
 // Цвет и подпись акцентного цветка — рисуем цветным бейджем поверх фото, а не отдельной фотографией.
@@ -901,14 +913,6 @@ const CONSTRUCTOR_FLOWER_ACCENTS = {
     sunflower:     { color: '#F4C430', label: 'Подсолнух' },
     greenball:     { color: '#7CB342', label: 'Гринбол' },
     other:         { color: 'transparent', label: 'Уточним у флориста' }
-};
-
-// Цветовая гамма меняет визуальную обработку самого фото через CSS-фильтр — без новых фотографий
-const CONSTRUCTOR_MOOD_CLASSES = ['mood-soft', 'mood-graphic', 'mood-bold'];
-const CONSTRUCTOR_MOOD_MAP = {
-    bright: 'mood-bold',
-    soft: 'mood-soft',
-    contrast: 'mood-graphic'
 };
 
 function applyOption(button) {
@@ -935,11 +939,12 @@ function applyOption(button) {
 
     if (!preview) return;
 
-    // 3. Фото — только по формату (единственная ось, которая реально меняет композицию снимка)
+    // Референс меняется только по формату: так мы не выдаём пример за точную копию будущей работы.
     const previewImage = document.getElementById('constructorPreviewImage');
     const baseValue = preview.getAttribute('data-base');
     if (previewImage && CONSTRUCTOR_BASE_IMAGES[baseValue]) {
-        previewImage.src = CONSTRUCTOR_BASE_IMAGES[baseValue];
+        previewImage.src = CONSTRUCTOR_BASE_IMAGES[baseValue].image;
+        previewImage.alt = CONSTRUCTOR_BASE_IMAGES[baseValue].alt;
     }
 
     // 4. Цветовой бейдж — по выбранному акцентному цветку
@@ -952,13 +957,15 @@ function applyOption(button) {
         if (name) name.textContent = accent.label;
     }
 
-    // 5. Настроение — фильтр на фото, отражает "характер" без отдельной фотографии
-    const characterValue = preview.getAttribute('data-character');
-    const moodClass = CONSTRUCTOR_MOOD_MAP[characterValue];
-    if (previewImage) {
-        previewImage.classList.remove(...CONSTRUCTOR_MOOD_CLASSES);
-        if (moodClass) previewImage.classList.add(moodClass);
-    }
+}
+
+function getConstructorDetail() {
+    const getChoice = category => document.querySelector(`.opt-btn[data-cat="${category}"].active-opt`)?.textContent.trim() || 'Не выбрано';
+    return `Концепт: ${getChoice('base')} · акцент: ${getChoice('flower')} · гамма: ${getChoice('character')}`;
+}
+
+function openConstructorContactModal() {
+    openContactModal('constructor', getConstructorDetail());
 }
 
 // Навешиваем по одному слушателю на каждую кнопку конструктора при загрузке страницы

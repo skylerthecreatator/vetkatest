@@ -2490,6 +2490,247 @@
     }
 }
 
+/* Constructor: real reference photos make the choice intuitive before a florist confirms the final composition. */
+.constructor-step .options-row--base {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.constructor-photo-option {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr);
+    align-items: center;
+    gap: 10px;
+    min-height: 86px;
+    padding: 7px;
+    overflow: hidden;
+    color: var(--vetka-ink);
+    text-align: left;
+}
+
+.constructor-photo-option img {
+    width: 64px;
+    height: 70px;
+    border-radius: 10px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.constructor-photo-option span,
+.constructor-accent-option span,
+.constructor-palette-option span {
+    position: relative;
+    z-index: 1;
+}
+
+.constructor-photo-option span {
+    padding-right: 6px;
+    font: 800 12px/1.18 "Inter", sans-serif;
+}
+
+.constructor-photo-option.active-opt {
+    color: var(--vetka-cream);
+    border-color: var(--vetka-green);
+    background: linear-gradient(135deg, var(--vetka-green), #4e5d34);
+    box-shadow: 0 12px 22px rgba(80, 101, 48, .22);
+}
+
+.constructor-photo-option.active-opt::after {
+    top: 9px;
+    right: 9px;
+    background: var(--vetka-cream);
+    box-shadow: 0 0 0 3px rgba(255, 253, 248, .2);
+}
+
+.constructor-step .options-row--flower {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.constructor-accent-option {
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr);
+    align-items: center;
+    gap: 7px;
+    min-height: 48px;
+    padding: 7px;
+    color: var(--vetka-ink);
+    text-align: left;
+}
+
+.constructor-accent-option img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.constructor-accent-option span {
+    overflow: hidden;
+    font: 700 10px/1.1 "Inter", sans-serif;
+    text-overflow: ellipsis;
+}
+
+.constructor-accent-option.active-opt {
+    color: var(--vetka-cream);
+    background: var(--vetka-green);
+    border-color: var(--vetka-green);
+    box-shadow: 0 8px 18px rgba(80, 101, 48, .18);
+}
+
+.constructor-accent-option.active-opt::after {
+    display: none;
+}
+
+.constructor-step .options-row--character {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.constructor-palette-option {
+    min-height: 76px;
+    padding: 0;
+    overflow: hidden;
+    border-color: rgba(48, 42, 36, .14);
+    color: var(--vetka-cream);
+    background: var(--vetka-ink);
+}
+
+.constructor-palette-option img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: .72;
+    transition: transform .25s ease, opacity .25s ease;
+}
+
+.constructor-palette-option span {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+    padding: 0 10px 10px;
+    background: linear-gradient(0deg, rgba(30, 27, 24, .72), rgba(30, 27, 24, 0) 72%);
+    font: 800 11px/1 "Inter", sans-serif;
+}
+
+.constructor-palette-option:hover img,
+.constructor-palette-option.active-opt img {
+    opacity: .9;
+    transform: scale(1.06);
+}
+
+.constructor-palette-option.active-opt {
+    border-color: var(--vetka-green);
+    background: var(--vetka-ink);
+    box-shadow: 0 0 0 2px var(--vetka-cream), 0 0 0 4px var(--vetka-green), 0 12px 24px rgba(80, 101, 48, .22);
+}
+
+.constructor-palette-option.active-opt::after {
+    display: none;
+}
+
+.constructor-step .opt-btn[data-val="other"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    border-style: dashed;
+    font: 700 11px/1.1 "Inter", sans-serif;
+}
+
+@media (max-width: 768px) {
+    .constructor-step .options-row--base,
+    .constructor-step .options-row--flower,
+    .constructor-step .options-row--character {
+        display: grid;
+        margin: 0;
+        padding: 0;
+        overflow: visible;
+    }
+
+    .constructor-step .options-row--base,
+    .constructor-step .options-row--flower {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .constructor-photo-option {
+        grid-template-columns: 1fr;
+        align-content: end;
+        min-height: 116px;
+        padding: 0;
+        color: var(--vetka-cream);
+        background: var(--vetka-ink);
+    }
+
+    .constructor-photo-option::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(0deg, rgba(30, 27, 24, .76), rgba(30, 27, 24, .04) 72%);
+        z-index: 1;
+    }
+
+    .constructor-photo-option img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        opacity: .86;
+    }
+
+    .constructor-photo-option span {
+        z-index: 2;
+        padding: 0 10px 11px;
+        font-size: 11px;
+    }
+
+    .constructor-photo-option.active-opt {
+        border-color: var(--vetka-green);
+        background: var(--vetka-ink);
+        box-shadow: 0 0 0 2px var(--vetka-cream), 0 0 0 4px var(--vetka-green);
+    }
+
+    .constructor-accent-option {
+        min-height: 50px;
+    }
+
+    .constructor-accent-option span {
+        font-size: 10px;
+    }
+
+    .constructor-palette-option {
+        min-height: 74px;
+    }
+
+    .constructor-palette-option span {
+        padding: 0 7px 9px;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .constructor-step .constructor-photo-option {
+        min-height: 116px;
+        padding: 0;
+    }
+
+    .constructor-step .constructor-accent-option {
+        min-height: 50px;
+        padding: 7px;
+    }
+
+    .constructor-step .constructor-palette-option {
+        min-height: 74px;
+        padding: 0;
+    }
+}
+
 /* ===== КЛИЕНТСКИЕ АКЦЕНТЫ: БУКЕТ ДНЯ, ДОСТАВКА, ШКОЛА ===== */
 .promo-badge-btn .badge-price {
     display: block;
@@ -4459,5 +4700,226 @@
 
     .catalog.catalog-gateway .catalog-featured .category-card:nth-child(3) {
         grid-column: 2 / 3;
+    }
+}
+
+/* Final constructor overrides: keep the photo choices tactile and clear on all screen sizes. */
+.constructor-step .options-row--base {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.constructor-photo-option {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr);
+    align-items: center;
+    gap: 10px;
+    min-height: 86px;
+    padding: 7px;
+    overflow: hidden;
+    color: var(--vetka-ink);
+    text-align: left;
+}
+
+.constructor-photo-option img {
+    width: 64px;
+    height: 70px;
+    border-radius: 10px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.constructor-photo-option span,
+.constructor-accent-option span,
+.constructor-palette-option span {
+    position: relative;
+    z-index: 1;
+}
+
+.constructor-photo-option span {
+    padding-right: 6px;
+    font: 800 12px/1.18 "Inter", sans-serif;
+}
+
+.constructor-photo-option.active-opt {
+    color: var(--vetka-cream);
+    border-color: var(--vetka-green);
+    background: linear-gradient(135deg, var(--vetka-green), #4e5d34);
+    box-shadow: 0 12px 22px rgba(80, 101, 48, .22);
+}
+
+.constructor-photo-option.active-opt::after {
+    top: 9px;
+    right: 9px;
+    background: var(--vetka-cream);
+    box-shadow: 0 0 0 3px rgba(255, 253, 248, .2);
+}
+
+.constructor-step .options-row--flower {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.constructor-accent-option {
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr);
+    align-items: center;
+    gap: 7px;
+    min-height: 48px;
+    padding: 7px;
+    color: var(--vetka-ink);
+    text-align: left;
+}
+
+.constructor-accent-option img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.constructor-accent-option span {
+    overflow: hidden;
+    font: 700 10px/1.1 "Inter", sans-serif;
+    text-overflow: ellipsis;
+}
+
+.constructor-accent-option.active-opt {
+    color: var(--vetka-cream);
+    background: var(--vetka-green);
+    border-color: var(--vetka-green);
+    box-shadow: 0 8px 18px rgba(80, 101, 48, .18);
+}
+
+.constructor-accent-option.active-opt::after,
+.constructor-palette-option.active-opt::after {
+    display: none;
+}
+
+.constructor-step .options-row--character {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.constructor-palette-option {
+    min-height: 76px;
+    padding: 0;
+    overflow: hidden;
+    border-color: rgba(48, 42, 36, .14);
+    color: var(--vetka-cream);
+    background: var(--vetka-ink);
+}
+
+.constructor-palette-option img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: .72;
+    transition: transform .25s ease, opacity .25s ease;
+}
+
+.constructor-palette-option span {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+    padding: 0 10px 10px;
+    background: linear-gradient(0deg, rgba(30, 27, 24, .72), rgba(30, 27, 24, 0) 72%);
+    font: 800 11px/1 "Inter", sans-serif;
+}
+
+.constructor-palette-option:hover img,
+.constructor-palette-option.active-opt img {
+    opacity: .9;
+    transform: scale(1.06);
+}
+
+.constructor-palette-option.active-opt {
+    border-color: var(--vetka-green);
+    background: var(--vetka-ink);
+    box-shadow: 0 0 0 2px var(--vetka-cream), 0 0 0 4px var(--vetka-green), 0 12px 24px rgba(80, 101, 48, .22);
+}
+
+.constructor-step .opt-btn[data-val="other"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    border-style: dashed;
+    font: 700 11px/1.1 "Inter", sans-serif;
+}
+
+@media (max-width: 768px) {
+    .constructor-step .options-row--base,
+    .constructor-step .options-row--flower,
+    .constructor-step .options-row--character {
+        display: grid;
+        margin: 0;
+        padding: 0;
+        overflow: visible;
+    }
+
+    .constructor-step .options-row--base,
+    .constructor-step .options-row--flower {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .constructor-photo-option {
+        grid-template-columns: 1fr;
+        align-content: end;
+        min-height: 116px;
+        padding: 0;
+        color: var(--vetka-cream);
+        background: var(--vetka-ink);
+    }
+
+    .constructor-photo-option::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(0deg, rgba(30, 27, 24, .76), rgba(30, 27, 24, .04) 72%);
+        z-index: 1;
+    }
+
+    .constructor-photo-option img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        opacity: .86;
+    }
+
+    .constructor-photo-option span {
+        z-index: 2;
+        padding: 0 10px 11px;
+        font-size: 11px;
+    }
+
+    .constructor-photo-option.active-opt {
+        border-color: var(--vetka-green);
+        background: var(--vetka-ink);
+        box-shadow: 0 0 0 2px var(--vetka-cream), 0 0 0 4px var(--vetka-green);
+    }
+
+    .constructor-accent-option {
+        min-height: 50px;
+    }
+
+    .constructor-accent-option span {
+        font-size: 10px;
+    }
+
+    .constructor-palette-option {
+        min-height: 74px;
+    }
+
+    .constructor-palette-option span {
+        padding: 0 7px 9px;
+        font-size: 10px;
     }
 }
