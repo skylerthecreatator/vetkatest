@@ -99,7 +99,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
     font-weight: 600;
 }
 
-main { position: relative; z-index: 1; width: min(1400px, calc(100% - 40px)); margin: 0 auto; padding-top: 56px; }
+main { position: relative; z-index: 1; width: min(1400px, calc(100% - 40px)); margin: 0 auto; padding-top: 92px; }
 .catalog-hero {
     position: relative;
     min-height: 0;
@@ -380,6 +380,7 @@ main { position: relative; z-index: 1; width: min(1400px, calc(100% - 40px)); ma
 @media (max-width: 900px) {
     .catalog-headerbar { grid-template-columns: 1fr auto; }
     .catalog-headerbar nav { display: none; }
+    main { padding-top: 72px; }
     .catalog-hero { grid-template-columns: 1fr; gap: 26px; padding-top: 48px; }
     .catalog-hero-note { max-width: 430px; }
     .catalog-product-grid { grid-template-columns: repeat(2, 1fr); }
