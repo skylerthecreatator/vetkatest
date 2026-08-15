@@ -2714,6 +2714,111 @@
     }
 }
 
+/* Constructor clarity: the middle step is an idea check, not an exact generated bouquet. */
+.constructor-preview-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin: 12px 0 10px;
+}
+
+.constructor-preview-tags span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    max-width: 100%;
+    padding: 7px 10px;
+    border: 1px solid rgba(117, 137, 72, .18);
+    border-radius: 999px;
+    color: var(--vetka-muted);
+    background: rgba(255, 253, 248, .72);
+    font: 700 10px/1.15 "Inter", sans-serif;
+}
+
+.constructor-preview-tags strong {
+    color: var(--vetka-green);
+    font: inherit;
+}
+
+@media (max-width: 768px) {
+    body.bonus-notice-visible .hero {
+        padding-top: 104px;
+    }
+
+    .bonus-badge,
+    .bonus-badge.bonus-compact {
+        top: auto !important;
+        right: 14px !important;
+        bottom: calc(88px + env(safe-area-inset-bottom)) !important;
+        left: 14px !important;
+        z-index: 940;
+        grid-template-columns: minmax(0, 1fr) auto;
+        width: auto;
+        max-width: none;
+        min-height: 54px;
+        padding: 9px 38px 9px 14px;
+        border-radius: 18px;
+        box-shadow: 0 14px 34px rgba(48, 42, 36, .18);
+    }
+
+    .bonus-badge .bonus-kicker,
+    .bonus-badge .bonus-copy > span:last-child,
+    .bonus-badge.bonus-compact .bonus-kicker,
+    .bonus-badge.bonus-compact .bonus-copy > span:last-child {
+        display: none;
+    }
+
+    .bonus-badge strong,
+    .bonus-badge.bonus-compact strong {
+        margin: 0;
+        font-size: 16px;
+        white-space: nowrap;
+    }
+
+    .bonus-badge .bonus-claim-btn,
+    .bonus-badge.bonus-compact .bonus-claim-btn {
+        min-width: 86px;
+        min-height: 38px;
+        padding: 9px 14px;
+    }
+
+    .constructor-mobile-progress {
+        top: 86px;
+    }
+
+    .demo-label {
+        max-width: calc(100% - 128px);
+        font-size: 11px;
+        letter-spacing: .08em;
+    }
+
+    .flower-accent-badge {
+        max-width: 128px;
+    }
+
+    .demo-preview-copy h3 {
+        font-size: 30px;
+        line-height: 1.02;
+    }
+
+    .constructor-preview-tags {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 6px;
+        margin: 12px 0;
+    }
+
+    .constructor-preview-tags span {
+        justify-content: space-between;
+        border-radius: 13px;
+        font-size: 11px;
+    }
+
+    .constructor-mobile-actions {
+        padding-bottom: 8px;
+    }
+}
+
 @media (max-width: 768px) {
     .constructor-step .constructor-photo-option {
         min-height: 116px;
@@ -4921,5 +5026,16 @@
     .constructor-palette-option span {
         padding: 0 7px 9px;
         font-size: 10px;
+    }
+}
+
+/* Last-word mobile placement: bonus stays visible, but never covers the constructor header. */
+@media (max-width: 768px) {
+    .bonus-badge,
+    .bonus-badge.bonus-compact {
+        top: auto !important;
+        right: 14px !important;
+        bottom: calc(88px + env(safe-area-inset-bottom)) !important;
+        left: 14px !important;
     }
 }

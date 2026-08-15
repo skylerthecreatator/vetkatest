@@ -38,7 +38,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="tier3.css?v=20260813-constructor-2">
+    <link rel="stylesheet" href="tier3.css?v=20260815-constructor-clarity-1">
 
     <!-- Structured data: помогает Google показывать часы работы, адрес и телефон прямо в выдаче -->
     <script type="application/ld+json">
@@ -342,7 +342,7 @@
 
         <div class="constructor-mobile-progress" aria-label="Шаги конструктора">
             <button type="button" class="is-active" data-constructor-step="config"><span>1</span> Настроить</button>
-            <button type="button" data-constructor-step="preview"><span>2</span> Смотреть</button>
+            <button type="button" data-constructor-step="preview"><span>2</span> Идея</button>
             <button type="button" data-constructor-step="summary"><span>3</span> Отправить</button>
         </div>
 
@@ -391,24 +391,29 @@
                         <button class="opt-btn constructor-palette-option" data-cat="character" data-val="contrast"><img src="images/constructor/palettes/constructor-contrast.webp" alt="" loading="lazy" decoding="async"><span>Контрастно</span></button>
                     </div>
                 </div>
-                <button type="button" class="constructor-mobile-next" data-constructor-go="preview">Показать результат <span aria-hidden="true">→</span></button>
+                <button type="button" class="constructor-mobile-next" data-constructor-go="preview">Проверить идею <span aria-hidden="true">→</span></button>
             </div>
 
             <div class="constructor-preview">
                 <div class="constructor-panel-title">
                     <span>02</span>
-                    <strong>Витрина</strong>
+                    <strong>Идея</strong>
                 </div>
                 <div class="preview-frame demo-preview" id="bouquet-preview" data-base="composition" data-flower="lily" data-character="soft">
-                    <span class="demo-label">Предпросмотр</span>
+                    <span class="demo-label">Референс настроения</span>
                     <span class="flower-accent-badge" id="flowerAccentBadge">
                         <span class="flower-accent-dot" id="flowerAccentDot"></span>
                         <span id="flowerAccentName">Лилия</span>
                     </span>
                     <img id="constructorPreviewImage" loading="lazy" src="images/constructor/types/constructor-composition.webp" alt="Референс композиции ВЕТКА">
                     <div class="demo-preview-copy">
-                        <h3>Так может звучать ваш букет</h3>
-                        <p>Картинка показывает настроение, а не точную копию. Финальный состав флорист соберёт из свежих сезонных цветов.</p>
+                        <h3>Проверим идею перед заявкой</h3>
+                        <div class="constructor-preview-tags" aria-label="Выбранные параметры идеи">
+                            <span>Формат: <strong id="preview-summary-base">Композиция</strong></span>
+                            <span>Акцент: <strong id="preview-summary-flower">Лилия</strong></span>
+                            <span>Гамма: <strong id="preview-summary-character">Нежно</strong></span>
+                        </div>
+                        <p>Фото показывает только направление. Акцент и цветовую гамму передадим флористу в заявке, а финальный состав соберём из свежих сезонных цветов.</p>
                     </div>
                 </div>
                 <div class="constructor-mobile-actions">

@@ -937,6 +937,11 @@ function applyOption(button) {
         summary.textContent = selectedText;
     }
 
+    const previewSummary = document.getElementById(`preview-summary-${category}`);
+    if (previewSummary) {
+        previewSummary.textContent = selectedText;
+    }
+
     if (!preview) return;
 
     // Референс меняется только по формату: так мы не выдаём пример за точную копию будущей работы.
