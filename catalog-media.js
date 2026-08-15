@@ -178,7 +178,9 @@ window.VETKA_CATALOG_MEDIA = Object.freeze({
                    "gift-26-vase-smoke-square-2300.jpg",
                    "gift-27-kashpo-kenzan-black.jpg",
                    "gift-28-sheep-plush-950.jpg",
-                   "gift-29-vase-clear-tall-700.jpg"
+                   "gift-29-vase-clear-tall-700.jpg",
+                   "gift-30-vase-black-gloss-400.jpg",
+                   "gift-31-vase-clear-faceted-2100.jpg"
                ],
     "bouquets":  [
                      "photo_2026-08-08_14-23-20.jpg",

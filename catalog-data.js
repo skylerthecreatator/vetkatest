@@ -279,6 +279,22 @@ const giftWorks = [
         action: 'Хочу этот вариант',
         group: 'Вазы',
     },
+    {
+        image: 'images/catalog/gifts/gift-30-vase-black-gloss-400.jpg',
+        title: 'Ваза чёрная глянцевая',
+        description: 'Компактная графичная ваза для лаконичных цветов и контрастных интерьерных акцентов.',
+        price: '400 ₽',
+        action: 'Хочу этот вариант',
+        group: 'Вазы',
+    },
+    {
+        image: 'images/catalog/gifts/gift-31-vase-clear-faceted-2100.jpg',
+        title: 'Ваза прозрачная гранёная',
+        description: 'Высокая прозрачная ваза с мягкими гранями для букетов средней высоты.',
+        price: '2 100 ₽',
+        action: 'Хочу этот вариант',
+        group: 'Вазы',
+    },
 ];
 
 const cover = (works, fallback) => works[0]?.image || fallback;
