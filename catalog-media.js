@@ -149,6 +149,18 @@ window.VETKA_CATALOG_MEDIA = Object.freeze({
                          "photo_2026-08-10_00-49-38.jpg",
                          "photo_2026-08-10_00-49-39.jpg"
                      ],
+    "gifts":  [
+                   "gift-01-kenzan-metal-570-1550.jpg",
+                   "gift-02-kashpo-kenzan-440.jpg",
+                   "gift-03-kashpo-kenzan-460.jpg",
+                   "gift-04-kenzan-metal-gold-380-1550.jpg",
+                   "gift-05-baran-plush-1400.jpg",
+                   "gift-06-vase-white-2750.jpg",
+                   "gift-07-bear-plush-960.jpg",
+                   "gift-08-cow-plush-1700.jpg",
+                   "gift-09-big-bear-1600.jpg",
+                   "gift-10-vase-amber-1350.jpg"
+               ],
     "bouquets":  [
                      "photo_2026-08-08_14-23-20.jpg",
                      "photo_2026-08-08_14-23-21.jpg",

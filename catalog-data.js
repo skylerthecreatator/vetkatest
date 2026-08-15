@@ -47,6 +47,89 @@ const weddingWorks = makeWorks('wedding', catalogMedia.wedding, {
     group: 'Свадебные букеты',
 });
 
+const giftWorks = [
+    {
+        image: 'images/catalog/gifts/gift-01-kenzan-metal-570-1550.jpg',
+        title: 'Кензан металлический',
+        description: 'Металлическая основа для устойчивой фиксации стеблей в вазе, кашпо или интерьерной композиции.',
+        price: 'от 570 до 1 550 ₽',
+        action: 'Хочу этот вариант',
+        group: 'Инструменты и детали',
+    },
+    {
+        image: 'images/catalog/gifts/gift-02-kashpo-kenzan-440.jpg',
+        title: 'Кашпо для кензана',
+        description: 'Минималистичное кашпо для кензана и небольших цветочных работ.',
+        price: '440 ₽',
+        action: 'Хочу этот вариант',
+        group: 'Кашпо и основы',
+    },
+    {
+        image: 'images/catalog/gifts/gift-03-kashpo-kenzan-460.jpg',
+        title: 'Кашпо для кензана',
+        description: 'Компактная основа для кензана, чтобы собрать аккуратную настольную композицию.',
+        price: '460 ₽',
+        action: 'Хочу этот вариант',
+        group: 'Кашпо и основы',
+    },
+    {
+        image: 'images/catalog/gifts/gift-04-kenzan-metal-gold-380-1550.jpg',
+        title: 'Кензан металлический, золото',
+        description: 'Акцентная основа для композиций с тёплым металлическим оттенком.',
+        price: 'от 380 до 1 550 ₽',
+        action: 'Хочу этот вариант',
+        group: 'Инструменты и детали',
+    },
+    {
+        image: 'images/catalog/gifts/gift-05-baran-plush-1400.jpg',
+        title: 'Барашек плюшевый',
+        description: 'Мягкое дополнение к букету или самостоятельный нежный подарок.',
+        price: '1 400 ₽',
+        action: 'Хочу этот вариант',
+        group: 'Плюшевые подарки',
+    },
+    {
+        image: 'images/catalog/gifts/gift-06-vase-white-2750.jpg',
+        title: 'Ваза белая рельефная',
+        description: 'Высокая фактурная ваза для лаконичных букетов и интерьерных веток.',
+        price: '2 750 ₽',
+        action: 'Хочу этот вариант',
+        group: 'Вазы',
+    },
+    {
+        image: 'images/catalog/gifts/gift-07-bear-plush-960.jpg',
+        title: 'Медведь плюшевый',
+        description: 'Милое дополнение к цветам для тёплого подарка.',
+        price: '960 ₽',
+        action: 'Хочу этот вариант',
+        group: 'Плюшевые подарки',
+    },
+    {
+        image: 'images/catalog/gifts/gift-08-cow-plush-1700.jpg',
+        title: 'Коровка плюшевая',
+        description: 'Мягкий подарок, который можно добавить к букету или вручить отдельно.',
+        price: '1 700 ₽',
+        action: 'Хочу этот вариант',
+        group: 'Плюшевые подарки',
+    },
+    {
+        image: 'images/catalog/gifts/gift-09-big-bear-1600.jpg',
+        title: 'Медведь большой',
+        description: 'Большой мягкий подарок для выразительного поздравления.',
+        price: '1 600 ₽',
+        action: 'Хочу этот вариант',
+        group: 'Плюшевые подарки',
+    },
+    {
+        image: 'images/catalog/gifts/gift-10-vase-amber-1350.jpg',
+        title: 'Ваза янтарная',
+        description: 'Тёплая стеклянная ваза для букета или домашней композиции.',
+        price: '1 350 ₽',
+        action: 'Хочу этот вариант',
+        group: 'Вазы',
+    },
+];
+
 const cover = (works, fallback) => works[0]?.image || fallback;
 
 window.VETKA_CATALOG_DATA = {
@@ -74,9 +157,9 @@ window.VETKA_CATALOG_DATA = {
     gifts: {
         title: 'Вазы и подарки',
         shortTitle: 'Вазы и подарки',
-        description: 'Раздел готовим к наполнению. Уже можно рассказать, для кого подарок и какой повод — найдём красивое решение.',
-        cover: 'images/catalog-gifts.jpg',
-        products: [],
+        description: 'Вазы, кензаны, кашпо и мягкие дополнения к цветам: можно выбрать готовый предмет или собрать подарок вместе с букетом.',
+        cover: cover(giftWorks, 'images/catalog/gifts/gift-10-vase-amber-1350.jpg'),
+        products: giftWorks,
     },
     wedding: {
         title: 'Свадебное',
