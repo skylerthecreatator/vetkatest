@@ -169,7 +169,16 @@ window.VETKA_CATALOG_MEDIA = Object.freeze({
                    "gift-17-vase-clear-oval-2100.jpg",
                    "gift-18-vase-ceramic-textured-4300.jpg",
                    "gift-19-vase-lotus-1290.jpg",
-                   "gift-20-vase-pink-set-1600.jpg"
+                   "gift-20-vase-pink-set-1600.jpg",
+                   "gift-21-vase-ceramic-handles-2500.jpg",
+                   "gift-22-kashpo-kenzan-stone-1590.jpg",
+                   "gift-23-vase-amber-ribbed-2350.jpg",
+                   "gift-24-vase-amber-small-1850.jpg",
+                   "gift-25-vase-blue-large-6700.jpg",
+                   "gift-26-vase-smoke-square-2300.jpg",
+                   "gift-27-kashpo-kenzan-black.jpg",
+                   "gift-28-sheep-plush-950.jpg",
+                   "gift-29-vase-clear-tall-700.jpg"
                ],
     "bouquets":  [
                      "photo_2026-08-08_14-23-20.jpg",
