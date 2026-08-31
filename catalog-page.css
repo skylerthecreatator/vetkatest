@@ -207,15 +207,24 @@ main { position: relative; z-index: 1; width: min(1400px, calc(100% - 40px)); ma
 .catalog-category-list button[data-category="gifts"] img { opacity: 1; object-position: center 56%; filter: brightness(1.16) contrast(.92); }
 .catalog-category-list button[data-category="gifts"]::after { background: linear-gradient(180deg, rgba(24,20,16,.02) 10%, rgba(24,20,16,.08) 46%, rgba(24,20,16,.55) 100%); }
 .catalog-botanical-divider {
-    height: 82px;
-    margin: -17px 0 31px;
+    height: 88px;
+    margin: -19px 0 29px;
     overflow: hidden;
     pointer-events: none;
 }
-.catalog-botanical-divider svg { display: block; width: 100%; height: 100%; overflow: visible; }
-.catalog-divider-line { fill: none; stroke: #a98269; stroke-width: 1.8; stroke-linecap: round; opacity: .82; }
-.catalog-divider-sprig { fill: none; stroke: #778c51; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-.catalog-divider-leaf { fill: rgba(119,140,81,.86); stroke: none; }
+/* Photo by Heye Jensen on Unsplash: one real botanical gesture rather than a drawn divider. */
+.catalog-botanical-divider img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center 22%;
+    opacity: .72;
+    filter: saturate(.78) contrast(.95);
+    mix-blend-mode: multiply;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 10%, #000 90%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 10%, #000 90%, transparent 100%);
+}
 
 .catalog-product-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 34px 22px; }
 .catalog-empty {
@@ -489,10 +498,8 @@ main { position: relative; z-index: 1; width: min(1400px, calc(100% - 40px)); ma
     .catalog-category-list::-webkit-scrollbar { display: none; }
     .catalog-category-list button { min-width: 170px; height: 104px; scroll-snap-align: start; border-radius: 17px; }
     .catalog-category-list span { left: 12px; bottom: 12px; font-size: 15px; }
-    .catalog-botanical-divider { height: 48px; margin: -9px 8px 24px; }
-    .catalog-botanical-divider svg { width: 152%; margin-left: -26%; }
-    .catalog-divider-line { stroke-width: 2.2; opacity: .72; }
-    .catalog-divider-sprig:nth-of-type(n + 4) { display: none; }
+    .catalog-botanical-divider { height: 54px; margin: -8px 8px 24px; }
+    .catalog-botanical-divider img { object-position: center 21%; opacity: .66; }
     .catalog-product-grid { display: block; }
     .catalog-empty { min-height: 250px; margin-bottom: 18px; padding: 30px 24px; border-radius: 22px; }
     .catalog-empty h3 { font-size: 31px; }
