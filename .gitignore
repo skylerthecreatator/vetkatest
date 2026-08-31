@@ -1,5 +1,7 @@
 .env
 .env.local
+.env.vps
+.vetka-vps-*
 .vercel
 node_modules
 npm-debug.log*

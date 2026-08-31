@@ -6,14 +6,14 @@
     <title>Каталог цветов ВЕТКА | Букеты и композиции в Иркутске</title>
     <meta name="description" content="Каталог ВЕТКА: авторские букеты, композиции, интерьерная флористика, подарки и свадебное оформление в Иркутске.">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://vetkatest.vercel.app/catalog.html">
+    <link rel="canonical" href="https://vetka-irk.ru/catalog.html">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="tier3.css?v=20260811-3">
-    <link rel="stylesheet" href="catalog-page.css?v=20260813-space-1">
+    <link rel="stylesheet" href="tier3.css?v=20260831-constructor-lab-9">
+    <link rel="stylesheet" href="catalog-page.css?v=20260831-preview-4">
 </head>
 <body>
     <header class="header">
@@ -48,7 +48,7 @@
                     <button type="button" data-catalog-nav="wedding"><img src="images/wedding-soft-cover.jpg" alt="" loading="lazy" decoding="async"><span>Свадебное</span></button>
                 </div>
             </div>
-            <a href="index.html#constructor-teaser">Свой концепт</a>
+            <a class="nav-concept-link" href="index.html#constructor-teaser">Свой концепт <span class="nav-soon-mark">скоро</span></a>
             <a href="index.html#delivery-service">Доставка</a>
             <a href="index.html#flower-subscription">Подписка</a>
             <a href="index.html#school-section">Школа</a>
@@ -197,9 +197,25 @@
         </div>
     </div>
 
+    <div class="catalog-preview-modal" id="catalogPreviewModal" aria-hidden="true">
+        <div class="catalog-preview-window" role="dialog" aria-modal="true" aria-labelledby="catalogPreviewTitle">
+            <button class="catalog-preview-close" id="catalogPreviewClose" type="button" aria-label="Закрыть просмотр">×</button>
+            <div class="catalog-preview-media">
+                <img id="catalogPreviewImage" src="" alt="">
+            </div>
+            <div class="catalog-preview-copy">
+                <span class="catalog-preview-category" id="catalogPreviewCategory"></span>
+                <h2 id="catalogPreviewTitle"></h2>
+                <p id="catalogPreviewDescription"></p>
+                <strong id="catalogPreviewPrice"></strong>
+                <button type="button" id="catalogPreviewOrder">Хочу такой вариант</button>
+            </div>
+        </div>
+    </div>
+
     <script src="catalog-media.js?v=20260815-gifts-4"></script>
-    <script src="catalog-data.js?v=20260815-gifts-4"></script>
+    <script src="catalog-data.js?v=20260831-vase-cover-3"></script>
     <script src="catalog-contact.js?v=20260810-1"></script>
-    <script src="catalog-page.js?v=20260810-4"></script>
+    <script src="catalog-page.js?v=20260831-preview-1"></script>
 </body>
 </html>

@@ -55,6 +55,7 @@ const SOURCE_LABELS = {
     'delivery':            'Блок "Доставка"',
     'subscription':        'Блок "Подписка"',
     'constructor':         'Конструктор букета',
+    'constructor-coming-soon': 'Конструктор букета — скоро',
     'academy-intensive':   'Курс "Базовый интенсив"',
     'academy-workshop':    'Курс "Тематические воркшопы"',
     'academy-individual':  'Курс "Индивидуальный формат"',

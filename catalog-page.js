@@ -12,6 +12,43 @@ const title = document.getElementById('catalogPageTitle');
 const description = document.getElementById('catalogPageDescription');
 const collectionCount = document.getElementById('catalogPageCount');
 const moreButton = document.getElementById('catalogMore');
+const previewModal = document.getElementById('catalogPreviewModal');
+const previewImage = document.getElementById('catalogPreviewImage');
+const previewCategory = document.getElementById('catalogPreviewCategory');
+const previewTitle = document.getElementById('catalogPreviewTitle');
+const previewDescription = document.getElementById('catalogPreviewDescription');
+const previewPrice = document.getElementById('catalogPreviewPrice');
+const previewOrderButton = document.getElementById('catalogPreviewOrder');
+const previewCloseButton = document.getElementById('catalogPreviewClose');
+let previewSelection = null;
+let previewOpener = null;
+
+function closeCatalogPreview() {
+    if (!previewModal?.classList.contains('is-open')) return;
+    previewModal.classList.remove('is-open');
+    previewModal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('catalog-preview-open');
+    document.body.style.overflow = '';
+    previewOpener?.focus?.();
+}
+
+function openCatalogPreview(product, category, opener) {
+    if (!previewModal) return;
+    previewSelection = { product, category };
+    previewOpener = opener;
+    previewImage.src = product.image;
+    previewImage.alt = `${product.title} — ВЕТКА`;
+    previewCategory.textContent = category.title;
+    previewTitle.textContent = product.title;
+    previewDescription.textContent = product.description || 'Флорист подскажет, как повторить это настроение в свежем сезонном составе.';
+    previewPrice.textContent = product.price || 'Цена уточняется';
+    previewPrice.hidden = false;
+    previewModal.classList.add('is-open');
+    previewModal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('catalog-preview-open');
+    document.body.style.overflow = 'hidden';
+    window.setTimeout(() => previewCloseButton?.focus(), 80);
+}
 
 function categoryButton(key, category) {
     const button = document.createElement('button');
@@ -37,12 +74,19 @@ function productCard(product, category, index) {
     const isSide = !isFeature && (gardenPosition === 1 || gardenPosition === 2);
     article.className = `catalog-product${product.price ? '' : ' catalog-product--reference'}${isFeature ? ' catalog-product--feature' : ''}${isSide ? ' catalog-product--side' : ''}`;
 
+    const imageButton = document.createElement('button');
+    imageButton.type = 'button';
+    imageButton.className = 'catalog-product-preview';
+    imageButton.setAttribute('aria-label', `Открыть фото: ${product.title}`);
+
     const image = document.createElement('img');
     image.src = product.image;
     image.alt = `${product.title} — ВЕТКА`;
     image.loading = index === 0 ? 'eager' : 'lazy';
     image.decoding = 'async';
     image.fetchPriority = index === 0 ? 'high' : 'auto';
+    imageButton.append(image);
+    imageButton.addEventListener('click', () => openCatalogPreview(product, category, imageButton));
 
     const body = document.createElement('div');
     body.className = 'catalog-product-body';
@@ -79,7 +123,7 @@ function productCard(product, category, index) {
     footer.append(action);
 
     body.append(label, heading, copy, footer);
-    article.append(image, body);
+    article.append(imageButton, body);
     return article;
 }
 
@@ -217,7 +261,25 @@ document.addEventListener('click', event => {
 });
 
 document.addEventListener('keydown', event => {
-    if (event.key === 'Escape') closeCatalogHeaderPanels();
+    if (event.key === 'Escape') {
+        closeCatalogPreview();
+        closeCatalogHeaderPanels();
+    }
+});
+
+previewCloseButton?.addEventListener('click', closeCatalogPreview);
+previewModal?.addEventListener('click', event => {
+    if (event.target === previewModal) closeCatalogPreview();
+});
+previewOrderButton?.addEventListener('click', () => {
+    if (!previewSelection) return;
+    const { product, category } = previewSelection;
+    closeCatalogPreview();
+    window.openCatalogOrderModal({
+        category: category.title,
+        product: product.title,
+        price: product.price || '',
+    });
 });
 
 if (matchMedia('(max-width: 720px)').matches) {

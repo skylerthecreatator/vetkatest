@@ -8,7 +8,7 @@
     <!-- SEO: описание страницы для поисковиков -->
     <meta name="description" content="Авангардная флористика в Иркутске. Собираем букеты с характером природы, доставляем бережно. Школа флористики — обучение без шаблонов. Ул. Советская, 96.">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://vetkatest.vercel.app/">
+    <link rel="canonical" href="https://vetka-irk.ru/">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -16,10 +16,10 @@
 
     <!-- OG-теги: красивая карточка при шаринге в Telegram, VK, WhatsApp -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://vetkatest.vercel.app/">
+    <meta property="og:url" content="https://vetka-irk.ru/">
     <meta property="og:title" content="ВЕТКА — Дикая флористика без шаблонов">
     <meta property="og:description" content="Авангардные букеты с характером природы. Доставка по Иркутску. Школа флористики.">
-    <meta property="og:image" content="https://vetkatest.vercel.app/images/hero-light-1.jpg">
+    <meta property="og:image" content="https://vetka-irk.ru/images/hero-light-1.jpg">
     <meta property="og:locale" content="ru_RU">
     <meta property="og:site_name" content="ВЕТКА">
 
@@ -27,7 +27,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="ВЕТКА — Дикая флористика без шаблонов">
     <meta name="twitter:description" content="Авангардные букеты с характером природы. Доставка по Иркутску.">
-    <meta name="twitter:image" content="https://vetkatest.vercel.app/images/hero-light-1.jpg">
+    <meta name="twitter:image" content="https://vetka-irk.ru/images/hero-light-1.jpg">
 
     <!-- Preconnect: браузер заранее открывает соединение с Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +38,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="tier3.css?v=20260815-constructor-beta-1">
+    <link rel="stylesheet" href="tier3.css?v=20260831-constructor-lab-9">
 
     <!-- Structured data: помогает Google показывать часы работы, адрес и телефон прямо в выдаче -->
     <script type="application/ld+json">
@@ -46,8 +46,8 @@
         "@context": "https://schema.org",
         "@type": "Florist",
         "name": "ВЕТКА",
-        "image": "https://vetkatest.vercel.app/images/hero-light-1.jpg",
-        "url": "https://vetkatest.vercel.app/",
+        "image": "https://vetka-irk.ru/images/hero-light-1.jpg",
+        "url": "https://vetka-irk.ru/",
         "telephone": "+79501333361",
         "priceRange": "₽₽₽",
         "address": {
@@ -110,7 +110,7 @@
                     <button type="button" data-catalog-nav="wedding"><img src="images/wedding-soft-cover.jpg" alt="" loading="lazy" decoding="async"><span>Свадебное</span></button>
                 </div>
             </div>
-            <a href="#constructor-teaser">Свой концепт</a>
+            <a class="nav-concept-link" href="#constructor-teaser">Свой концепт <span class="nav-soon-mark">скоро</span></a>
             <a href="#delivery-service">Доставка</a>
             <a href="#flower-subscription">Подписка</a>
             <a href="#school-section">Школа</a>
@@ -168,18 +168,6 @@
         </button>
     </nav>
 
-    <aside class="bonus-badge" id="bonusBadge" role="region" aria-live="polite" aria-label="Бонусная программа на первый заказ">
-        <div class="bonus-copy">
-            <span class="bonus-kicker">Бонусная программа</span>
-            <strong>500 баллов</strong>
-            <span>Приветственных бонусов на первый заказ</span>
-        </div>
-        <div class="bonus-actions">
-            <a href="https://vetkairkutsk.posiflora.com/wallet-app/d3956895-0a5c-4f32-b268-b5b1f028373c" target="_blank" rel="noopener noreferrer" class="bonus-claim-btn" onclick="claimWelcomeBonus()">Получить</a>
-        </div>
-        <button class="bonus-close" type="button" onclick="closeBonusBadge()" aria-label="Скрыть бонус">×</button>
-    </aside>
-
     <!-- Главный экран (Hero) -->
     <section id="hero" class="hero"> 
         <!-- Тот самый легкий неоновый туман на фоне -->
@@ -228,6 +216,18 @@
                         <span class="feature-txt">учеников школы ВЕТКА</span>
                     </div>
                 </div>
+
+                <aside class="bonus-badge" id="bonusBadge" role="region" aria-live="polite" aria-label="Бонусная программа на первый заказ">
+                    <div class="bonus-copy">
+                        <span class="bonus-kicker">Бонусная программа</span>
+                        <strong>500 баллов</strong>
+                        <span>Приветственных бонусов на первый заказ</span>
+                    </div>
+                    <div class="bonus-actions">
+                        <a href="https://vetkairkutsk.posiflora.com/wallet-app/d3956895-0a5c-4f32-b268-b5b1f028373c" target="_blank" rel="noopener noreferrer" class="bonus-claim-btn" onclick="claimWelcomeBonus()">Получить</a>
+                    </div>
+                    <button class="bonus-close" type="button" onclick="closeBonusBadge()" aria-label="Скрыть бонус">×</button>
+                </aside>
             </div>
 
                         <!-- Правая часть: Горизонтальная карусель карточек -->
@@ -334,23 +334,24 @@
 
 
     <!-- Настоящий интерактивный свой концепт Букетов -->
-    <section id="constructor-teaser" class="constructor-teaser">
+    <section id="constructor-teaser" class="constructor-teaser constructor-teaser--soon">
         <div class="constructor-header-block">
             <h2>Соберите идею <span class="accent-text">букета</span></h2>
-            <div class="constructor-beta-note" aria-label="Конструктор работает в бета-режиме">
-                <span>Beta</span>
-                <p>Конструктор пока собирает направление: формат, акцент и гамму. Финальный состав и точные сочетания флорист уточнит перед сборкой.</p>
+            <div class="constructor-beta-note" aria-label="Конструктор в разработке">
+                <span>В разработке</span>
+                <p>Готовим новый способ собрать настроение букета онлайн.</p>
             </div>
-            <p class="subtitle">Выберите формат, любимый акцент и цветовую гамму. Это не финальная корзина, а понятная заявка для флориста: мы увидим направление, уточним детали и соберём живой авторский букет.</p>
+            <p class="subtitle">Пока оставьте идею флористу — он подберёт форму, цветы и настроение для вашего случая.</p>
         </div>
 
-        <div class="constructor-mobile-progress" aria-label="Шаги конструктора">
+        <div class="constructor-soon-stage">
+        <div class="constructor-mobile-progress" aria-label="Шаги конструктора" aria-hidden="true">
             <button type="button" class="is-active" data-constructor-step="config"><span>1</span> Настроить</button>
             <button type="button" data-constructor-step="preview"><span>2</span> Идея</button>
             <button type="button" data-constructor-step="summary"><span>3</span> Отправить</button>
         </div>
 
-        <div class="constructor-block" data-mobile-active="config">
+        <div class="constructor-block" data-mobile-active="config" aria-hidden="true" inert>
             <div class="constructor-ui">
                 <div class="constructor-panel-title">
                     <span>01</span>
@@ -451,6 +452,12 @@
                     <button class="btn btn-primary constructor-submit" onclick="openConstructorContactModal()">Отправить идею флористу</button>
                     <button type="button" class="constructor-mobile-back" data-constructor-go="preview">← Вернуться к фото</button>
                 </div>
+            </div>
+        </div>
+            <div class="constructor-soon-card">
+                <span>ВЕТКА / LAB</span>
+                <h3>СВОЙ БУКЕТ<br>ТЕСТИРУЕТСЯ</h3>
+                <p>Тестируем новый способ собрать настроение букета — бережно и без шаблонов.</p>
             </div>
         </div>
     </section>
@@ -851,7 +858,7 @@
                                 <img src="images/review12.jpg" alt="Отзыв ВЕТКА" loading="lazy">
                                 <div class="review-photo-overlay">
                                     <div class="photo-card-meta">
-                                        <span class="photo-user">@jonSnow ❄️</span>
+                                        <span class="photo-user">Никита Мартынов</span>
                                         <span class="photo-platform">Telegram</span>
                                     </div>
                                     <p class="photo-review-text">«Идеальный салон. Свежие цветы, которые стоят у меня дома по две недели, стильная студия в Иркутске и команда фанатов своего дела. Спасибо за красоту!»</p>
