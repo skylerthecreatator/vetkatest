@@ -462,7 +462,7 @@ main { position: relative; z-index: 1; width: min(1400px, calc(100% - 40px)); ma
         z-index: 3;
         top: 0;
         right: -4px;
-        width: 44px;
+        width: 36px;
         height: 104px;
         display: flex;
         align-items: center;
