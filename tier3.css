@@ -5223,3 +5223,23 @@
     border-color: rgba(111, 127, 72, .48);
     background: rgba(111, 127, 72, .14);
 }
+
+/* The first screen on a phone should begin just below the compact header. */
+@media (max-width: 768px) {
+    .hero {
+        padding-top: 68px;
+    }
+
+    body.bonus-notice-visible .hero {
+        padding-top: 142px;
+    }
+
+    .hero-container {
+        gap: 24px;
+    }
+
+    .hero-features {
+        margin-top: 20px;
+        padding-top: 16px;
+    }
+}

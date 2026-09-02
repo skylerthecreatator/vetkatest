@@ -7,6 +7,7 @@ let activeCategory = categoryKeys.includes(new URLSearchParams(location.search).
 let visibleCount = pageSize;
 
 const categoryList = document.getElementById('catalogCategoryList');
+const categoryCycleButton = document.getElementById('catalogCategoryCycle');
 const productGrid = document.getElementById('catalogPageProducts');
 const title = document.getElementById('catalogPageTitle');
 const description = document.getElementById('catalogPageDescription');
@@ -66,6 +67,42 @@ function categoryButton(key, category) {
 function renderCategories() {
     categoryList.replaceChildren(...categoryKeys.map(key => categoryButton(key, catalogData[key])));
 }
+
+function isMobileCategoryRail() {
+    return matchMedia('(max-width: 620px)').matches;
+}
+
+function centerCategoryInRail(key, behavior = 'smooth') {
+    if (!isMobileCategoryRail() || !categoryList) return;
+    const button = categoryList.querySelector(`[data-category="${key}"]`);
+    if (!button) return;
+    const maxScrollLeft = Math.max(0, categoryList.scrollWidth - categoryList.clientWidth);
+    const targetLeft = Math.min(
+        maxScrollLeft,
+        Math.max(0, button.offsetLeft - (categoryList.clientWidth - button.offsetWidth) / 2),
+    );
+    categoryList.scrollTo({ left: targetLeft, behavior });
+    updateCategoryCycleButton();
+}
+
+function updateCategoryCycleButton() {
+    if (!categoryCycleButton || !isMobileCategoryRail()) return;
+    const maxScrollLeft = Math.max(0, categoryList.scrollWidth - categoryList.clientWidth);
+    const atEnd = categoryList.scrollLeft >= maxScrollLeft - 4;
+    categoryCycleButton.setAttribute('aria-label', atEnd ? 'Вернуться к началу списка категорий' : 'Показать следующую категорию');
+    categoryCycleButton.classList.toggle('is-at-end', atEnd);
+}
+
+categoryList?.addEventListener('scroll', updateCategoryCycleButton, { passive: true });
+categoryCycleButton?.addEventListener('click', () => {
+    const maxScrollLeft = Math.max(0, categoryList.scrollWidth - categoryList.clientWidth);
+    const atEnd = categoryList.scrollLeft >= maxScrollLeft - 4;
+    const step = categoryList.querySelector('button')?.offsetWidth || 170;
+    categoryList.scrollTo({
+        left: atEnd ? 0 : Math.min(maxScrollLeft, categoryList.scrollLeft + step + 10),
+        behavior: 'smooth',
+    });
+});
 
 function productCard(product, category, index) {
     const article = document.createElement('article');
@@ -186,9 +223,7 @@ function selectCategory(key) {
     history.replaceState({}, '', url);
     renderCategories();
     renderProducts();
-    if (matchMedia('(max-width: 720px)').matches) {
-        document.querySelector(`[data-category="${key}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-    }
+    centerCategoryInRail(key);
 }
 
 moreButton.addEventListener('click', () => {
@@ -282,12 +317,8 @@ previewOrderButton?.addEventListener('click', () => {
     });
 });
 
-if (matchMedia('(max-width: 720px)').matches) {
+if (isMobileCategoryRail()) {
     requestAnimationFrame(() => {
-        document.querySelector(`[data-category="${activeCategory}"]`)?.scrollIntoView({
-            behavior: 'auto',
-            block: 'nearest',
-            inline: 'center',
-        });
+        centerCategoryInRail(activeCategory, 'auto');
     });
 }

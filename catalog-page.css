@@ -167,6 +167,7 @@ main { position: relative; z-index: 1; width: min(1400px, calc(100% - 40px)); ma
 .catalog-browser-info > p { margin: 0 0 10px; color: var(--muted); font-size: 15px; line-height: 1.6; }
 .catalog-browser-count { justify-self: start; margin-top: 5px; padding: 7px 10px; border: 1px solid rgba(117,137,72,.2); border-radius: 999px; color: var(--olive-dark); background: rgba(249,252,240,.72); font-size: 11px; font-weight: 700; letter-spacing: .04em; }
 .catalog-category-list-wrap { position: relative; }
+.catalog-category-cycle { display: none; }
 .catalog-category-list { margin: 30px 0 38px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
 .catalog-category-list button {
     min-width: 0;
@@ -456,26 +457,29 @@ main { position: relative; z-index: 1; width: min(1400px, calc(100% - 40px)); ma
     .catalog-browser h2 { font-size: clamp(34px, 12vw, 38px); overflow-wrap: anywhere; }
     .catalog-browser-info > p { font-size: 13px; }
     .catalog-browser-count { display: inline-flex; margin-top: 12px; }
-    .catalog-category-list-wrap::after {
-        content: "›";
+    .catalog-category-cycle {
         position: absolute;
         z-index: 3;
-        top: 34px;
-        right: -8px;
-        width: 48px;
-        height: 52px;
+        top: 24px;
+        right: -4px;
+        width: 44px;
+        height: 104px;
         display: flex;
         align-items: center;
         justify-content: center;
         color: var(--olive-dark);
         border: 1px solid rgba(117,137,72,.18);
-        border-radius: 18px 0 0 18px;
-        background: linear-gradient(90deg, rgba(250,247,239,.18), rgba(250,247,239,.96) 54%);
+        border-radius: 17px 0 0 17px;
+        background: linear-gradient(90deg, rgba(250,247,239,.28), rgba(250,247,239,.98) 52%);
         box-shadow: -7px 5px 18px rgba(64,53,39,.07);
         font: 700 26px/1 Playfair Display, serif;
-        pointer-events: none;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        transition: color .2s ease, background .2s ease, transform .2s ease;
     }
-    .catalog-category-list { margin: 20px -12px 28px; padding: 4px 54px 8px 12px; display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .catalog-category-cycle:active { transform: scale(.96); }
+    .catalog-category-cycle:focus-visible { outline: 2px solid var(--olive); outline-offset: 3px; }
+    .catalog-category-list { margin: 20px -12px 28px; padding: 4px 56px 8px 12px; display: flex; gap: 10px; overflow-x: auto; overscroll-behavior-inline: contain; scroll-padding-inline: 12px; scroll-snap-type: x mandatory; scrollbar-width: none; }
     .catalog-category-list::-webkit-scrollbar { display: none; }
     .catalog-category-list button { min-width: 170px; height: 104px; scroll-snap-align: start; border-radius: 17px; }
     .catalog-category-list span { left: 12px; bottom: 12px; font-size: 15px; }
@@ -485,7 +489,7 @@ main { position: relative; z-index: 1; width: min(1400px, calc(100% - 40px)); ma
     .catalog-product { width: 100%; max-width: 100%; min-height: 0; margin-bottom: 28px; display: flex; border-radius: 0; }
     .catalog-product-preview { position: relative; width: 100%; height: auto; min-height: 0; flex: none; border-radius: 18px; }
     .catalog-product-preview img { aspect-ratio: 1 / 1; object-position: center center; }
-    .catalog-product-body { width: 100%; min-height: 0; margin: 0; padding: 14px 3px 0; border-radius: 0; }
+    .catalog-product-body { width: 100%; min-height: 0; margin: 0; padding: 14px 8px 0; border-radius: 0; }
     .catalog-product h3 { font-size: clamp(21px, 6.8vw, 24px); overflow-wrap: break-word; }
     .catalog-product-footer { align-items: end; }
     .catalog-product-footer strong { max-width: 155px; line-height: 1.15; }
@@ -496,7 +500,7 @@ main { position: relative; z-index: 1; width: min(1400px, calc(100% - 40px)); ma
         flex: none;
         aspect-ratio: 1 / 1;
     }
-    .catalog-product--feature .catalog-product-body { width: 100%; min-height: 0; margin: 0; padding: 14px 3px 0; justify-content: flex-end; }
+    .catalog-product--feature .catalog-product-body { width: 100%; min-height: 0; margin: 0; padding: 14px 8px 0; justify-content: flex-end; }
     .catalog-product--feature h3 { max-width: none; font-size: clamp(22px, 7vw, 25px); }
     .catalog-product--feature p { max-width: none; }
     .catalog-product--feature .catalog-product-footer { margin-top: auto; }
