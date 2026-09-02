@@ -460,7 +460,7 @@ main { position: relative; z-index: 1; width: min(1400px, calc(100% - 40px)); ma
     .catalog-category-cycle {
         position: absolute;
         z-index: 3;
-        top: 24px;
+        top: 0;
         right: -4px;
         width: 44px;
         height: 104px;
