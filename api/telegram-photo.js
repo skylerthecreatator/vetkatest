@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     try {
         let photoResponse;
         if (publicUrl) {
-            photoResponse = await fetch(publicUrl);
+            photoResponse = await fetch(publicUrl, { signal: AbortSignal.timeout(12000) });
         } else {
             const bouquet = await readBouquetDay();
             if (!bouquet?.photoFileId || bouquet.photoFileId !== requestedFileId) {
@@ -23,15 +23,16 @@ export default async function handler(req, res) {
 
             const botToken = process.env.BOT_TOKEN;
             if (!botToken) return res.status(503).end();
-            const fileResponse = await fetch(`https://api.telegram.org/bot${botToken}/getFile?file_id=${encodeURIComponent(requestedFileId)}`);
+            const fileResponse = await fetch(`https://api.telegram.org/bot${botToken}/getFile?file_id=${encodeURIComponent(requestedFileId)}`, { signal: AbortSignal.timeout(5000) });
             const fileData = await fileResponse.json();
             if (!fileData.ok || !fileData.result?.file_path) return res.status(502).end();
-            photoResponse = await fetch(`https://api.telegram.org/file/bot${botToken}/${fileData.result.file_path}`);
+            photoResponse = await fetch(`https://api.telegram.org/file/bot${botToken}/${fileData.result.file_path}`, { signal: AbortSignal.timeout(12000) });
         }
         if (!photoResponse.ok) return res.status(502).end();
 
         const contentType = photoResponse.headers.get('content-type') || 'image/jpeg';
         const bytes = Buffer.from(await photoResponse.arrayBuffer());
+        if (!/^image\/(jpeg|png|webp)/i.test(contentType) || !bytes.length || bytes.length > 10 * 1024 * 1024) return res.status(502).end();
         res.setHeader('Content-Type', contentType);
         res.setHeader('Cache-Control', 'public, max-age=300, s-maxage=3600, stale-while-revalidate=86400');
         return res.status(200).send(bytes);

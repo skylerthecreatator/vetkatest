@@ -803,6 +803,7 @@ async function loadBouquetDay() {
 
     try {
         const response = await fetch('/api/bouquet-day', {
+            signal: AbortSignal.timeout(8000),
             headers: { Accept: 'application/json' },
             cache: 'no-store',
         });
@@ -818,6 +819,21 @@ async function loadBouquetDay() {
         const discount = document.getElementById('bouquetDayDiscount');
         const image = document.getElementById('bouquetDayImage');
         const link = document.getElementById('bouquetDayLink');
+
+        if (!image || !bouquet.photoUrl) return;
+        const readyImage = new Image();
+        readyImage.decoding = 'async';
+        await new Promise((resolve, reject) => {
+            const timer = setTimeout(() => { readyImage.src = ''; reject(new Error('photo_timeout')); }, 12000);
+            readyImage.onload = () => { clearTimeout(timer); resolve(); };
+            readyImage.onerror = () => { clearTimeout(timer); reject(new Error('photo_unavailable')); };
+            readyImage.src = bouquet.photoUrl;
+        });
+        await readyImage.decode();
+        // Commit photo and every offer field together, after successful decoding.
+        readyImage.id = image.id;
+        readyImage.alt = `${bouquet.title} — ВЕТКА`;
+        image.replaceWith(readyImage);
 
         const formatPrice = value => {
             const match = String(value || '').match(/(\d[\d\s]*)\s*(₽|руб(?:\.|лей)?)/i);
@@ -836,13 +852,8 @@ async function loadBouquetDay() {
             discount.hidden = !bouquet.discountPercent;
             discount.textContent = bouquet.discountPercent ? `−${bouquet.discountPercent}%` : '';
         }
-        if (image && bouquet.photoUrl) {
-            image.addEventListener('error', () => {
-                image.src = 'images/hero-light-1.jpg';
-            }, { once: true });
-            image.src = bouquet.photoUrl;
-            image.alt = `${bouquet.title} — букет дня ВЕТКА`;
-        }
+        const tag = card.querySelector('.badge-tag');
+        if (tag) tag.textContent = 'ВЕТКА / композиция дня';
         if (link && bouquet.sourcePostUrl) link.href = bouquet.sourcePostUrl;
         card.classList.add('is-synced');
     } catch (error) {

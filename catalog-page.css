@@ -29,7 +29,7 @@ body::before {
     top: 210px;
     width: 520px;
     height: 440px;
-    background: url("images/branch-decor.png") center / contain no-repeat;
+    background: url("images/branch-decor.webp") center / contain no-repeat;
     opacity: .09;
     transform: rotate(-8deg);
     pointer-events: none;

@@ -325,7 +325,7 @@ window.VETKA_CATALOG_DATA = {
         title: 'Вазы и подарки',
         shortTitle: 'Вазы и подарки',
         description: 'Вазы, кензаны, кашпо и мягкие дополнения к цветам: можно выбрать готовый предмет или собрать подарок вместе с букетом.',
-        cover: 'images/catalog/gifts/gift-cover-ceramic-vase-wide.png',
+        cover: 'images/catalog/gifts/gift-cover-ceramic-vase-wide.webp',
         products: giftWorks,
     },
     wedding: {

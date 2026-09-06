@@ -1,6 +1,8 @@
 import express from 'express';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import sharp from 'sharp';
+import { BouquetSnapshot } from './lib/bouquet-snapshot.js';
 
 import submitLead from './api/submit-lead.js';
 import bouquetDay from './api/bouquet-day.js';
@@ -10,6 +12,15 @@ import telegramWebhook from './api/telegram-webhook.js';
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const port = Number(process.env.PORT || 3000);
+const snapshotDirectory = process.env.BOUQUET_SNAPSHOT_DIR;
+const snapshot = snapshotDirectory ? new BouquetSnapshot({
+    directory: snapshotDirectory,
+    transformImage: bytes => sharp(bytes, { limitInputPixels: 30000000 }).rotate().resize({ width: 1000, height: 1200, fit: 'inside', withoutEnlargement: true }).webp({ quality: 82 }).toBuffer(),
+}) : null;
+if (snapshot) {
+    await snapshot.init();
+    snapshot.start();
+}
 
 app.disable('x-powered-by');
 app.set('trust proxy', 1);
@@ -25,7 +36,14 @@ function serverless(handler) {
     };
 }
 
-app.get('/healthz', (_req, res) => res.status(200).json({ ok: true }));
+app.get('/healthz', (_req, res) => res.status(200).json({ ok: true, bouquetReady: Boolean(snapshot?.getBouquet()), bouquetLastSuccess: snapshot?.lastSuccess || null, bouquetSyncError: snapshot?.lastError || null }));
+if (snapshot) {
+    app.get('/api/bouquet-day', (_req, res) => {
+        res.setHeader('Cache-Control', 'no-store');
+        res.json({ ok: true, bouquet: snapshot.getBouquet() });
+    });
+    app.use('/media/bouquet-day', express.static(path.join(snapshotDirectory, 'photos'), { immutable: true, maxAge: '1y', dotfiles: 'deny' }));
+}
 app.all('/api/submit-lead', serverless(submitLead));
 app.all('/api/bouquet-day', serverless(bouquetDay));
 app.all('/api/telegram-photo', serverless(telegramPhoto));

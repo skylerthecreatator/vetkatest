@@ -392,7 +392,7 @@
     height: 280px;
     top: 60px;
     right: -80px;
-    background-image: url("images/side-fern.png");
+    background-image: url("images/side-fern.webp");
     background-size: contain;
     background-repeat: no-repeat;
     opacity: 0.09;
@@ -1045,7 +1045,7 @@
     position: absolute;
     width: 320px;
     height: 320px;
-    background-image: url("images/side-fern.png");
+    background-image: url("images/side-fern.webp");
     background-size: contain;
     background-repeat: no-repeat;
     opacity: 0.12;
@@ -1183,7 +1183,7 @@
     position: absolute;
     width: 210px;
     height: 230px;
-    background-image: url("images/side-fern.png");
+    background-image: url("images/side-fern.webp");
     background-size: contain;
     background-repeat: no-repeat;
     opacity: 0.08;
@@ -2422,7 +2422,7 @@ body::after {
     height: 260px;
     left: 28px;
     top: 120px;
-    background-image: url("images/side-fern.png");
+    background-image: url("images/side-fern.webp");
     transform: rotate(14deg);
     opacity: 0.12;
 }
@@ -2432,7 +2432,7 @@ body::after {
     height: 230px;
     right: 30px;
     bottom: 120px;
-    background-image: url("images/side-fern.png");
+    background-image: url("images/side-fern.webp");
     transform: rotate(-158deg) scaleX(-1);
     opacity: 0.10;
 }
@@ -2614,7 +2614,7 @@ body::after {
     height: 210px;
     right: 30px;
     top: 72px;
-    background-image: url("images/side-fern.png");
+    background-image: url("images/side-fern.webp");
     transform: rotate(-142deg);
     opacity: 0.09;
 }
@@ -2747,7 +2747,7 @@ body::after {
     height: 210px;
     left: 28px;
     top: 118px;
-    background-image: url("images/side-fern.png");
+    background-image: url("images/side-fern.webp");
     transform: rotate(18deg);
     opacity: 0.11;
 }
@@ -2761,7 +2761,7 @@ body::after {
     height: 170px;
     pointer-events: none;
     z-index: 0;
-    background: url("images/side-fern.png") center / contain no-repeat;
+    background: url("images/side-fern.webp") center / contain no-repeat;
     opacity: 0.08;
     transform: rotate(-146deg) scaleX(-1);
 }
@@ -2860,7 +2860,7 @@ body::after {
     height: 190px;
     right: 34px;
     top: 92px;
-    background-image: url("images/side-fern.png");
+    background-image: url("images/side-fern.webp");
     opacity: 0.09;
     transform: rotate(-150deg) scaleX(-1);
 }
@@ -2927,7 +2927,7 @@ body::after {
     width: 180px;
     height: 180px;
     pointer-events: none;
-    background: url("images/side-fern.png") center / contain no-repeat;
+    background: url("images/side-fern.webp") center / contain no-repeat;
     opacity: 0.08;
     transform: rotate(15deg);
 }
