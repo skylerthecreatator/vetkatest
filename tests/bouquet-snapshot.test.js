@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, rm } from 'node:fs/promises';
+import { mkdtemp, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import sharp from 'sharp';
@@ -49,5 +49,15 @@ test('publish complete snapshot, survive failed updates and restart, reject olde
         await assert.rejects(restarted.refresh(), /out_of_order/);
         restarted.lastSuccess = Date.now() - 86400001;
         assert.equal(restarted.getBouquet(), null, 'hide unverified offer after prolonged outage');
+        id = 2;
+        await writeFile(path.join(directory, 'photos', restarted.current.filename), 'corrupt');
+        const repaired = new BouquetSnapshot({ directory, fetcher, transformImage });
+        await repaired.init();
+        assert.equal(repaired.getBouquet(), null, 'do not restore a corrupt photo after restart');
+        await repaired.refresh();
+        assert.equal(repaired.getBouquet().price, '2000 ₽');
+        const healthy = new BouquetSnapshot({ directory, fetcher, transformImage });
+        await healthy.init();
+        assert.equal(healthy.getBouquet().price, '2000 ₽', 'repair corrupt stored photo atomically');
     } finally { await rm(directory, { recursive: true, force: true }); }
 });

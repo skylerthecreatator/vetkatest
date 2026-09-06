@@ -797,9 +797,13 @@ document.getElementById('catalogProducts')?.addEventListener('scroll', event => 
 // ===== БУКЕТ ДНЯ ИЗ TELEGRAM =====
 // Если синхронизация ещё не настроена или Telegram временно недоступен,
 // карточка остаётся с аккуратным запасным контентом из разметки.
+let bouquetDayLoading = false;
+let bouquetDayLastAttempt = 0;
 async function loadBouquetDay() {
     const card = document.getElementById('bouquetDayCard');
-    if (!card) return;
+    if (!card || bouquetDayLoading) return;
+    bouquetDayLoading = true;
+    bouquetDayLastAttempt = Date.now();
 
     try {
         const response = await fetch('/api/bouquet-day', {
@@ -858,10 +862,21 @@ async function loadBouquetDay() {
         card.classList.add('is-synced');
     } catch (error) {
         console.info('Букет дня остаётся на запасном контенте:', error);
+    } finally {
+        bouquetDayLoading = false;
     }
 }
 
 loadBouquetDay();
+// Refresh when a customer returns to an old tab or restores it from browser history.
+// Keep hidden tabs quiet and avoid duplicate requests during image loading.
+function refreshBouquetOnReturn() {
+    if (document.visibilityState === 'visible' && Date.now() - bouquetDayLastAttempt > 60000) {
+        void loadBouquetDay();
+    }
+}
+document.addEventListener('visibilitychange', refreshBouquetOnReturn);
+window.addEventListener('pageshow', refreshBouquetOnReturn);
 
 // Заказ из отдельной страницы каталога открываем сразу в форме на главной.
 const requestedCatalogItem = new URLSearchParams(window.location.search).get('order');

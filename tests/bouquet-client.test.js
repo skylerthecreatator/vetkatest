@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 import vm from 'node:vm';
 
 const source = await readFile(new URL('../script.js', import.meta.url), 'utf8');
-const fn = source.slice(source.indexOf('async function loadBouquetDay()'), source.indexOf('\nloadBouquetDay();'));
+const fn = source.slice(source.indexOf('let bouquetDayLoading = false;'), source.indexOf('\nloadBouquetDay();'));
 for (const failure of [null, 'network', 'decode']) {
     test(`client publishes photo and price atomically: ${failure || 'success'}`, async () => {
         const elements = Object.fromEntries(['Title', 'Price', 'OldPrice', 'Discount', 'Image', 'Link'].map(name => [`bouquetDay${name}`, { textContent: 'original', id: `bouquetDay${name}` }]));
